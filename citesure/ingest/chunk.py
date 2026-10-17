@@ -173,7 +173,8 @@ def _split_offset_text(
 
 
 RE_DOI = re.compile(r"^10\.\d{4,}/")
-RE_LEADERS = re.compile(r"\.{5,}")
+RE_LEADERS = re.compile(r"(?:\.\s?){5,}")
+RE_REQ_WORD = re.compile(r"(?:SHALL|SHOULD|MAY|MUST)")
 RE_NOISE = re.compile(r"^(continued (from previous|on next) page\s*)+$", re.IGNORECASE)
 
 
@@ -189,6 +190,8 @@ def _is_false_heading(text: str) -> bool:
 def _is_list_item(text: str) -> bool:
     t = text.strip()
     n = len(t.split())
+    if RE_REQ_WORD.search(t) and re.match(r"^\d+\.\s", t):
+        return True  # numbered requirement such as "1. Verifiers SHALL ..."
     return n > 14 or (n > 7 and t.endswith((".", ";", ":")) and not t.lower().startswith("appendix"))
 
 
@@ -255,7 +258,8 @@ def chunk_document(
         else:  # text
             tracker.add(b.text, b.page)
     flush()
-    return chunks
+    # front-matter / table-of-contents chunks (dot leaders) are navigation noise, not answers
+    return [c for c in chunks if len(RE_LEADERS.findall(c.text)) < 3]
 
 
 def _chunk_fixed(

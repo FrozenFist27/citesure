@@ -1,4 +1,6 @@
-"""Anthropic provider (claude-haiku-5-5 by default) with prompt caching on the system prompt."""
+"""Anthropic provider (claude-haiku-5-5 by default) with prompt caching on the system prompt.
+
+The installed SDK/model exposes no `temperature` parameter, so the model default is used."""
 
 from __future__ import annotations
 
@@ -16,7 +18,10 @@ class AnthropicProvider:
         key = api_key or os.environ.get("ANTHROPIC_API_KEY")
         if not key:
             raise LLMError("ANTHROPIC_API_KEY is not set")
-        self.client = anthropic.Anthropic(api_key=key, max_retries=3, timeout=60.0)
+        # Always talk to the real Anthropic API unless CITESURE_ANTHROPIC_BASE_URL says otherwise; an ambient
+        # ANTHROPIC_BASE_URL (e.g. set by a dev tool or proxy) must not silently redirect this app's key.
+        base_url = os.environ.get("CITESURE_ANTHROPIC_BASE_URL", "https://api.anthropic.com")
+        self.client = anthropic.Anthropic(api_key=key, base_url=base_url, max_retries=3, timeout=60.0)
         self.model = model
         self.temperature = temperature
 
@@ -25,7 +30,7 @@ class AnthropicProvider:
         resp = self.client.messages.create(
             model=self.model,
             max_tokens=max_tokens,
-            temperature=self.temperature,
+            thinking={"type": "disabled"},
             system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
             messages=[{"role": "user", "content": user}],
         )

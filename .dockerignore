@@ -1,0 +1,8 @@
+.env
+.venv
+.git
+index
+reports
+__pycache__
+*.egg-info
+site
