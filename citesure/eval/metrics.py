@@ -39,8 +39,15 @@ def chunk_matches_gold(chunk: Chunk, gold: dict[str, Any], min_overlap: float = 
     return len(gt & _trigrams(c)) / len(gt) >= min_overlap
 
 
-def first_gold_rank(chunks: list[Chunk], golds: list[dict[str, Any]]) -> int | None:
-    """1-based rank of the first chunk matching any gold source, else None."""
+def first_gold_rank(
+    chunks: list[Chunk], golds: list[dict[str, Any]], require_all: bool = False
+) -> int | None:
+    """1-based rank of the first chunk matching any gold source, else None.
+    With require_all (multi-hop / cross-document), every gold source must be matched by some
+    retrieved chunk and the rank is that of the last one needed."""
+    if require_all and golds:
+        ranks = [first_gold_rank(chunks, [g]) for g in golds]
+        return None if any(r is None for r in ranks) else max(ranks)  # type: ignore[type-var]
     for i, ch in enumerate(chunks, 1):
         if any(chunk_matches_gold(ch, g) for g in golds):
             return i

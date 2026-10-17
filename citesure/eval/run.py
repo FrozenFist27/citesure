@@ -104,7 +104,7 @@ def run_eval(
             retrieved = qa.last["retrieved"]
             timings = resp.timings_ms
         rchunks = [chunks[r.chunk_id] for r in retrieved]
-        rank = M.first_gold_rank(rchunks, golds) if q["answerable"] else None
+        rank = M.first_gold_rank(rchunks, golds, require_all=q.get("category") in ("multi-hop", "cross-document")) if q["answerable"] else None
         r: dict[str, Any] = {
             "id": q["id"], "question": q["question"], "category": q.get("category"),
             "split": q.get("split"), "answerable": q["answerable"], "mode": mode,
