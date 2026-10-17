@@ -1,0 +1,35 @@
+:root {
+  --bg: #f7f8fa; --fg: #14181f; --muted: #5b6573; --card: #ffffff; --line: #d9dee6;
+  --accent: #1b5fd1; --ok: #14724a; --warn: #8a5a00; --warn-bg: #fff6df; --quote-bg: #eef3fc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1319; --fg: #e8ecf2; --muted: #98a3b3; --card: #171c24; --line: #2a323e;
+    --accent: #6ea3ff; --ok: #5fd39b; --warn: #f0c36a; --warn-bg: #2a2412; --quote-bg: #1a2433;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; }
+header, main, footer { max-width: 780px; margin: 0 auto; padding: 0 16px; }
+header { padding-top: 24px; }
+h1 { margin: 0; font-size: 1.7rem; }
+.tag { margin: 4px 0 8px; color: var(--muted); }
+.banner { font-size: .85rem; background: var(--warn-bg); color: var(--warn); padding: 8px 12px; border-radius: 8px; }
+form { display: flex; gap: 8px; margin-top: 16px; }
+textarea { flex: 1; padding: 10px; font: inherit; color: var(--fg); background: var(--card); border: 1px solid var(--line); border-radius: 8px; resize: vertical; }
+button { padding: 0 18px; font: inherit; font-weight: 600; background: var(--accent); color: #fff; border: 0; border-radius: 8px; cursor: pointer; }
+button:disabled { opacity: .6; cursor: wait; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.chip { background: var(--card); color: var(--fg); border: 1px solid var(--line); font-weight: 400; padding: 6px 10px; font-size: .85rem; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin: 12px 0; }
+.card.declined { border-color: var(--warn); }
+.answer { font-size: 1.05rem; margin: 0 0 4px; }
+.cite { background: var(--quote-bg); border-left: 3px solid var(--accent); padding: 8px 12px; margin: 10px 0; border-radius: 4px; }
+.cite blockquote { margin: 0 0 4px; font-size: .92rem; }
+.cite .src { font-size: .8rem; color: var(--muted); }
+.cite .n { font-weight: 700; color: var(--accent); }
+a { color: var(--accent); }
+.meta { font-size: .78rem; color: var(--muted); margin-top: 10px; }
+.sr { position: absolute; left: -9999px; }
+footer { color: var(--muted); font-size: .8rem; padding: 16px; }
+.checked li { font-size: .88rem; }

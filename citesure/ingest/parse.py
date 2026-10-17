@@ -79,10 +79,18 @@ def _group_words_into_lines(words: list[dict[str, Any]], page_no: int) -> list[_
     """Group pdfplumber words into lines by their vertical position."""
     if not words:
         return []
+    # cluster by vertical centre so differently-sized words on one visual line
+    # (e.g. bold SHALL/SHOULD keywords) stay on that line
     lines: dict[int, list[dict[str, Any]]] = {}
-    for w in words:
-        band = round(float(w["top"]) / 3)  # 3pt tolerance
-        lines.setdefault(band, []).append(w)
+    centres: list[float] = []
+    for w in sorted(words, key=lambda w: (float(w["top"]) + float(w["bottom"])) / 2):
+        c = (float(w["top"]) + float(w["bottom"])) / 2
+        if centres and abs(c - centres[-1]) <= 3.0:
+            lines[len(centres) - 1].append(w)
+            centres[-1] = (centres[-1] + c) / 2
+        else:
+            centres.append(c)
+            lines[len(centres) - 1] = [w]
 
     out: list[_Line] = []
     for band in sorted(lines):

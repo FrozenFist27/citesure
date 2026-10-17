@@ -8,7 +8,7 @@ retrieval:
   rrf_k: 60
   rerank_top_n: 20
   final_k: 5
-  decline_threshold: 0.0       # calibrated on dev split; 0 disables the gate until calibrated
+  decline_threshold: -99.0     # calibrated on dev split (python -m citesure.eval.run --calibrate); -99 disables the gate
 
 chunking:
   mode: section                # section | fixed

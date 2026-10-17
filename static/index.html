@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CiteSure - cited answers</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>CiteSure</h1>
+  <p class="tag">Answers from your documents, with the exact quote and page, or an honest "I don't know".</p>
+  <p class="banner">Demo project built on public NIST documents (CSF 2.0, SP 800-61r3, SP 800-171r3, SP 800-63B-4). Not client work. Free hosts sleep when idle, so the first request can be slow.</p>
+</header>
+<main>
+  <form id="ask-form">
+    <label for="q" class="sr">Your question</label>
+    <textarea id="q" rows="2" maxlength="500" placeholder="Ask about the NIST documents..." required></textarea>
+    <button type="submit" id="go">Ask</button>
+  </form>
+  <div id="chips" class="chips" aria-label="Example questions"></div>
+  <div id="out" aria-live="polite"></div>
+</main>
+<footer>Answers are limited to the indexed documents. Page links open the source PDF at the quoted page. Not compliance advice.</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

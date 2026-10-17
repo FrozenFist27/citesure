@@ -16,6 +16,7 @@ class QA:
         self.settings = settings or load_settings()
         self._retriever = retriever
         self._provider = provider
+        self.last: dict = {}  # diagnostics of the most recent ask(): retrieved chunks, gate flag
 
     @property
     def retriever(self) -> Retriever:
@@ -43,6 +44,7 @@ class QA:
             for r in retrieved[:3]
         ]
         timings = dict(timings)
+        self.last = {"retrieved": retrieved, "gated": False}
 
         def finish(resp: AnswerResponse) -> AnswerResponse:
             timings.setdefault("llm", 0.0)
@@ -53,6 +55,7 @@ class QA:
 
         threshold = float(s.retrieval.get("decline_threshold", 0.0))
         if mode == "hybrid_rerank" and should_decline(retrieved, threshold):
+            self.last["gated"] = True
             return finish(AnswerResponse(status="declined", checked_sections=checked,
                                          answer="I don't know - the documents don't cover this."))
 

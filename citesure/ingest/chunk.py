@@ -186,6 +186,12 @@ def _is_false_heading(text: str) -> bool:
     )
 
 
+def _is_list_item(text: str) -> bool:
+    t = text.strip()
+    n = len(t.split())
+    return n > 14 or (n > 7 and t.endswith((".", ";", ":")) and not t.lower().startswith("appendix"))
+
+
 def _is_noise(text: str) -> bool:
     t = " ".join(text.split())
     return bool(RE_NOISE.match(t)) or len(RE_LEADERS.findall(t)) >= 3
@@ -225,6 +231,9 @@ def chunk_document(
 
     for b in blocks:
         if b.kind == "heading" and b.level is not None and _is_false_heading(b.text):
+            continue
+        if b.kind == "heading" and b.level is not None and _is_list_item(b.text):
+            tracker.add(b.text, b.page)  # numbered list item mis-detected as a heading
             continue
         if b.kind == "text" and _is_noise(b.text):
             continue
