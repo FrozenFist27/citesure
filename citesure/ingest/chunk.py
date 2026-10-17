@@ -172,6 +172,25 @@ def _split_offset_text(
     return out
 
 
+RE_DOI = re.compile(r"^10\.\d{4,}/")
+RE_LEADERS = re.compile(r"\.{5,}")
+RE_NOISE = re.compile(r"^(continued (from previous|on next) page\s*)+$", re.IGNORECASE)
+
+
+def _is_false_heading(text: str) -> bool:
+    t = text.strip()
+    return bool(
+        RE_DOI.match(t)
+        or RE_LEADERS.search(t)
+        or t.upper() in {"SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "MAY", "MUST", "MUST NOT"}
+    )
+
+
+def _is_noise(text: str) -> bool:
+    t = " ".join(text.split())
+    return bool(RE_NOISE.match(t)) or len(RE_LEADERS.findall(t)) >= 3
+
+
 def chunk_document(
     blocks: Iterable[Block],
     doc_id: str,
@@ -205,6 +224,10 @@ def chunk_document(
         tracker = _PageTracker()
 
     for b in blocks:
+        if b.kind == "heading" and b.level is not None and _is_false_heading(b.text):
+            continue
+        if b.kind == "text" and _is_noise(b.text):
+            continue
         if b.kind == "heading" and b.level is not None:
             flush()
             while stack and stack[-1][0] >= b.level:
