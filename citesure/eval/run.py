@@ -179,7 +179,11 @@ def calibrate(verbose: bool = True) -> dict[str, Any]:
         # prefer the lowest threshold among ties (least aggressive gate)
         if best is None or score > best[1]:
             best = (thr, score)
-    out = {"best_threshold": best[0], "dev_objective": best[1], "dev_n": len(rows),
+    # every threshold strictly between the previous candidate score and `best` gives the same
+    # dev objective; use the midpoint of that interval rather than its sharp edge.
+    prev = max((c for c in cands if c < best[0]), default=best[0] - 1)
+    midpoint = round((prev + best[0]) / 2, 2)
+    out = {"best_threshold": midpoint, "dev_optimal_interval": [prev, best[0]], "dev_objective": best[1], "dev_n": len(rows),
            "baseline_objective_no_gate": sum(1 for a, _ in rows if a), "sweep": sweep}
     if verbose:
         print(json.dumps({k: v for k, v in out.items() if k != "sweep"}, indent=2))
