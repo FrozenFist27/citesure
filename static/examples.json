@@ -1,0 +1,253 @@
+{
+ "cached": [
+  {
+   "question": "What minimum password length must verifiers require when a password is the only authentication factor?",
+   "response": {
+    "status": "answered",
+    "answer": "When a password is used as a single-factor authentication mechanism, verifiers and CSPs must require a minimum length of 15 characters. [1]",
+    "citations": [
+     {
+      "chunk_id": "sp800-63b-4:25:044",
+      "quote": "Verifiers and CSPs SHALL require passwords that are used as a single-factor",
+      "doc_id": "sp800-63b-4",
+      "doc_title": "NIST SP 800-63B-4",
+      "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
+      "page": 25,
+      "url": "/docs/sp800-63b-4.pdf#page=25"
+     }
+    ],
+    "clarifying_question": null,
+    "checked_sections": [
+     "NIST SP 800-63B-4 - 3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers (p. 25)",
+     "NIST SP 800-63B-4 - Appendix A. Strength of Passwords (p. 98)",
+     "NIST SP 800-63B-4 - 3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers (p. 27)"
+    ],
+    "timings_ms": {
+     "retrieve": 14907.9,
+     "rerank": 5892.8,
+     "llm": 1548.3,
+     "verify": 0.6,
+     "total": 25534.1
+    },
+    "usage": {
+     "input_tokens": 3603,
+     "output_tokens": 127,
+     "cache_write_tokens": 0,
+     "cache_read_tokens": 0
+    },
+    "cost_usd": 0.0004238
+   }
+  },
+  {
+   "question": "Can a service force users to include special characters and numbers in their passwords?",
+   "response": {
+    "status": "answered",
+    "answer": "The passages say composition rules such as requiring mixed character types are commonly used but provide limited benefit. [1] Guidance states that verifiers should not impose other composition rules, such as mixtures of different character types, on passwords. [2]",
+    "citations": [
+     {
+      "chunk_id": "sp800-63b-4:98:195",
+      "quote": "the benefit of such rules is less significant than initially thought [Policies], and the impacts on usability and memorability are severe",
+      "doc_id": "sp800-63b-4",
+      "doc_title": "NIST SP 800-63B-4",
+      "section_path": "Appendix A. Strength of Passwords",
+      "page": 98,
+      "url": "/docs/sp800-63b-4.pdf#page=98"
+     },
+     {
+      "chunk_id": "sp800-63b-4:83:181",
+      "quote": "Do not impose other composition rules (e.g., mixtures of different character types) on passwords.",
+      "doc_id": "sp800-63b-4",
+      "doc_title": "NIST SP 800-63B-4",
+      "section_path": "8. Customer Experience Considerations > 8.1. Usability > 8.1.2. Usability Considerations by Authenticator Type > 8.1.2.1. Passwords",
+      "page": 83,
+      "url": "/docs/sp800-63b-4.pdf#page=83"
+     }
+    ],
+    "clarifying_question": null,
+    "checked_sections": [
+     "NIST SP 800-63B-4 - Appendix A. Strength of Passwords (p. 98)",
+     "NIST SP 800-63B-4 - 3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers (p. 26)",
+     "NIST SP 800-63B-4 - 8. Customer Experience Considerations > 8.1. Usability > 8.1.2. Usability Considerations by Authenticator Type > 8.1.2.1. Passwords (p. 83)"
+    ],
+    "timings_ms": {
+     "retrieve": 22.0,
+     "rerank": 1305.2,
+     "llm": 1489.2,
+     "verify": 4.7,
+     "total": 2829.6
+    },
+    "usage": {
+     "input_tokens": 3670,
+     "output_tokens": 220,
+     "cache_write_tokens": 0,
+     "cache_read_tokens": 0
+    },
+    "cost_usd": 0.000477
+   }
+  },
+  {
+   "question": "What is Tier 1 of the CSF Tiers called?",
+   "response": {
+    "status": "answered",
+    "answer": "Tier 1 of the CSF Tiers is called Partial. [1]",
+    "citations": [
+     {
+      "chunk_id": "csf-2.0:12:014",
+      "quote": "as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4)",
+      "doc_id": "csf-2.0",
+      "doc_title": "NIST CSF 2.0",
+      "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
+      "page": 12,
+      "url": "/docs/csf-2.0.pdf#page=12"
+     }
+    ],
+    "clarifying_question": null,
+    "checked_sections": [
+     "NIST CSF 2.0 - Appendix C. Glossary (p. 31)",
+     "NIST CSF 2.0 - 5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers (p. 12)",
+     "NIST CSF 2.0 - Appendix B. CSF Tiers (p. 29)"
+    ],
+    "timings_ms": {
+     "retrieve": 41.5,
+     "rerank": 1303.6,
+     "llm": 1184.1,
+     "verify": 1.9,
+     "total": 2539.1
+    },
+    "usage": {
+     "input_tokens": 3439,
+     "output_tokens": 131,
+     "cache_write_tokens": 0,
+     "cache_read_tokens": 0
+    },
+    "cost_usd": 0.0004094
+   }
+  },
+  {
+   "question": "What is a CSF Community Profile?",
+   "response": {
+    "status": "answered",
+    "answer": "A CSF Community Profile is a baseline of CSF outcomes created and published to address shared interests and goals among a number of organizations. [1] A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case. [2] An organization can use a Community Profile as the basis for its own Target Profile. [3]",
+    "citations": [
+     {
+      "chunk_id": "csf-2.0:31:025",
+      "quote": "A baseline of CSF outcomes that is created and published to address shared interests and goals among a number of organizations.",
+      "doc_id": "csf-2.0",
+      "doc_title": "NIST CSF 2.0",
+      "section_path": "Appendix C. Glossary",
+      "page": 31,
+      "url": "/docs/csf-2.0.pdf#page=31"
+     },
+     {
+      "chunk_id": "csf-2.0:11:009",
+      "quote": "A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case.",
+      "doc_id": "csf-2.0",
+      "doc_title": "NIST CSF 2.0",
+      "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
+      "page": 11,
+      "url": "/docs/csf-2.0.pdf#page=11"
+     },
+     {
+      "chunk_id": "csf-2.0:11:009",
+      "quote": "An organization can use a Community Profile as the basis for its own Target Profile.",
+      "doc_id": "csf-2.0",
+      "doc_title": "NIST CSF 2.0",
+      "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
+      "page": 11,
+      "url": "/docs/csf-2.0.pdf#page=11"
+     }
+    ],
+    "clarifying_question": null,
+    "checked_sections": [
+     "NIST CSF 2.0 - Appendix C. Glossary (p. 31)",
+     "NIST SP 800-61r3 - 3. CSF 2.0 Community Profile for Cyber Incident Risk Management (p. 18)",
+     "NIST SP 800-61r3 - 3. CSF 2.0 Community Profile for Cyber Incident Risk Management (p. 18)"
+    ],
+    "timings_ms": {
+     "retrieve": 36.4,
+     "rerank": 1447.3,
+     "llm": 1566.4,
+     "verify": 2.5,
+     "total": 3056.0
+    },
+    "usage": {
+     "input_tokens": 3274,
+     "output_tokens": 305,
+     "cache_write_tokens": 0,
+     "cache_read_tokens": 0
+    },
+    "cost_usd": 0.0004799
+   }
+  },
+  {
+   "question": "How much does a YubiKey 5 hardware authenticator cost?",
+   "response": {
+    "status": "declined",
+    "answer": "I don't know - the documents don't cover this.",
+    "citations": [],
+    "clarifying_question": null,
+    "checked_sections": [
+     "NIST SP 800-63B-4 - [SP800-90C]. (p. 53)",
+     "NIST SP 800-63B-4 - 3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.5. Multi-Factor OTPs (p. 36)",
+     "NIST SP 800-63B-4 - AAL3 (p. 128)"
+    ],
+    "timings_ms": {
+     "retrieve": 30.7,
+     "rerank": 1339.4,
+     "llm": 0.0,
+     "verify": 0.0,
+     "total": 1370.3
+    },
+    "usage": {},
+    "cost_usd": null
+   }
+  },
+  {
+   "question": "What must organizations do for each type of wireless access to a system before connections are established?",
+   "response": {
+    "status": "answered",
+    "answer": "Organizations must establish usage restrictions, configuration requirements, and connection requirements for each type of wireless access to the system. [1] Each type of wireless access must be authorized prior to establishing such connections. [2]",
+    "citations": [
+     {
+      "chunk_id": "sp800-171r3:25:056",
+      "quote": "Establish usage restrictions, configuration requirements, and connection requirements for each type of wireless access to the system.",
+      "doc_id": "sp800-171r3",
+      "doc_title": "NIST SP 800-171r3",
+      "section_path": "[20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access",
+      "page": 25,
+      "url": "/docs/sp800-171r3.pdf#page=25"
+     },
+     {
+      "chunk_id": "sp800-171r3:25:056",
+      "quote": "Authorize each type of wireless access to the system prior to establishing such connections.",
+      "doc_id": "sp800-171r3",
+      "doc_title": "NIST SP 800-171r3",
+      "section_path": "[20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access",
+      "page": 25,
+      "url": "/docs/sp800-171r3.pdf#page=25"
+     }
+    ],
+    "clarifying_question": null,
+    "checked_sections": [
+     "NIST SP 800-171r3 - [20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access (p. 25)",
+     "NIST SP 800-171r3 - DISCUSSION (p. 26)",
+     "NIST SP 800-171r3 - REFERENCES > 03.01.12 Remote Access (p. 24)"
+    ],
+    "timings_ms": {
+     "retrieve": 25.9,
+     "rerank": 1379.8,
+     "llm": 1454.7,
+     "verify": 2.6,
+     "total": 2871.8
+    },
+    "usage": {
+     "input_tokens": 1467,
+     "output_tokens": 206,
+     "cache_write_tokens": 0,
+     "cache_read_tokens": 0
+    },
+    "cost_usd": 0.0002497
+   }
+  }
+ ]
+}

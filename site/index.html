@@ -298,37 +298,35 @@
         <span class="kicker">Results</span>
         <h2>Measured, not claimed</h2>
         <p class="section-lead">
-          Every number below comes from a real evaluation run — and until that run happens, every number stays a
-          clearly-marked placeholder. Nothing here is invented.
+          Every number below comes from a real evaluation run (committed in <code>reports/</code>). Nothing here is invented.
         </p>
 
         <div class="notice notice-warn" style="margin-top: 20px; margin-bottom: 20px;">
-          <span class="chip chip-warn">To be measured</span>
-          <p><strong>No measured run has been executed yet.</strong>
-          All metrics below are placeholders of the form <span class="ph">[[PLACEHOLDER — run make eval]]</span>.
-          They will be replaced only by values from a committed <code>reports/eval_*.md</code> file.</p>
+          <span class="chip chip-warn">Honest caveat</span>
+          <p>The 50 eval questions were drafted by an LLM and their gold passages were checked programmatically
+          against the PDF text. <strong>A human has not reviewed them yet.</strong> Small set: one question is 2&ndash;3 points.</p>
         </div>
 
         <div class="table-wrap">
           <table>
-            <caption>Headline metrics — test split (placeholder values until the first measured run)</caption>
+            <caption>Headline metrics &mdash; test split (34 questions: 27 answerable, 7 unanswerable)</caption>
             <thead>
               <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
             </thead>
             <tbody>
-              <tr><td class="metric-name">Retrieval hit rate @5 (test split)</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
-              <tr><td class="metric-name">Faithfulness (LLM judge)</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
-              <tr><td class="metric-name">Correct declines</td><td><span class="ph">[[PLACEHOLDER]]</span> / 10</td></tr>
-              <tr><td class="metric-name">Answer correctness</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
-              <tr><td class="metric-name">Cost per question</td><td><span class="ph">[[PLACEHOLDER — needs pricing.yaml]]</span></td></tr>
-              <tr><td class="metric-name">Latency p50 / p95</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
+              <tr><td class="metric-name">Retrieval hit rate @5</td><td>81.5%</td></tr>
+              <tr><td class="metric-name">Faithfulness (LLM judge, answered questions)</td><td>100% (22 of 22)</td></tr>
+              <tr><td class="metric-name">Correct declines</td><td>7 / 7 (10 / 10 over all 50)</td></tr>
+              <tr><td class="metric-name">Answer correctness</td><td>81.5%</td></tr>
+              <tr><td class="metric-name">Cost per question</td><td>$0.00031</td></tr>
+              <tr><td class="metric-name">Latency p50 / p95</td><td>2.8 s / 4.0 s</td></tr>
             </tbody>
           </table>
         </div>
 
         <div class="table-wrap" style="margin-top: 20px;">
           <table>
-            <caption>Before / after: does the system&rsquo;s design actually help? (placeholder table)</caption>
+            <caption>Before / after on the test split: each retrieval step measured</caption>
             <thead>
               <tr>
                 <th scope="col">Mode</th>
@@ -338,16 +336,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td class="metric-name">vector (baseline)</td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td></tr>
-              <tr><td class="metric-name">hybrid (BM25 + vector)</td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td></tr>
-              <tr><td class="metric-name">hybrid + rerank (final)</td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td></tr>
+              <tr><td class="metric-name">vector (baseline)</td><td>37.0%</td><td>66.7%</td><td>0.472</td></tr>
+              <tr><td class="metric-name">hybrid (BM25 + vector)</td><td>48.1%</td><td>77.8%</td><td>0.602</td></tr>
+              <tr><td class="metric-name">hybrid + rerank (final)</td><td>51.9%</td><td>81.5%</td><td>0.614</td></tr>
             </tbody>
           </table>
         </div>
 
         <p class="footnote">
-          Measured on <span class="ph">[[N]]</span> hand-verified questions on <span class="ph">[[date]]</span>,
-          model <span class="ph">[[model id]]</span>. Reproduce with <code>make eval</code>
+          Measured on 50 LLM-drafted, programmatically verified questions on 2026-10-17,
+          model claude-haiku-5-5. Reproduce with <code>make eval</code>
           (Windows: <code>python -m citesure.eval.run</code>).
         </p>
       </div>
@@ -372,7 +370,7 @@
             A chatbot that answers only from a document set, shows the exact quoted passage and a link to the PDF page
             for every answer, and says &ldquo;I don&rsquo;t know&rdquo; when the documents don&rsquo;t cover the question.
             Hybrid keyword + vector search with re-ranking, deterministic quote verification, and a one-command
-            evaluation on 50 hand-verified questions (including 10 unanswerable).
+            evaluation on 50 questions (including 10 unanswerable).
           </p>
           <div class="chips-row">
             <span class="chip">Python</span><span class="chip">RAG</span><span class="chip">LLM</span>
