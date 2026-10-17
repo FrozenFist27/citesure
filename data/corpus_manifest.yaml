@@ -1,0 +1,45 @@
+licence_note: Work of the U.S. Government (NIST); not subject to copyright protection in the United States.
+  Cited for demonstration purposes. Not an official NIST product; no endorsement implied.
+documents:
+- doc_id: csf-2.0
+  title: NIST Cybersecurity Framework (CSF) 2.0
+  short_title: NIST CSF 2.0
+  publisher: NIST
+  series: NIST CSWP 29
+  url: https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf
+  filename: NIST.CSWP.29.pdf
+  sha256: 3c31f46fee98cac0c4323453e5109291a213b4de7fef8c058af9bf67f717433c
+  pages: 32
+  downloaded_at: '2026-10-17T13:17:28Z'
+- doc_id: sp800-61r3
+  title: 'NIST SP 800-61 Rev. 3: Incident Response Recommendations and Considerations for Cybersecurity
+    Risk Management'
+  short_title: NIST SP 800-61r3
+  publisher: NIST
+  series: NIST SP 800-61r3
+  url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf
+  filename: NIST.SP.800-61r3.pdf
+  sha256: e5593d6bb85daecec7e8d9549400c7b3473bcc3f06e469c82218073afa7fba2d
+  pages: 48
+  downloaded_at: '2026-10-17T13:17:29Z'
+- doc_id: sp800-171r3
+  title: 'NIST SP 800-171 Rev. 3: Protecting Controlled Unclassified Information in Nonfederal Systems
+    and Organizations'
+  short_title: NIST SP 800-171r3
+  publisher: NIST
+  series: NIST SP 800-171r3
+  url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-171r3.pdf
+  filename: NIST.SP.800-171r3.pdf
+  sha256: 3e4631df8b5d61f40a6e542b52779ef30ddbbfff31e09214fa94ad6e6f5e6d08
+  pages: 120
+  downloaded_at: '2026-10-17T13:17:33Z'
+- doc_id: sp800-63b-4
+  title: 'NIST SP 800-63B-4: Digital Identity Guidelines: Authentication and Authenticator Management'
+  short_title: NIST SP 800-63B-4
+  publisher: NIST
+  series: NIST SP 800-63B-4
+  url: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf
+  filename: NIST.SP.800-63b-4.pdf
+  sha256: d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd
+  pages: 129
+  downloaded_at: '2026-10-17T13:17:36Z'
