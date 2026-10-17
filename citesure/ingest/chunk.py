@@ -174,7 +174,7 @@ def _split_offset_text(
 
 RE_DOI = re.compile(r"^10\.\d{4,}/")
 RE_LEADERS = re.compile(r"(?:\.\s?){5,}")
-RE_REQ_WORD = re.compile(r"(?:SHALL|SHOULD|MAY|MUST)")
+RE_REQ_WORD = re.compile(r"\b(?:SHALL|SHOULD|MAY|MUST)\b")
 RE_NOISE = re.compile(r"^(continued (from previous|on next) page\s*)+$", re.IGNORECASE)
 
 
