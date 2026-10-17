@@ -1,0 +1,40 @@
+# CiteSure retrieval / runtime settings.
+# Model ids and provider come from .env (LLM_PROVIDER, LLM_MODEL, JUDGE_MODEL).
+
+retrieval:
+  mode: hybrid_rerank          # vector | bm25 | hybrid | hybrid_rerank
+  bm25_k: 20
+  vector_k: 20
+  rrf_k: 60
+  rerank_top_n: 20
+  final_k: 5
+  decline_threshold: 0.0       # calibrated on dev split; 0 disables the gate until calibrated
+
+chunking:
+  mode: section                # section | fixed
+  max_words: 350
+  overlap_words: 50
+
+embeddings:
+  model_name: BAAI/bge-small-en-v1.5
+  query_prefix: "Represent this sentence for searching relevant passages: "
+
+reranker:
+  model_name: cross-encoder/ms-marco-MiniLM-L-6-v2
+
+answer:
+  max_tokens: 600
+  temperature: 0.0
+  max_passages: 5
+  retry_on_verify_fail: 1
+
+limits:
+  daily_question_cap: 200      # overridden by env DAILY_QUESTION_CAP
+  rate_limit_per_ip_per_hour: 10
+  max_question_chars: 500
+
+paths:
+  data_dir: data
+  index_dir: index
+  reports_dir: reports
+  docs_dir: data/raw

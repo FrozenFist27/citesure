@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e131c" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="CiteSure product UI mockup — upload &amp; extracted fields, review queue, chat with citations, approval flow and run log, alert feed and health status. Static mock with sample data.">
+  <title>CiteSure — product UI mockup (static demo, sample data)</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232f5fd0'/%3E%3Cpath d='M6 12.5l4 4 8-9' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+          <rect x="4" y="2.5" width="14" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M7.5 8h7M7.5 12h7M7.5 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M14.5 17.5l2 2 4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        CiteSure
+        <span class="brand-demo">mock</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#results">Results</a>
+        <a href="#main" aria-current="page">Product mockup</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="index.html#catalog">Hire me</a>
+    </div>
+  </header>
+
+  <div class="mock-banner" role="note">
+    <span class="chip chip-mock">UI mockup</span>
+    Static page — no backend, no real model calls. All documents, quotes, metrics and timings below are
+    <strong>synthetic sample data</strong> illustrating the interface; they are not real document excerpts or
+    measured results.
+  </div>
+
+  <main id="main" class="section" style="padding-top: 28px;">
+    <div class="container">
+      <div class="status-row" style="margin-bottom: 14px;">
+        <span class="chip chip-mock">Static mock</span>
+        <span class="chip">Sample data only</span>
+        <span class="chip">No API keys, no uploads — nothing leaves this page</span>
+      </div>
+
+      <!-- ======================= APP SHELL ======================= -->
+      <div class="app-shell tabs">
+        <input class="tab-input" type="radio" name="demo-tabs" id="tab-chat" checked>
+        <input class="tab-input" type="radio" name="demo-tabs" id="tab-upload">
+        <input class="tab-input" type="radio" name="demo-tabs" id="tab-review">
+        <input class="tab-input" type="radio" name="demo-tabs" id="tab-approvals">
+        <input class="tab-input" type="radio" name="demo-tabs" id="tab-alerts">
+
+        <div class="app-topbar">
+          <div>
+            <div class="app-title">
+              CiteSure workspace
+              <span class="chip chip-warn">sample corpus: NIST (public)</span>
+            </div>
+            <div class="app-sub">4 documents indexed · demo workspace · nothing is really running</div>
+          </div>
+          <div class="status-row" style="margin-bottom: 0;">
+            <span class="chip chip-ok">● index ready</span>
+            <span class="chip">provider: <span class="ph">[set via .env]</span></span>
+          </div>
+        </div>
+
+        <div class="tabbar" aria-label="Product views (radio-driven, no JavaScript)">
+          <label for="tab-chat">Chat with citations</label>
+          <label for="tab-upload">Upload &amp; extracted fields</label>
+          <label for="tab-review">Review queue</label>
+          <label for="tab-approvals">Approvals &amp; run log</label>
+          <label for="tab-alerts">Alerts &amp; health</label>
+        </div>
+
+        <div class="panels">
+
+          <!-- ============ PANEL 1: CHAT WITH CITATIONS ============ -->
+          <section class="panel" id="panel-chat" aria-label="Chat with citations">
+            <p class="panel-note">
+              The core user flow: ask a question, get an answer where every sentence carries a verbatim quote and a
+              page link — or an honest decline with the sections that were checked.
+            </p>
+
+            <div class="chips-row">
+              <span class="chips-label">Example questions:</span>
+              <span class="q-chip">What does the framework say about governance?</span>
+              <span class="q-chip">Show the incident response steps</span>
+              <span class="q-chip">What does our vendor say about SLA credits?</span>
+            </div>
+
+            <!-- Answered exchange -->
+            <article class="exchange">
+              <div class="exchange-q">
+                <span class="who">You</span>
+                What does the framework say about governance?
+              </div>
+              <div class="exchange-a">
+                <div class="status-row">
+                  <span class="chip chip-ok">answered</span>
+                  <span class="chip chip-info">2 citations</span>
+                  <span class="chip chip-warn">sample data</span>
+                </div>
+                <p class="answer-text">
+                  The framework organises cyber-risk work into six functions, with governance as the function that
+                  coordinates the rest
+                  <span class="ref">[1]</span>. It expects the organisation to establish and communicate its
+                  policies, roles and priorities for managing that risk
+                  <span class="ref">[2]</span>.
+                </p>
+                <div class="cite-list">
+                  <div class="cite">
+                    <div class="cite-head">
+                      <span class="doc">NIST CSF 2.0 (CSWP 29)</span>
+                      <span>§ 2.1 The CSF Functions</span>
+                      <a class="page-link" href="#" title="Opens /docs/csf-2.pdf#page=10 in the real app">&#128196; page 10</a>
+                    </div>
+                    <blockquote class="cite-quote">Sample synthetic quote standing in for the verbatim excerpt from the source PDF — in the real product this text is checked character-for-character against the chunk before it is shown.</blockquote>
+                  </div>
+                  <div class="cite">
+                    <div class="cite-head">
+                      <span class="doc">NIST CSF 2.0 (CSWP 29)</span>
+                      <span>§ 3 GV.OC-01</span>
+                      <a class="page-link" href="#" title="Opens /docs/csf-2.pdf#page=24 in the real app">&#128196; page 24</a>
+                    </div>
+                    <blockquote class="cite-quote">Sample synthetic quote for the second citation card. The mock keeps quotes short (8–40 words in the real system) and shows the document, section and page for each one.</blockquote>
+                  </div>
+                </div>
+                <div class="meta-strip">
+                  <span>status: answered</span>
+                  <span>retrieve: <span class="ph">tbd ms</span></span>
+                  <span>rerank: <span class="ph">tbd ms</span></span>
+                  <span>llm: <span class="ph">tbd ms</span></span>
+                  <span>verify: <span class="ph">tbd ms</span></span>
+                  <span>tokens: <span class="ph">tbd</span></span>
+                  <span>cost: <span class="ph">[[PLACEHOLDER — run make eval]]</span></span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Declined exchange -->
+            <article class="exchange">
+              <div class="exchange-q">
+                <span class="who">You</span>
+                What does our vendor say about SLA credits?
+              </div>
+              <div class="exchange-a">
+                <div class="status-row">
+                  <span class="chip chip-danger">declined</span>
+                  <span class="chip">no LLM call for unanswerable</span>
+                  <span class="chip chip-warn">sample data</span>
+                </div>
+                <p class="answer-text">
+                  <strong>I don&rsquo;t know — the documents don&rsquo;t cover this.</strong>
+                </p>
+                <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 8px;">Sections checked (top 3 from the gate):</p>
+                <ul class="checked-list">
+                  <li>Vendor Agreement Overview — § 1 Scope of Services</li>
+                  <li>Vendor Agreement Overview — § 4 Availability Targets</li>
+                  <li>Service Handbook — § 2 Support Channels</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Clarify exchange -->
+            <article class="exchange" style="margin-bottom: 0;">
+              <div class="exchange-q">
+                <span class="who">You</span>
+                How often do we review access?
+              </div>
+              <div class="exchange-a">
+                <div class="status-row">
+                  <span class="chip chip-warn">clarify</span>
+                  <span class="chip chip-warn">sample data</span>
+                </div>
+                <p class="answer-text">
+                  Which do you mean: the review of <em>privileged accounts</em>, or the review of
+                  <em>all user accounts</em>? The documents describe both.
+                </p>
+              </div>
+            </article>
+          </section>
+
+          <!-- ============ PANEL 2: UPLOAD + EXTRACTED FIELDS ============ -->
+          <section class="panel" id="panel-upload" aria-label="Upload and extracted fields">
+            <p class="panel-note">
+              Ingest view: drop PDFs, watch the parser keep headings, pages and tables, then confirm the manifest
+              metadata before the index is built.
+            </p>
+
+            <div class="dropzone">
+              <p class="dz-title">Drop PDFs here</p>
+              <p>Born-digital PDFs only in this demo (no OCR). Rights to the documents must be yours.</p>
+              <span class="btn btn-ghost btn-sm" aria-disabled="true">Choose files</span>
+            </div>
+
+            <div class="status-row">
+              <span class="chip chip-ok">parsed</span>
+              <span class="chip chip-warn">sample data</span>
+            </div>
+
+            <div class="grid grid-2">
+              <div class="card">
+                <div class="status-row">
+                  <strong>csf-2.pdf</strong>
+                  <span class="chip chip-ok">sha256 recorded</span>
+                </div>
+                <dl class="fields">
+                  <dt>title</dt><dd>Cybersecurity Framework (CSF) 2.0</dd>
+                  <dt>publisher</dt><dd>NIST (CSWP 29)</dd>
+                  <dt>pages</dt><dd><span class="ph">tbd (recorded after download)</span></dd>
+                  <dt>licence note</dt><dd>Work of the U.S. Government; not subject to US copyright.</dd>
+                  <dt>headings</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>tables</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>chunks</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>bytes</dt><dd><span class="ph">tbd</span></dd>
+                </dl>
+              </div>
+              <div class="card">
+                <div class="status-row">
+                  <strong>sp800-61r3.pdf</strong>
+                  <span class="chip chip-ok">sha256 recorded</span>
+                </div>
+                <dl class="fields">
+                  <dt>title</dt><dd>Incident Response Recommendations (SP 800-61r3)</dd>
+                  <dt>publisher</dt><dd>NIST</dd>
+                  <dt>pages</dt><dd><span class="ph">tbd (recorded after download)</span></dd>
+                  <dt>licence note</dt><dd>Work of the U.S. Government; not subject to US copyright.</dd>
+                  <dt>headings</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>tables</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>chunks</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>bytes</dt><dd><span class="ph">tbd</span></dd>
+                </dl>
+              </div>
+            </div>
+
+            <div class="grid grid-2" style="margin-top: 16px;">
+              <div class="card">
+                <div class="status-row">
+                  <strong>sp800-171r3.pdf</strong>
+                  <span class="chip chip-ok">sha256 recorded</span>
+                </div>
+                <dl class="fields">
+                  <dt>title</dt><dd>Protecting CUI (SP 800-171r3)</dd>
+                  <dt>publisher</dt><dd>NIST</dd>
+                  <dt>pages</dt><dd><span class="ph">tbd (recorded after download)</span></dd>
+                  <dt>licence note</dt><dd>Work of the U.S. Government; not subject to US copyright.</dd>
+                  <dt>headings</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>tables</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>chunks</dt><dd><span class="ph">tbd</span></dd>
+                </dl>
+              </div>
+              <div class="card">
+                <div class="status-row">
+                  <strong>sp800-63b.pdf</strong>
+                  <span class="chip chip-ok">sha256 recorded</span>
+                </div>
+                <dl class="fields">
+                  <dt>title</dt><dd>Digital Identity Guidelines (SP 800-63B)</dd>
+                  <dt>publisher</dt><dd>NIST</dd>
+                  <dt>pages</dt><dd><span class="ph">tbd (recorded after download)</span></dd>
+                  <dt>licence note</dt><dd>Work of the U.S. Government; not subject to US copyright.</dd>
+                  <dt>headings</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>tables</dt><dd><span class="ph">tbd</span></dd>
+                  <dt>chunks</dt><dd><span class="ph">tbd</span></dd>
+                </dl>
+              </div>
+            </div>
+
+            <div class="notice notice-info" style="margin-top: 16px;">
+              <span class="chip chip-info">reproducible</span>
+              <p>Page counts and SHA-256 hashes are written back to <code>data/corpus_manifest.yaml</code> by
+              <code>make download</code> — never guessed. Local re-run: <code>make ingest</code>.</p>
+            </div>
+          </section>
+
+          <!-- ============ PANEL 3: REVIEW QUEUE ============ -->
+          <section class="panel" id="panel-review" aria-label="Review queue">
+            <p class="panel-note">
+              A human-in-the-loop queue for eval questions and low-confidence answers: draft, verify against the PDF
+              page, then accept. The mock ships with drafts unverified — verification is a human act.
+            </p>
+
+            <div class="queue-head">
+              <span><strong>Eval set drafting</strong></span>
+              <span class="chip chip-warn">0 / 50 human-verified</span>
+              <span class="progress" title="Share of items marked verified_by_human"><span class="progress-bar" style="width: 0%;"></span></span>
+              <span class="chip">15 dev · 35 test planned</span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <caption>Draft eval questions (sample rows — human verification required before any run is reported)</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Split</th>
+                    <th scope="col">Verified</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>q001</td>
+                    <td>Which framework function coordinates the others?</td>
+                    <td><span class="chip">definition</span></td>
+                    <td>dev</td>
+                    <td><span class="chip chip-danger">false</span></td>
+                    <td class="table-actions"><span class="btn btn-ghost btn-sm" aria-disabled="true">Open PDF</span></td>
+                  </tr>
+                  <tr>
+                    <td>q002</td>
+                    <td>What does the document say about recovery time targets?</td>
+                    <td><span class="chip">fact</span></td>
+                    <td>test</td>
+                    <td><span class="chip chip-danger">false</span></td>
+                    <td class="table-actions"><span class="btn btn-ghost btn-sm" aria-disabled="true">Open PDF</span></td>
+                  </tr>
+                  <tr>
+                    <td>q003</td>
+                    <td>Compare the two tables in the detection section.</td>
+                    <td><span class="chip">table</span></td>
+                    <td>test</td>
+                    <td><span class="chip chip-danger">false</span></td>
+                    <td class="table-actions"><span class="btn btn-ghost btn-sm" aria-disabled="true">Open PDF</span></td>
+                  </tr>
+                  <tr>
+                    <td>q041</td>
+                    <td>What does the framework say about vendor X&rsquo;s product?</td>
+                    <td><span class="chip">unanswerable</span></td>
+                    <td>test</td>
+                    <td><span class="chip chip-danger">false</span></td>
+                    <td class="table-actions"><span class="btn btn-ghost btn-sm" aria-disabled="true">Confirm absent</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="notice notice-warn" style="margin-top: 14px;">
+              <span class="chip chip-warn">blocking</span>
+              <p>The implementer never marks items verified. The eval report prints a warning if any
+              <code>verified_by_human</code> flag is <code>false</code> — a human reviews every gold answer and
+              passage against the actual PDF page before results are reported.</p>
+            </div>
+          </section>
+
+          <!-- ============ PANEL 4: APPROVALS & RUN LOG ============ -->
+          <section class="panel" id="panel-approvals" aria-label="Approval flow and run log">
+            <p class="panel-note">
+              Governance view: what stage a request is in, who approved what, and the machine-readable run log you can
+              attach to a report.
+            </p>
+
+            <div class="flow-steps">
+              <div class="flow-step"><span class="n">1</span><strong>Ingested</strong>4 PDFs parsed &amp; hashed<span class="chip chip-ok">done</span></div>
+              <div class="flow-step"><span class="n">2</span><strong>Drafted</strong>50 eval items proposed<span class="chip chip-ok">done</span></div>
+              <div class="flow-step"><span class="n">3</span><strong>Human review</strong>Verify gold passages<span class="chip chip-warn">waiting</span></div>
+              <div class="flow-step"><span class="n">4</span><strong>Eval run</strong><code>make eval</code> × 3 modes<span class="chip">blocked</span></div>
+              <div class="flow-step"><span class="n">5</span><strong>Approve report</strong>Commit to reports/<span class="chip">blocked</span></div>
+            </div>
+
+            <h3 class="panel-subhead">Run log (sample)</h3>
+            <pre class="log" aria-label="Sample run log"><span class="lvl-sample">2026-10-16T09:12:04Z</span> ingest    parse csf-2.pdf          pages=<span class="ph">tbd</span> headings=<span class="ph">tbd</span> tables=<span class="ph">tbd</span>
+<span class="lvl-sample">2026-10-16T09:12:31Z</span> ingest    chunk  csf-2.pdf          chunks=<span class="ph">tbd</span> mean_words=<span class="ph">tbd</span>
+<span class="lvl-sample">2026-10-16T09:12:44Z</span> ingest    index  build              bm25=ok embeddings=ok sqlite=ok
+<span class="lvl-ok">2026-10-16T09:12:44Z</span> ingest    ok                         ingest_time=<span class="ph">tbd</span> (local, free)
+<span class="lvl-warn">2026-10-16T09:13:02Z</span> eval      skip                      reason=unverified_items=50 (human review pending)
+<span class="lvl-pending">— pending —</span>            eval      run make eval            metrics=hit@k,mrr,faithfulness,declines,cost,latency
+<span class="lvl-pending">— pending —</span>            report    reports/eval_&lt;ts&gt;.md     replaces all [[PLACEHOLDER]] values on the site</pre>
+
+            <div class="approve-bar">
+              <span class="btn btn-primary btn-sm" aria-disabled="true">Approve item</span>
+              <span class="btn btn-ghost btn-sm" aria-disabled="true">Request changes</span>
+              <span class="btn btn-ghost btn-sm" aria-disabled="true">Export log</span>
+              <span class="hint">Buttons are inert in this static mock.</span>
+            </div>
+          </section>
+
+          <!-- ============ PANEL 5: ALERTS & HEALTH ============ -->
+          <section class="panel" id="panel-alerts" aria-label="Alert feed and health status">
+            <p class="panel-note">
+              Operations view: daily usage caps, quote-verification guardrails and provider health — the things that
+              keep a cheap public demo cheap and honest.
+            </p>
+
+            <div class="grid grid-2">
+              <div>
+                <h3 class="panel-subhead" style="margin-top: 0;">Health</h3>
+                <div class="health-list">
+                  <div class="health-row"><span class="k">API /api/health</span><span class="v"><span class="chip chip-ok">200 OK</span></span></div>
+                  <div class="health-row"><span class="k">Index build</span><span class="v"><span class="chip chip-ok">ready</span></span></div>
+                  <div class="health-row"><span class="k">Provider</span><span class="v"><span class="ph">[.env model id]</span></span></div>
+                  <div class="health-row"><span class="k">Quote verification guardrail</span><span class="v"><span class="ph">[[PLACEHOLDER — should be 100%]]</span></span></div>
+                  <div class="health-row"><span class="k">Daily demo cap</span><span class="v">0 / <span class="ph">[DAILY_QUESTION_CAP]</span> questions</span></div>
+                  <div class="health-row"><span class="k">Per-IP limit</span><span class="v">0 / <span class="ph">[RATE_LIMIT_PER_IP]</span> per hour</span></div>
+                  <div class="health-row"><span class="k">Example-answer cache</span><span class="v"><span class="chip">6 keys planned</span></span></div>
+                </div>
+              </div>
+
+              <div>
+                <h3 class="panel-subhead" style="margin-top: 0;">Alert feed</h3>
+                <div class="alert-feed">
+                  <div class="alert alert-warn">
+                    <span aria-hidden="true">&#9888;</span>
+                    <div class="alert-body">
+                      <strong>Daily cap approaching</strong>
+                      <span>Sample alert: show &ldquo;Daily demo limit reached — watch the video or run locally.&rdquo;</span>
+                    </div>
+                  </div>
+                  <div class="alert alert-warn">
+                    <span aria-hidden="true">&#9888;</span>
+                    <div class="alert-body">
+                      <strong>Citation failed verification (sample)</strong>
+                      <span>A generated quote was not an exact substring of its chunk — dropped, retried once, then declined.</span>
+                    </div>
+                  </div>
+                  <div class="alert alert-info">
+                    <span aria-hidden="true">&#8505;</span>
+                    <div class="alert-body">
+                      <strong>Cold start (sample)</strong>
+                      <span>Free-tier Space sleeps when idle; first question takes longer. Shown to visitors.</span>
+                    </div>
+                  </div>
+                  <div class="alert alert-info">
+                    <span aria-hidden="true">&#8505;</span>
+                    <div class="alert-body">
+                      <strong>Unverified eval items</strong>
+                      <span>Report withheld: 50 items await human verification (see Review queue).</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div><!-- /.panels -->
+      </div><!-- /.app-shell -->
+
+      <div class="notice notice-warn" style="margin-top: 20px;">
+        <span class="chip chip-mock">mock</span>
+        <p><strong>This page is a static illustration.</strong> Tabs are pure CSS, there is no backend, no API key and
+        no network call. Metrics that would be results appear only as
+        <span class="ph">[[PLACEHOLDER — run make eval]]</span> chips until a real measured run produces numbers.</p>
+      </div>
+
+      <div class="hero-ctas" style="justify-content: flex-start; margin-top: 20px;">
+        <a class="btn btn-primary" href="index.html">Back to the landing page</a>
+        <a class="btn btn-ghost" href="index.html#results">See the results section</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-demo">
+        <span class="chip chip-mock">Demo</span>
+        <p><strong>CiteSure is a demo project.</strong> Built on public NIST documents — not client work, no client
+        data from any engagement. All UI content here is synthetic sample data.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="demo.html">Product mockup</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="#" title="Repository link added when the public repo is published">GitHub</a>
+        <a href="#" title="Video link added when published">2-min video</a>
+      </div>
+      <p class="footer-meta">
+        Static HTML + one stylesheet. Light/dark via <code>prefers-color-scheme</code>, responsive to 375px,
+        no external JS, no build step. &copy; 2026 CiteSure demo · MIT licensed.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

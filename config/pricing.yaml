@@ -1,0 +1,30 @@
+# Per-1M-token prices in USD for the models used by CiteSure.
+# Fill from the provider's current pricing page. Nulls mean "cost metric not available"
+# and the eval report will print cost as null instead of inventing a number.
+#
+# Sources:
+#   https://www.anthropic.com/pricing#anthropic_api  (claude-haiku-5-5)
+#   https://ai.google.dev/pricing                    (gemini flash)
+
+models:
+  # Two rate cards by prompt length: $0.10/$0.50 when prompt <= 100K tokens,
+  # $0.50/$2.50 beyond. CiteSure keeps all prompts well under 100K tokens.
+  claude-haiku-5-5:
+    input_per_mtok: 0.10           # USD per 1M input tokens (prompt <= 100K)
+    output_per_mtok: 0.50          # USD per 1M output tokens (prompt <= 100K)
+    cache_write_per_mtok: 0.125    # 5-minute cache write = 1.25x input
+    cache_read_per_mtok: 0.01      # cache read = 0.1x input
+
+  # Example Gemini ids - fill only if you switch provider.
+  gemini-flash-lite:
+    input_per_mtok: null
+    output_per_mtok: null
+    cache_write_per_mtok: null
+    cache_read_per_mtok: null
+
+# Unknown model -> these nulls are used and cost_usd is reported as null.
+default:
+  input_per_mtok: null
+  output_per_mtok: null
+  cache_write_per_mtok: null
+  cache_read_per_mtok: null

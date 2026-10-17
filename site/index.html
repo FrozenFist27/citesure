@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e131c" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="CiteSure — document Q&amp;A that answers only from your documents, quotes the exact passage, links the page, and says 'I don't know' when it should. A demo project on public NIST documents.">
+  <title>CiteSure — Answers from your documents, with proof on every line (demo)</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%232f5fd0'/%3E%3Cpath d='M6 12.5l4 4 8-9' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+          <rect x="4" y="2.5" width="14" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M7.5 8h7M7.5 12h7M7.5 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M14.5 17.5l2 2 4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        CiteSure
+        <span class="brand-demo">demo</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#results">Results</a>
+        <a href="#catalog">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="demo.html">Product mockup</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="demo.html">Try the demo</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="container">
+        <div class="badge-row">
+          <span class="chip chip-warn">Demo project on public NIST documents</span>
+          <span class="chip">Not client work</span>
+        </div>
+        <h1>Answers from your documents. Proof on every line.</h1>
+        <p class="sub">
+          CiteSure answers only from your policies and manuals, quotes the exact passage,
+          links the page — and says &ldquo;I don&rsquo;t know&rdquo; when it should.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="demo.html">Try the live demo</a>
+          <a class="btn btn-ghost" href="#results">See the eval report</a>
+          <a class="btn btn-ghost" href="#" aria-disabled="true" title="Added when the 2-minute video is published">Watch the 2-min video</a>
+        </div>
+        <p class="hero-note">
+          Static product site — no tracking, no build step. Results appear only after a real measured run.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= PROBLEM ================= -->
+    <section class="section" id="problem">
+      <div class="container">
+        <span class="kicker">The problem</span>
+        <h2>Doc chatbots make things up. Compliance can&rsquo;t afford that.</h2>
+        <div class="grid grid-3" style="margin-top: 24px;">
+          <div class="card problem-item">
+            <span class="icon" aria-hidden="true">&#10005;</span>
+            <div>
+              <h3>Answers that sound right</h3>
+              <p>Generic chatbots invent answers that sound right. In compliance, HR and support, one wrong answer costs trust.</p>
+            </div>
+          </div>
+          <div class="card problem-item">
+            <span class="icon" aria-hidden="true">?</span>
+            <div>
+              <h3>Unverifiable claims</h3>
+              <p>Teams can&rsquo;t verify answers without hunting through hundreds of pages.</p>
+            </div>
+          </div>
+          <div class="card problem-item">
+            <span class="icon" aria-hidden="true">%</span>
+            <div>
+              <h3>Nobody measures accuracy</h3>
+              <p>Nobody measures how often the bot is right.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="section section-alt" id="how">
+      <div class="container">
+        <span class="kicker">How it works</span>
+        <h2>Four steps, one honest behaviour</h2>
+        <p class="section-lead">Every claim is backed by a verbatim quote that code — not trust — checks against the source PDF.</p>
+
+        <div class="grid grid-4" style="margin-top: 24px;">
+          <div class="card step">
+            <span class="step-num">1</span>
+            <h3>Reads your PDFs</h3>
+            <p>Keeps headings, page numbers and tables while parsing — so chunks know where they came from.</p>
+          </div>
+          <div class="card step">
+            <span class="step-num">2</span>
+            <h3>Finds the passages</h3>
+            <p>Keyword + semantic search together, then re-ranks the candidates for the question at hand.</p>
+          </div>
+          <div class="card step">
+            <span class="step-num">3</span>
+            <h3>Writes with proof</h3>
+            <p>A short answer where every sentence quotes the source verbatim — checked character-for-character by code.</p>
+          </div>
+          <div class="card step">
+            <span class="step-num">4</span>
+            <h3>Stays honest</h3>
+            <p>Declines or asks one clarifying question when the documents don&rsquo;t cover the question. No guessing.</p>
+          </div>
+        </div>
+
+        <!-- Architecture diagram: inline SVG, no external requests -->
+        <figure class="diagram" aria-labelledby="diagram-caption">
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 840 470" role="img" aria-labelledby="diagram-title diagram-desc" xmlns="http://www.w3.org/2000/svg">
+              <title id="diagram-title">CiteSure architecture: offline ingest and online question answering</title>
+              <desc id="diagram-desc">
+                Offline lane: PDF documents go through parse.py with pdfplumber, then section-aware chunking,
+                then an index build producing BM25, embeddings and a SQLite chunk store.
+                Online lane: a typed question goes through retrieve.py combining BM25 and vector search with
+                reciprocal rank fusion, then rerank.py with a cross-encoder to the top five passages,
+                then gate.py which declines without calling the language model when the relevance score is below
+                threshold, then answer.py where the language model writes a strict-JSON answer,
+                then verify.py which requires every quote to be an exact substring of its cited chunk,
+                finally producing a response JSON rendered as quote cards with PDF page links.
+                A failed verification retries once and then declines.
+              </desc>
+
+              <!-- Arrow marker -->
+              <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path class="d-arrow-head" d="M0 0 L10 5 L0 10 z"/>
+                </marker>
+              </defs>
+
+              <!-- Lane labels -->
+              <text class="d-lane" x="24" y="28">OFFLINE — make ingest</text>
+              <text class="d-lane" x="24" y="160">ONLINE — per question</text>
+
+              <!-- Row 1: offline -->
+              <rect class="d-box" x="24" y="44" width="132" height="64" rx="10"/>
+              <text class="d-title" x="90" y="66" text-anchor="middle">PDF documents</text>
+              <text class="d-sub" x="90" y="86" text-anchor="middle">public NIST PDFs</text>
+              <text class="d-sub" x="90" y="100" text-anchor="middle">US federal works</text>
+
+              <rect class="d-box" x="192" y="44" width="168" height="64" rx="10"/>
+              <text class="d-title" x="276" y="66" text-anchor="middle">parse.py</text>
+              <text class="d-sub" x="276" y="86" text-anchor="middle">pdfplumber: text, fonts,</text>
+              <text class="d-sub" x="276" y="100" text-anchor="middle">tables, page numbers</text>
+
+              <rect class="d-box" x="396" y="44" width="156" height="64" rx="10"/>
+              <text class="d-title" x="474" y="66" text-anchor="middle">chunk.py</text>
+              <text class="d-sub" x="474" y="86" text-anchor="middle">section-aware split</text>
+              <text class="d-sub" x="474" y="100" text-anchor="middle">~350 w / 50 overlap</text>
+
+              <rect class="d-box" x="588" y="44" width="196" height="64" rx="10"/>
+              <text class="d-title" x="686" y="66" text-anchor="middle">index build</text>
+              <text class="d-sub" x="686" y="86" text-anchor="middle">BM25 + embeddings.npy</text>
+              <text class="d-sub" x="686" y="100" text-anchor="middle">+ chunks.sqlite</text>
+
+              <path class="d-arrow" d="M158 76 H190" marker-end="url(#arr)"/>
+              <path class="d-arrow" d="M362 76 H394" marker-end="url(#arr)"/>
+              <path class="d-arrow" d="M554 76 H586" marker-end="url(#arr)"/>
+
+              <!-- index feeds the online retrieve step -->
+              <path class="d-arrow" d="M686 108 V150 H296 V174" marker-end="url(#arr)"/>
+              <text class="d-sub" x="500" y="143" text-anchor="middle">reads the index at query time</text>
+
+              <!-- Row 2: online -->
+              <rect class="d-box d-box-online" x="24" y="176" width="132" height="64" rx="10"/>
+              <text class="d-title" x="90" y="198" text-anchor="middle">Your question</text>
+              <text class="d-sub" x="90" y="218" text-anchor="middle">typed by the user</text>
+              <text class="d-sub" x="90" y="232" text-anchor="middle">max 500 chars</text>
+
+              <rect class="d-box d-box-online" x="196" y="176" width="200" height="64" rx="10"/>
+              <text class="d-title" x="296" y="198" text-anchor="middle">retrieve.py</text>
+              <text class="d-sub" x="296" y="218" text-anchor="middle">BM25 top-20 + vector top-20</text>
+              <text class="d-sub" x="296" y="232" text-anchor="middle">→ RRF (k=60) → top 20</text>
+
+              <rect class="d-box d-box-online" x="432" y="176" width="160" height="64" rx="10"/>
+              <text class="d-title" x="512" y="198" text-anchor="middle">rerank.py</text>
+              <text class="d-sub" x="512" y="218" text-anchor="middle">cross-encoder</text>
+              <text class="d-sub" x="512" y="232" text-anchor="middle">→ top 5 passages</text>
+
+              <rect class="d-box d-box-online" x="628" y="176" width="156" height="64" rx="10"/>
+              <text class="d-title" x="706" y="198" text-anchor="middle">gate.py</text>
+              <text class="d-sub" x="706" y="218" text-anchor="middle">relevance gate</text>
+              <text class="d-sub" x="706" y="232" text-anchor="middle">score &lt; threshold?</text>
+
+              <path class="d-arrow" d="M158 208 H194" marker-end="url(#arr)"/>
+              <path class="d-arrow" d="M398 208 H430" marker-end="url(#arr)"/>
+              <path class="d-arrow" d="M594 208 H626" marker-end="url(#arr)"/>
+
+              <!-- Gate branches -->
+              <path class="d-arrow" d="M706 240 V296" marker-end="url(#arr)"/>
+              <text class="d-label-warn" x="714" y="272">low score</text>
+
+              <rect class="d-box d-box-danger" x="628" y="300" width="176" height="56" rx="10"/>
+              <text class="d-title" x="716" y="322" text-anchor="middle">DECLINE</text>
+              <text class="d-sub" x="716" y="340" text-anchor="middle">no LLM call (saves cost)</text>
+              <text class="d-sub" x="716" y="354" text-anchor="middle">lists checked sections</text>
+
+              <path class="d-arrow" d="M650 240 V268 H524 V328" marker-end="url(#arr)"/>
+              <text class="d-label" x="534" y="300">pass</text>
+
+              <!-- Row 3: answer → verify → respond -->
+              <rect class="d-box d-box-online" x="436" y="330" width="176" height="64" rx="10"/>
+              <text class="d-title" x="524" y="352" text-anchor="middle">answer.py</text>
+              <text class="d-sub" x="524" y="372" text-anchor="middle">LLM · strict JSON · temp 0</text>
+              <text class="d-sub" x="524" y="386" text-anchor="middle">answered / clarify / decline</text>
+
+              <rect class="d-box" x="216" y="330" width="184" height="64" rx="10"/>
+              <text class="d-title" x="308" y="352" text-anchor="middle">verify.py</text>
+              <text class="d-sub" x="308" y="372" text-anchor="middle">quote must be an exact</text>
+              <text class="d-sub" x="308" y="386" text-anchor="middle">substring of the chunk</text>
+
+              <rect class="d-box d-box-ok" x="24" y="330" width="156" height="64" rx="10"/>
+              <text class="d-title" x="102" y="352" text-anchor="middle">response JSON</text>
+              <text class="d-sub" x="102" y="372" text-anchor="middle">quote cards + citations</text>
+              <text class="d-sub" x="102" y="386" text-anchor="middle">PDF opens #page=N</text>
+
+              <path class="d-arrow" d="M434 362 H403" marker-end="url(#arr)"/>
+              <path class="d-arrow" d="M214 362 H183" marker-end="url(#arr)"/>
+
+              <!-- verify failure path -->
+              <path class="d-arrow d-arrow-dashed" d="M308 394 V430 H716 V358" marker-end="url(#arr)"/>
+              <text class="d-sub" x="316" y="450">quote not verbatim → retry once, then DECLINE</text>
+            </svg>
+          </div>
+          <figcaption class="diagram-caption" id="diagram-caption">
+            Architecture: offline ingest (top lane) and the per-question pipeline (bottom lane). Quote verification is
+            deterministic — it never trusts the model.
+          </figcaption>
+          <p class="diagram-hint">Scroll the diagram horizontally on small screens.</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="section" id="features">
+      <div class="container">
+        <span class="kicker">Features</span>
+        <h2>Built for teams that need to check the bot</h2>
+        <div class="grid grid-2" style="margin-top: 24px;">
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>Verbatim quote + clickable page link for every claim</strong>
+            <span>Each sentence cites the exact passage; the link opens the PDF at the right page.</span></p>
+          </div>
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>Honest &ldquo;I don&rsquo;t know&rdquo; with the sections it checked</strong>
+            <span>Uncovered questions are declined — and you can see it looked.</span></p>
+          </div>
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>Clarifying questions for ambiguous asks</strong>
+            <span>One short question instead of a confident guess.</span></p>
+          </div>
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>Hybrid search + re-ranking</strong>
+            <span>BM25 keyword search and local embeddings fused, then re-ranked by a cross-encoder.</span></p>
+          </div>
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>One-command evaluation report</strong>
+            <span>Hit rate, faithfulness, declines, cost and latency from <code>make eval</code>.</span></p>
+          </div>
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>Swappable LLM provider; embeddings run locally</strong>
+            <span>Claude by default, Gemini as free-tier alternative — no extra API cost for search.</span></p>
+          </div>
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>Small, auditable Python codebase with tests</strong>
+            <span>No framework in the UI, no vector database account, everything reproducible.</span></p>
+          </div>
+          <div class="card feature"><span class="tick" aria-hidden="true">&#10003;</span>
+            <p><strong>Public, synthetic or your own documents</strong>
+            <span>Built on public NIST PDFs for the demo; your documents stay yours.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESULTS ================= -->
+    <section class="section section-alt" id="results">
+      <div class="container">
+        <span class="kicker">Results</span>
+        <h2>Measured, not claimed</h2>
+        <p class="section-lead">
+          Every number below comes from a real evaluation run — and until that run happens, every number stays a
+          clearly-marked placeholder. Nothing here is invented.
+        </p>
+
+        <div class="notice notice-warn" style="margin-top: 20px; margin-bottom: 20px;">
+          <span class="chip chip-warn">To be measured</span>
+          <p><strong>No measured run has been executed yet.</strong>
+          All metrics below are placeholders of the form <span class="ph">[[PLACEHOLDER — run make eval]]</span>.
+          They will be replaced only by values from a committed <code>reports/eval_*.md</code> file.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Headline metrics — test split (placeholder values until the first measured run)</caption>
+            <thead>
+              <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="metric-name">Retrieval hit rate @5 (test split)</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
+              <tr><td class="metric-name">Faithfulness (LLM judge)</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
+              <tr><td class="metric-name">Correct declines</td><td><span class="ph">[[PLACEHOLDER]]</span> / 10</td></tr>
+              <tr><td class="metric-name">Answer correctness</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
+              <tr><td class="metric-name">Cost per question</td><td><span class="ph">[[PLACEHOLDER — needs pricing.yaml]]</span></td></tr>
+              <tr><td class="metric-name">Latency p50 / p95</td><td><span class="ph">[[PLACEHOLDER — run make eval]]</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap" style="margin-top: 20px;">
+          <table>
+            <caption>Before / after: does the system&rsquo;s design actually help? (placeholder table)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Mode</th>
+                <th scope="col">Hit@1</th>
+                <th scope="col">Hit@5</th>
+                <th scope="col">MRR@5</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="metric-name">vector (baseline)</td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td></tr>
+              <tr><td class="metric-name">hybrid (BM25 + vector)</td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td></tr>
+              <tr><td class="metric-name">hybrid + rerank (final)</td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td><td><span class="ph">[[tbd]]</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="footnote">
+          Measured on <span class="ph">[[N]]</span> hand-verified questions on <span class="ph">[[date]]</span>,
+          model <span class="ph">[[model id]]</span>. Reproduce with <code>make eval</code>
+          (Windows: <code>python -m citesure.eval.run</code>).
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= CATALOG / UPWORK CTA ================= -->
+    <section class="section" id="catalog">
+      <div class="container">
+        <span class="kicker">Hire me · Project Catalog</span>
+        <h2>Get CiteSure built on your documents</h2>
+        <p class="section-lead">
+          Demo project, real method: same pipeline, your corpus, a measured evaluation report at the end.
+        </p>
+
+        <div class="card" style="margin-top: 24px;">
+          <div class="status-row">
+            <span class="chip chip-warn">Demo project</span>
+            <span class="chip">Solo — design, build, evaluation, deployment</span>
+          </div>
+          <h3 style="font-size: 1.15rem;">CiteSure — Document Q&amp;A Chatbot with Verbatim Citations &amp; Evaluation Report</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 10px;">
+            A chatbot that answers only from a document set, shows the exact quoted passage and a link to the PDF page
+            for every answer, and says &ldquo;I don&rsquo;t know&rdquo; when the documents don&rsquo;t cover the question.
+            Hybrid keyword + vector search with re-ranking, deterministic quote verification, and a one-command
+            evaluation on 50 hand-verified questions (including 10 unanswerable).
+          </p>
+          <div class="chips-row">
+            <span class="chip">Python</span><span class="chip">RAG</span><span class="chip">LLM</span>
+            <span class="chip">FastAPI</span><span class="chip">Information Retrieval</span>
+            <span class="chip">Evaluation</span><span class="chip">Claude API</span><span class="chip">Hugging Face</span>
+          </div>
+        </div>
+
+        <div class="grid grid-3" style="margin-top: 20px;">
+          <div class="card tier">
+            <h3>Starter</h3>
+            <div class="tier-price">from <span class="ph">$[[DECIDE]]</span></div>
+            <ul>
+              <li>Up to 300 pages, PDF only</li>
+              <li>Web chat page</li>
+              <li>Citations + decline behaviour</li>
+              <li>20-question eval report</li>
+            </ul>
+            <div class="tier-delivery">Delivery: 7 days</div>
+          </div>
+          <div class="card tier">
+            <h3>Standard</h3>
+            <div class="tier-price">from <span class="ph">$[[DECIDE]]</span></div>
+            <ul>
+              <li>Up to 1,500 pages, PDF/DOCX/HTML</li>
+              <li>50-question eval report with before/after tuning</li>
+              <li>Deploy to your cloud or a Hugging Face Space</li>
+            </ul>
+            <div class="tier-delivery">Delivery: 10 days</div>
+          </div>
+          <div class="card tier">
+            <h3>Advanced</h3>
+            <div class="tier-price">from <span class="ph">$[[DECIDE]]</span></div>
+            <ul>
+              <li>Everything in Standard</li>
+              <li>Slack/Teams or website widget</li>
+              <li>Scheduled re-ingest, access-control discussion</li>
+              <li>100-question eval</li>
+            </ul>
+            <div class="tier-delivery">Delivery: 14 days</div>
+          </div>
+        </div>
+
+        <div class="notice notice-info" style="margin-top: 20px;">
+          <span class="chip chip-info">What I need from you</span>
+          <p>Documents you have the rights to use · 20–50 sample questions with expected answers (if available) ·
+          your LLM provider preference / API key · hosting preference. Need something else?
+          <strong style="display:inline;">Custom: talk to me.</strong></p>
+        </div>
+
+        <div class="hero-ctas" style="justify-content: flex-start; margin-top: 22px;">
+          <a class="btn btn-primary" href="demo.html">See the product mockup</a>
+          <a class="btn btn-ghost" href="#" aria-disabled="true" title="Upwork link added when the portfolio entry is published">View on Upwork (link at publish)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section section-alt" id="faq">
+      <div class="container">
+        <span class="kicker">FAQ</span>
+        <h2>Questions clients ask first</h2>
+        <div class="faq" style="margin-top: 18px;">
+          <details>
+            <summary>Can it use my documents?</summary>
+            <p>Yes — PDFs today; DOCX/HTML in the Standard tier. You must have the rights to the documents.</p>
+          </details>
+          <details>
+            <summary>Does it ever make things up?</summary>
+            <p>Every quote is checked character-for-character against the source; uncovered questions are declined.
+            The eval report shows how often it is right — no system is perfect, and the report shows where it fails.</p>
+          </details>
+          <details>
+            <summary>Where does my data go?</summary>
+            <p>Embeddings run locally; only the top passages for each question are sent to the LLM provider you choose.
+            Self-hosting available.</p>
+          </details>
+          <details>
+            <summary>What does it cost to run?</summary>
+            <p>See the measured cost per question in the eval report; ingest is free (local models). Cost figures on
+            this site stay placeholders until a measured run produces them.</p>
+          </details>
+          <details>
+            <summary>Is this client work?</summary>
+            <p>No — it&rsquo;s a demo built on public NIST documents to show the approach.</p>
+          </details>
+          <details>
+            <summary>Which LLMs?</summary>
+            <p>Claude by default; Gemini supported; others via the provider interface.</p>
+          </details>
+          <details>
+            <summary>Scanned PDFs?</summary>
+            <p>Not in this demo (no OCR); can be added per project.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-demo">
+        <span class="chip chip-mock">Demo</span>
+        <p><strong>CiteSure is a demo project.</strong> It is built on public NIST documents — not client work, no
+        client data from any engagement. NIST does not endorse this project. All code, data and prompts here are
+        public or synthetic.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="demo.html">Product mockup</a>
+        <a href="#results">Results (placeholders)</a>
+        <a href="#" title="Repository link added when the public repo is published">GitHub</a>
+        <a href="#" title="Live demo link added at publish">Live demo</a>
+        <a href="#" title="Video link added when published">2-min video</a>
+      </div>
+      <p class="footer-meta">
+        Every metric on this site is a placeholder until a measured eval run (<code>make eval</code>) produces real
+        numbers. No tracking scripts, no external requests, no build step.
+        &copy; 2026 CiteSure demo · MIT licensed.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
