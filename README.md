@@ -77,6 +77,7 @@ Reading it honestly:
   versus 100% with the gate). Whether the gate is worth it is a cost-versus-recall choice; set
   `retrieval.decline_threshold` very low to disable it.
 - LLM output is not perfectly deterministic: the table above and `eval_baseline.md` are separate runs of the same configuration.
+- Re-run check (a second full run of the same command, not committed): all-50 hit@5 85.0% (identical, retrieval is deterministic), correctness 90.0% (baseline 87.5%), faithfulness 97.2% over 36 judged (baseline 100% over 35), 10/10 correct declines, $0.00030 per question. Retrieval numbers reproduce exactly; LLM-dependent numbers move by a few points between runs.
 - With 27 answerable test questions, one question is 3.7 points. Treat differences of a few points as noise.
 
 ## Cost per run
