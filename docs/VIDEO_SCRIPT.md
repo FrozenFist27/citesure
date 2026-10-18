@@ -1,6 +1,6 @@
 # CiteSure demo video script (under 2 minutes)
 
-Label on screen the whole time: "Demo project on public NIST documents. Not client work."
+Label on screen the whole time: "Built on public NIST documents."
 All numbers come from `reports/eval_baseline.md` and `reports/compare_baseline.md` (2026-10-17 run).
 
 | Time | Shot | Voice-over |

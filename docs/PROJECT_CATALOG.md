@@ -2,7 +2,7 @@
 
 **Title:** I will build a document Q&A chatbot that cites the exact page for every answer
 
-Show the demo as "Demo project built on public NIST documents", with its measured evaluation report
+Show the demo as "Built on public NIST documents", with its measured evaluation report
 (`reports/eval_baseline.md`) as proof of approach.
 
 | Tier | Scope | Delivery | Price |

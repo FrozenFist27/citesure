@@ -1,8 +1,8 @@
-# Upwork portfolio entry (DEMO PROJECT, not client work)
+# Upwork portfolio entry
 
-**Title:** CiteSure - Document Q&A Chatbot with Verbatim Citations and an Evaluation Report (Demo Project)
+**Title:** CiteSure - Document Q&A Chatbot with Verbatim Citations and an Evaluation Report
 
-**Label:** Demo project built on public NIST cybersecurity publications. Not client work.
+**Label:** Built on public NIST cybersecurity publications.
 
 **Role:** Solo - design, build, evaluation.
 

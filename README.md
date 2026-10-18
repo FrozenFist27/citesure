@@ -2,7 +2,7 @@
 
 **Answers from your documents, with the exact quote and page, or an honest "I don't know".**
 
-> Demo project built on public NIST documents. Not client work.
+> Built on public NIST documents.
 > Live demo: not deployed (no Hugging Face token was available; the repo is Space-ready, see `Dockerfile`).
 > Video: script in `docs/VIDEO_SCRIPT.md` (to be recorded).
 
