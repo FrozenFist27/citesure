@@ -3,7 +3,7 @@
 **Answers from your documents, with the exact quote and page, or an honest "I don't know".**
 
 > Built on public NIST documents.
-> Live demo: not deployed (no Hugging Face token was available; the repo is Space-ready, see `Dockerfile`).
+> **Live demo:** https://citesure-h4efwpcu7q-uc.a.run.app (example questions answer instantly; the first typed question after idle can take about a minute while models load; 100 questions/day cap).
 > Video: script in `docs/VIDEO_SCRIPT.md` (to be recorded).
 
 ## Problem
@@ -137,7 +137,7 @@ gate, prompts, API and rate limit, metrics). The LLM is mocked.
   questions are the weakest (clarifying questions instead of answers).
 - The optional gate (off by default) has a measured cost in false declines (above); without it every question costs an LLM call.
 - Page numbers are PDF page indexes, not printed page labels. Complex merged-cell tables may parse imperfectly.
-- Not deployed: no Hugging Face token was available. Rate limits are in memory, single process.
+- Hosted on Google Cloud Run (us-central1, 2 vCPU / 2 GiB, scales to zero, max 1 instance). The first typed question after idle measured 69 s (model loading); warm questions 5-6 s. Rate limits are in memory and reset when the instance restarts.
 - Not legal or compliance advice.
 
 ## Data and licence

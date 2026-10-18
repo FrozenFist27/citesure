@@ -23,6 +23,6 @@ Measured results (test split, 34 questions, claude-haiku-5-5, 2026-10-18, releva
 
 **Skills:** Python, RAG, LLM, FastAPI, Information Retrieval, Evaluation, Claude API
 
-**Links:** GitHub repo: TBD by owner. Live demo: not deployed. Video: to be recorded from `docs/VIDEO_SCRIPT.md`.
+**Links:** GitHub repo: https://github.com/FrozenFist27/citesure. Live demo: https://citesure-h4efwpcu7q-uc.a.run.app. Video: to be recorded from `docs/VIDEO_SCRIPT.md`.
 
 **Media:** screenshot of an answer with quote cards; screenshot of `reports/eval_baseline.md`.
