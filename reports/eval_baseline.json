@@ -1,7 +1,7 @@
 {
   "header": {
-    "timestamp": "2026-10-17T18:42:11Z",
-    "git_commit": "badad54",
+    "timestamp": "2026-10-18T10:56:04Z",
+    "git_commit": "131bec4",
     "mode": "hybrid_rerank",
     "split": "all",
     "answer_model": "claude-haiku-5-5",
@@ -15,6 +15,7 @@
         "rrf_k": 60,
         "rerank_top_n": 20,
         "final_k": 5,
+        "gate_enabled": false,
         "decline_threshold": 0.1
       },
       "chunking": {
@@ -55,25 +56,25 @@
     "retrieval_hit@5": 0.85,
     "retrieval_mrr@5": 0.6224999999999998,
     "quote_verification_rate": 1.0,
-    "citation_page_accuracy": 0.8571428571428571,
-    "faithfulness": 1.0,
-    "n_faithfulness_judged": 35,
-    "answer_correctness": 0.875,
+    "citation_page_accuracy": 0.8157894736842105,
+    "faithfulness": 0.9736842105263158,
+    "n_faithfulness_judged": 38,
+    "answer_correctness": 0.95,
     "correct_declines": 10,
     "unanswerable_total": 10,
-    "false_decline_rate": 0.125,
-    "latency_ms_p50": 2792.8500000000004,
-    "latency_ms_p95": 3998.2,
+    "false_decline_rate": 0.05,
+    "latency_ms_p50": 3946.2,
+    "latency_ms_p95": 7266.2,
     "latency_ms_mean_by_stage": {
-      "retrieve": 353.1,
-      "rerank": 1603.0,
-      "llm": 1143.0,
-      "verify": 1.3
+      "retrieve": 1831.4,
+      "rerank": 2762.4,
+      "llm": 1541.1,
+      "verify": 3.1
     },
-    "cost_per_question_usd": 0.0003090780000000001,
-    "cost_total_usd": 0.015453900000000005,
-    "judge_cost_total_usd": 0.006746099999999999,
-    "llm_calls_skipped_by_gate": 11
+    "cost_per_question_usd": 0.00039294600000000014,
+    "cost_total_usd": 0.019647300000000006,
+    "judge_cost_total_usd": 0.007405400000000002,
+    "llm_calls_skipped_by_gate": 0
   },
   "results": [
     {
@@ -95,15 +96,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 15692.4,
-        "rerank": 6372.5,
-        "llm": 3083.2,
-        "verify": 1.4,
-        "total": 25154.8
+        "retrieve": 87494.9,
+        "rerank": 7655.7,
+        "llm": 1819.7,
+        "verify": 2.0,
+        "total": 96986.2
       },
       "status": "answered",
       "gated": false,
-      "answer": "When a password is used as a single-factor authentication mechanism, verifiers and CSPs must require a minimum length of 15 characters. [1] When a password is used only as part of a multi-factor authentication process, verifiers and CSPs may allow it to be shorter but must require a minimum of eight characters. [2]",
+      "answer": "When a password is used as a single-factor authentication mechanism, verifiers and CSPs must require a minimum length of 15 characters. [1] When a password is used only as part of a multi-factor authentication process, the minimum length is eight characters. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -117,7 +118,7 @@
         },
         {
           "chunk_id": "sp800-63b-4:25:044",
-          "quote": "Verifiers and CSPs MAY allow passwords that are only used as part of multi-factor authentication processes to be shorter but SHALL require them to be a minimum of eight characters in length.",
+          "quote": "SHALL require them to be a minimum of eight characters in length.",
           "doc_id": "sp800-63b-4",
           "doc_title": "NIST SP 800-63B-4",
           "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
@@ -127,19 +128,19 @@
       ],
       "usage": {
         "input_tokens": 3267,
-        "output_tokens": 267,
+        "output_tokens": 206,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004602,
+      "cost_usd": 0.0004297,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims about the 15-character minimum for single-factor passwords and the eight-character minimum for multi-factor passwords are directly stated in the quoted passage.",
-      "correct_reason": "The system answer states 15 characters for single-factor passwords and 8 characters for multi-factor use, matching the gold answer's key facts without contradiction.",
-      "judge_cost_usd": 0.0001786
+      "faithful_reason": "The answer's two claims about minimum password lengths (15 characters for single-factor, 8 for multi-factor) are directly stated in the quoted NIST SP 800-63B-4 passage.",
+      "correct_reason": "The system answer states 15 characters for single-factor passwords and 8 characters for multi-factor use, matching the gold answer exactly without contradiction.",
+      "judge_cost_usd": 0.00017910000000000002
     },
     {
       "id": "q002",
@@ -160,15 +161,15 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 47.9,
-        "rerank": 1707.6,
-        "llm": 1338.0,
-        "verify": 1.2,
-        "total": 3099.4
+        "retrieve": 96.5,
+        "rerank": 2259.2,
+        "llm": 1854.9,
+        "verify": 2.9,
+        "total": 4218.7
       },
       "status": "answered",
       "gated": false,
-      "answer": "AAL3 requires a cryptographic authenticator with a non-exportable private key that provides phishing resistance. [1] Authenticators used at AAL3 must also use approved cryptography. [2]",
+      "answer": "AAL3 requires a cryptographic authenticator with a non-exportable private key that provides phishing resistance. [1] The authentication key must be non-exportable, and the authenticator must be validated to meet the requirements of FIPS 140 Level 1 or higher overall. [2][3]",
       "clarifying_question": null,
       "citations": [
         {
@@ -181,8 +182,17 @@
           "url": "/docs/sp800-63b-4.pdf#page=19"
         },
         {
+          "chunk_id": "sp800-63b-4:12:004.2",
+          "quote": "AAL3 authentication requires a phishing-resistant authenticator (see Sec. 3.2.5) with a non-exportable authentication key (see Sec. 3.2.13).",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "1. Introduction",
+          "page": 12,
+          "url": "/docs/sp800-63b-4.pdf#page=12"
+        },
+        {
           "chunk_id": "sp800-63b-4:19:026",
-          "quote": "Authenticators used at AAL3 SHALL use approved cryptography.",
+          "quote": "Single-factor and multi-factor authenticators used at AAL3 SHALL be validated to meet the requirements of [FIPS140] Level 1 or higher overall.",
           "doc_id": "sp800-63b-4",
           "doc_title": "NIST SP 800-63B-4",
           "section_path": "[FIPS140]. > 2.3. Authentication Assurance Level 3 > 2.3.2. Authenticator and Verifier Requirements",
@@ -192,19 +202,19 @@
       ],
       "usage": {
         "input_tokens": 1826,
-        "output_tokens": 215,
+        "output_tokens": 343,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002901,
-      "n_citations": 2,
-      "n_citations_verified": 2,
+      "cost_usd": 0.0003541,
+      "n_citations": 3,
+      "n_citations_verified": 3,
       "cited_gold_page": true,
-      "faithful": 1,
+      "faithful": 0,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer (AAL3 requires a cryptographic authenticator with a non-exportable private key providing phishing resistance, and authenticators must use approved cryptography) are directly stated in the quoted NIST SP 800-63B-4 passages.",
-      "correct_reason": "The system answer states the same key facts as the gold answer: a cryptographic authenticator with a non-exportable private key providing phishing resistance, with only additional correct detail about approved cryptography added.",
-      "judge_cost_usd": 0.00019700000000000002
+      "faithful_reason": "The first two claims about non-exportable private keys and phishing resistance are directly supported, but the FIPS 140 validation claim is a generalization of the passage's wording, making the answer only partially supported by the quoted text.",
+      "correct_reason": "The system answer states the same key facts as the gold answer (non-exportable private key, phishing resistance) and the extra FIPS 140 detail does not contradict it.",
+      "judge_cost_usd": 0.0002841
     },
     {
       "id": "q003",
@@ -225,15 +235,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 27.0,
-        "rerank": 1829.0,
-        "llm": 1062.3,
-        "verify": 0.7,
-        "total": 2924.8
+        "retrieve": 52.3,
+        "rerank": 2565.6,
+        "llm": 1131.4,
+        "verify": 0.4,
+        "total": 3752.8
       },
       "status": "answered",
       "gated": false,
-      "answer": "An inactivity timeout is not required at AAL1, although it may be applied. [1]",
+      "answer": "An inactivity timeout is not required at AAL1, though it may be applied. [1]",
       "clarifying_question": null,
       "citations": [
         {
@@ -248,19 +258,19 @@
       ],
       "usage": {
         "input_tokens": 2254,
-        "output_tokens": 105,
+        "output_tokens": 108,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002779,
+      "cost_usd": 0.0002794,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The quoted passage states that an inactivity timeout MAY be applied but is not required at AAL1, directly supporting the answer's claim.",
-      "correct_reason": "The system answer states the same key facts as the gold: an inactivity timeout is not required at AAL1 but may be applied.",
-      "judge_cost_usd": 0.0001183
+      "faithful_reason": "The quoted passage states that an inactivity timeout MAY be applied but is not required at AAL1, which directly matches the answer's claim.",
+      "correct_reason": "The system answer states that an inactivity timeout is not required at AAL1 but may be applied, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00012229999999999994
     },
     {
       "id": "q004",
@@ -281,15 +291,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 30.9,
-        "rerank": 1029.1,
-        "llm": 1024.4,
-        "verify": 1.3,
-        "total": 2091.9
+        "retrieve": 46.1,
+        "rerank": 1882.4,
+        "llm": 1121.8,
+        "verify": 2.1,
+        "total": 3060.7
       },
       "status": "answered",
       "gated": false,
-      "answer": "An issued recovery code must include at least six decimal digits or equivalent. [1]",
+      "answer": "An issued recovery code must include at least six decimal digits or equivalent from an approved random bit generator. [1]",
       "clarifying_question": null,
       "citations": [
         {
@@ -304,19 +314,19 @@
       ],
       "usage": {
         "input_tokens": 1806,
-        "output_tokens": 117,
+        "output_tokens": 129,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002391,
+      "cost_usd": 0.0002451,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The answer's single claim that an issued recovery code must include at least six decimal digits or equivalent is directly stated in the quoted passage.",
-      "correct_reason": "The system answer states at least six decimal digits or equivalent, matching the gold answer's key fact; the citation is extra detail that does not contradict it.",
-      "judge_cost_usd": 0.00015710000000000008
+      "faithful_reason": "The answer's single claim that recovery codes must include at least six decimal digits (or equivalent) from an approved random bit generator is directly stated in the quoted passage.",
+      "correct_reason": "The system answer states the same key fact as the gold answer: at least six decimal digits or equivalent from an approved random bit generator, with no contradiction.",
+      "judge_cost_usd": 0.00016339999999999996
     },
     {
       "id": "q005",
@@ -337,15 +347,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 46.7,
-        "rerank": 1603.6,
-        "llm": 1269.2,
-        "verify": 1.4,
-        "total": 2928.7
+        "retrieve": 77.3,
+        "rerank": 2255.5,
+        "llm": 1117.9,
+        "verify": 0.9,
+        "total": 3456.7
       },
       "status": "answered",
       "gated": false,
-      "answer": "No, an authenticated session shall not fall back to an insecure transport after authentication. [1]",
+      "answer": "No, an authenticated session may not fall back to an insecure transport after authentication. [1]",
       "clarifying_question": null,
       "citations": [
         {
@@ -360,19 +370,19 @@
       ],
       "usage": {
         "input_tokens": 3386,
-        "output_tokens": 124,
+        "output_tokens": 123,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004006,
+      "cost_usd": 0.0004001,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The passage states that authenticated sessions SHALL NOT fall back to an insecure transport (e.g., from https to http), which directly supports the answer.",
-      "correct_reason": "The system answer says no, the session shall not fall back to an insecure transport after authentication, matching the gold answer's key fact; the citation is extra detail that does not contradict it.",
-      "judge_cost_usd": 0.00015400000000000006
+      "faithful_reason": "The passage states that authenticated sessions SHALL NOT fall back to an insecure transport (e.g., from https to http), directly supporting the answer.",
+      "correct_reason": "The system answer states the same key fact as the gold answer: authenticated sessions may not fall back to an insecure transport after authentication. The citation marker is extra but does not contradict anything.",
+      "judge_cost_usd": 0.00015529999999999993
     },
     {
       "id": "q006",
@@ -393,15 +403,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 57.2,
-        "rerank": 1480.1,
-        "llm": 1068.1,
-        "verify": 1.8,
-        "total": 2612.5
+        "retrieve": 88.4,
+        "rerank": 2777.1,
+        "llm": 1439.8,
+        "verify": 1.4,
+        "total": 4310.2
       },
       "status": "answered",
       "gated": false,
-      "answer": "A verifier must verify the entire submitted password and may not truncate it. [1]",
+      "answer": "A verifier must not truncate the password and must verify the entire submitted password. [1]",
       "clarifying_question": null,
       "citations": [
         {
@@ -416,19 +426,19 @@
       ],
       "usage": {
         "input_tokens": 3476,
-        "output_tokens": 126,
+        "output_tokens": 127,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004106,
+      "cost_usd": 0.0004111,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The quoted passage states verifiers SHALL request the password in full and SHALL verify the entire submitted password (e.g., not truncate it), directly supporting the answer's claim.",
-      "correct_reason": "The system answer states the verifier must verify the entire submitted password and may not truncate it, matching the gold answer's key fact; the bracketed citation is extra but harmless.",
-      "judge_cost_usd": 0.00018880000000000004
+      "faithful_reason": "The quoted passage states that verifiers SHALL request the password in full and SHALL verify the entire submitted password without truncating it, directly supporting the answer's claim.",
+      "correct_reason": "The system answer states the verifier must not truncate and must verify the entire submitted password, matching the gold answer's key facts; the citation is extra detail that does not contradict it.",
+      "judge_cost_usd": 0.000187
     },
     {
       "id": "q007",
@@ -449,15 +459,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 44.0,
-        "rerank": 1475.2,
-        "llm": 1425.1,
-        "verify": 0.5,
-        "total": 2947.0
+        "retrieve": 130.1,
+        "rerank": 5658.4,
+        "llm": 1467.1,
+        "verify": 2.2,
+        "total": 7266.2
       },
       "status": "answered",
       "gated": false,
-      "answer": "Organizations must establish usage restrictions, configuration requirements, and connection requirements for each type of wireless access to the system. [1] Organizations must authorize each type of wireless access to the system prior to establishing such connections. [2]",
+      "answer": "Organizations must establish usage restrictions, configuration requirements, and connection requirements for each type of wireless access to the system. [1] Each type of wireless access must be authorized prior to establishing such connections. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -481,19 +491,19 @@
       ],
       "usage": {
         "input_tokens": 1467,
-        "output_tokens": 217,
+        "output_tokens": 206,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002552,
+      "cost_usd": 0.0002497,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer (establishing usage/configuration/connection requirements for each wireless access type, and authorizing each type prior to connection) are directly stated in the quoted passage at items a and b.",
-      "correct_reason": "The system answer explicitly states that organizations must authorize each type of wireless access to the system prior to establishing such connections, matching the gold answer, with extra correct detail about usage restrictions and configuration requirements.",
-      "judge_cost_usd": 0.0001489
+      "faithful_reason": "Both claims in the answer (establishing usage, configuration, and connection requirements for each wireless access type, and authorizing each type prior to connection) are directly stated in the quoted passage at items a and b.",
+      "correct_reason": "The system answer explicitly states that each type of wireless access must be authorized prior to establishing connections, matching the gold answer, with extra correct detail about usage, configuration, and connection requirements.",
+      "judge_cost_usd": 0.00014540000000000017
     },
     {
       "id": "q008",
@@ -514,11 +524,11 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 17.8,
-        "rerank": 1280.8,
-        "llm": 1082.5,
-        "verify": 1.8,
-        "total": 2390.7
+        "retrieve": 149.3,
+        "rerank": 5776.8,
+        "llm": 1520.3,
+        "verify": 4.5,
+        "total": 7472.1
       },
       "status": "answered",
       "gated": false,
@@ -547,9 +557,9 @@
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The answer's single claim about the types of audit logging process failures is directly stated in the quoted NIST passage, which lists software and hardware errors, capture mechanism failures, and reaching or exceeding storage capacity.",
-      "correct_reason": "The system answer lists all three gold examples (software and hardware errors, capture mechanism failures, storage capacity reached or exceeded) without contradiction.",
-      "judge_cost_usd": 0.0001544999999999999
+      "faithful_reason": "The answer's single claim about audit logging process failure types is directly stated in the quoted NIST passage, and it cites that passage.",
+      "correct_reason": "The system answer lists all three gold failure examples (software and hardware errors, capturing mechanism failures, and storage capacity being reached or exceeded) without contradiction, and the citation marker is harmless extra formatting.",
+      "judge_cost_usd": 0.00015050000000000003
     },
     {
       "id": "q009",
@@ -570,15 +580,15 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 38.3,
-        "rerank": 801.8,
-        "llm": 1360.2,
-        "verify": 3.0,
-        "total": 2211.4
+        "retrieve": 164.1,
+        "rerank": 2858.1,
+        "llm": 1565.3,
+        "verify": 19.3,
+        "total": 4625.9
       },
       "status": "answered",
       "gated": false,
-      "answer": "The requirement restricts or prohibits the use of certain types of media, such as external hard drives, flash drives, or smart displays. [1] It also requires that removable system media without an identifiable owner be prohibited from use. [2]",
+      "answer": "The requirement restricts or prohibits the use of certain types of media, such as external hard drives, flash drives, or smart displays. [1] It also prohibits the use of removable system media without an identifiable owner. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -602,19 +612,19 @@
       ],
       "usage": {
         "input_tokens": 1553,
-        "output_tokens": 211,
+        "output_tokens": 208,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002608,
+      "cost_usd": 0.0002593,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer match the quoted passages: the first restates the requirement's restriction on media types including external hard drives, flash drives, and smart displays, and the second restates the prohibition on removable system media without an identifiable owner.",
-      "correct_reason": "The system answer states the same key facts as the gold answer (external hard drives, flash drives, smart displays are restricted) and the added detail about unowned removable media does not contradict it.",
-      "judge_cost_usd": 0.00018610000000000002
+      "faithful_reason": "Both claims in the answer directly match the quoted passages: the first restates the requirement's description of restricting media types such as external hard drives, flash drives, or smart displays, and the second matches item b prohibiting removable system media without an identifiable owner.",
+      "correct_reason": "The system answer states the same key facts as the gold answer (external hard drives, flash drives, smart displays) and adds only consistent extra detail about removable media without an identifiable owner.",
+      "judge_cost_usd": 0.00018850000000000008
     },
     {
       "id": "q010",
@@ -635,15 +645,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 41.3,
-        "rerank": 1591.9,
-        "llm": 2546.8,
+        "retrieve": 111.6,
+        "rerank": 5116.9,
+        "llm": 1390.7,
         "verify": 1.4,
-        "total": 4189.6
+        "total": 6651.8
       },
       "status": "answered",
       "gated": false,
-      "answer": "A managed security services provider (MSSP) is an example of a third party that may fill a primary role in incident response. [1]",
+      "answer": "An managed security services provider (MSSP) may fill a primary role by performing incident detection, response, and recovery activities. [1]",
       "clarifying_question": null,
       "citations": [
         {
@@ -658,19 +668,19 @@
       ],
       "usage": {
         "input_tokens": 4374,
-        "output_tokens": 132,
+        "output_tokens": 136,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0005034,
+      "cost_usd": 0.0005054,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The answer's single claim that an MSSP is an example of a third party that may fill a primary incident response role is directly stated in the quoted passage.",
-      "correct_reason": "The system answer names a managed security service provider (MSSP) as a third party that may take a primary role in incident response, matching the gold answer's key fact without contradiction.",
-      "judge_cost_usd": 0.0001575000000000001
+      "faithful_reason": "The answer's single claim that an MSSP may fill a primary role in performing incident detection, response, and recovery is directly stated in the quoted passage.",
+      "correct_reason": "The system answer names an MSSP as the third party and includes the same detection, response, and recovery activities as the gold answer, without contradiction.",
+      "judge_cost_usd": 0.0001558
     },
     {
       "id": "q011",
@@ -691,11 +701,11 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 32.9,
-        "rerank": 1476.0,
-        "llm": 1436.4,
-        "verify": 4.6,
-        "total": 2957.6
+        "retrieve": 82.0,
+        "rerank": 2378.0,
+        "llm": 1469.7,
+        "verify": 7.6,
+        "total": 3961.1
       },
       "status": "answered",
       "gated": false,
@@ -723,19 +733,19 @@
       ],
       "usage": {
         "input_tokens": 2319,
-        "output_tokens": 265,
+        "output_tokens": 259,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0003644,
+      "cost_usd": 0.0003614,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer (helping organizations incorporate incident response into risk management, and providing a common language for communicating about incident response plans) are directly stated in the quoted passage.",
-      "correct_reason": "The system answer states the same core purpose as the gold answer, incorporating incident response recommendations into cybersecurity risk management, and adds accurate extra detail about a common language.",
-      "judge_cost_usd": 0.00018249999999999994
+      "faithful_reason": "Both claims in the answer closely paraphrase the first two sentences of the quoted passage from SP 800-61r3, which directly state the publication's goal and common-language purpose.",
+      "correct_reason": "The system answer states the same core purpose as the gold answer, incorporating incident response recommendations throughout cybersecurity risk management, and adds accurate extra detail about a common language.",
+      "judge_cost_usd": 0.00018350000000000007
     },
     {
       "id": "q012",
@@ -756,15 +766,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 38.4,
-        "rerank": 1351.0,
-        "llm": 1579.7,
-        "verify": 1.9,
-        "total": 2974.2
+        "retrieve": 92.1,
+        "rerank": 2456.7,
+        "llm": 1837.8,
+        "verify": 5.3,
+        "total": 4396.4
       },
       "status": "answered",
       "gated": false,
-      "answer": "CSF Quick-Start Guides provide brief, actionable guidance on specific CSF-related topics. [1] They distill specific portions of the CSF into actionable first steps that an organization can consider on the path to improving its cybersecurity posture. [2]",
+      "answer": "CSF Quick-Start Guides give brief, actionable guidance on specific CSF-related topics. [1] They distill specific portions of the CSF into actionable first steps that an organization can consider on the path to improving its cybersecurity posture. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -788,19 +798,19 @@
       ],
       "usage": {
         "input_tokens": 4209,
-        "output_tokens": 234,
+        "output_tokens": 233,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0005379,
+      "cost_usd": 0.0005374,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": false,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims about Quick-Start Guides (brief actionable guidance on specific topics, and distilling CSF portions into actionable first steps to improve cybersecurity posture) are directly stated in the quoted passages from page 14 and the glossary on page 31.",
-      "correct_reason": "The system answer says the guides provide brief, actionable guidance, which matches the gold's key fact of actionable guidance, though it frames the topic as specific CSF topics rather than explicitly on using the CSF and its online resources, a compatible detail rather than a contradiction.",
-      "judge_cost_usd": 0.00030520000000000005
+      "faithful_reason": "Both claims in the answer about Quick-Start Guides (brief, actionable guidance on CSF topics; distilling CSF portions into actionable first steps to improve cybersecurity posture) are directly stated in the quoted NIST CSF 2.0 passages on pages 31 and 14.",
+      "correct_reason": "The system answer conveys that the Quick-Start Guides provide brief, actionable guidance on CSF-related topics, which matches the gold answer's key fact of actionable guidance on using the CSF, without contradicting it.",
+      "judge_cost_usd": 0.00030250000000000025
     },
     {
       "id": "q013",
@@ -821,15 +831,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 42.5,
-        "rerank": 1280.9,
-        "llm": 1442.5,
-        "verify": 2.7,
-        "total": 2776.5
+        "retrieve": 43.1,
+        "rerank": 2366.6,
+        "llm": 1517.4,
+        "verify": 1.0,
+        "total": 3931.3
       },
       "status": "answered",
       "gated": false,
-      "answer": "SP 800-171r3 describes multi-factor authentication as requiring the use of two or more different factors to achieve authentication. [1] The publication defines the authentication factors as something you know, something you have, or something you are. [2]",
+      "answer": "NIST SP 800-171r3 describes multi-factor authentication as requiring the use of two or more different factors to achieve authentication. [1] The authentication factors it defines are something you know, something you have, and something you are. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -853,19 +863,19 @@
       ],
       "usage": {
         "input_tokens": 1706,
-        "output_tokens": 221,
+        "output_tokens": 216,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002811,
+      "cost_usd": 0.0002786,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer (MFA requires two or more different factors, and the three factor categories of know, have, and are) are directly stated in the quoted passage from SP 800-171r3.",
-      "correct_reason": "The system answer states MFA requires two or more different factors and lists the same three factor categories (know, have, are) as the gold answer, with no contradiction.",
-      "judge_cost_usd": 0.0001448999999999999
+      "faithful_reason": "Both claims in the answer (MFA requires two or more different factors, and the three factor types: know, have, are) are directly stated in the quoted NIST passage.",
+      "correct_reason": "The system answer states MFA requires two or more different factors and lists the same three factor types (know, have, are) as the gold answer, with no contradiction.",
+      "judge_cost_usd": 0.00014060000000000027
     },
     {
       "id": "q014",
@@ -886,15 +896,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 43.0,
-        "rerank": 1242.0,
-        "llm": 1107.7,
-        "verify": 0.6,
-        "total": 2397.7
+        "retrieve": 59.6,
+        "rerank": 2345.4,
+        "llm": 1086.9,
+        "verify": 1.9,
+        "total": 3503.9
       },
       "status": "answered",
       "gated": false,
-      "answer": "Separation of duties addresses the potential for abuse of authorized privileges. [1]",
+      "answer": "Separation of duties addresses the potential for abuse of authorized privileges and reduces the risk of malevolent activity without collusion. [1]",
       "clarifying_question": null,
       "citations": [
         {
@@ -909,19 +919,19 @@
       ],
       "usage": {
         "input_tokens": 2300,
-        "output_tokens": 123,
+        "output_tokens": 144,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002915,
+      "cost_usd": 0.000302,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The answer's single claim that separation of duties addresses the potential for abuse of authorized privileges is directly stated in the quoted NIST SP 800-171r3 passage.",
-      "correct_reason": "The system answer captures the gold's key fact that separation of duties addresses the potential for abuse of authorized privileges, though it omits the 'without collusion' detail, which is not a contradiction.",
-      "judge_cost_usd": 0.00014079999999999995
+      "faithful_reason": "The answer's single claim restates the first sentence of the quoted NIST passage almost verbatim, which directly supports it.",
+      "correct_reason": "The system answer states the same key facts as the gold answer: addressing potential abuse of authorized privileges and reducing malevolent activity risk without collusion, with only an added citation marker.",
+      "judge_cost_usd": 0.00013489999999999986
     },
     {
       "id": "q015",
@@ -942,15 +952,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 39.5,
-        "rerank": 1299.0,
-        "llm": 1567.9,
-        "verify": 3.2,
-        "total": 2917.8
+        "retrieve": 71.9,
+        "rerank": 2128.1,
+        "llm": 1405.2,
+        "verify": 3.7,
+        "total": 3618.0
       },
       "status": "answered",
       "gated": false,
-      "answer": "SP 800-171r3 defines a mobile device as a computing device with a small form factor that can be carried by a single individual. [1] The definition also specifies that such a device is designed to operate without a physical connection and includes a self-contained power source. [2]",
+      "answer": "SP 800-171r3 defines a mobile device as a computing device with a small form factor that can be carried by a single individual. [1] The definition also requires that the device be designed to operate without a physical connection and include a self-contained power source. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -974,19 +984,19 @@
       ],
       "usage": {
         "input_tokens": 1616,
-        "output_tokens": 227,
+        "output_tokens": 224,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002751,
+      "cost_usd": 0.0002736,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer (small form factor carried by a single individual; operates without a physical connection and includes a self-contained power source) are directly stated in the quoted NIST SP 800-171r3 passage.",
-      "correct_reason": "The system answer includes the gold's key facts (small form factor, carried by a single individual, operates without a physical connection) and only adds a self-contained power source detail, which does not contradict the gold.",
-      "judge_cost_usd": 0.0001684999999999998
+      "faithful_reason": "The answer's two claims (small form factor carried by a single individual; designed to operate without a physical connection and includes a self-contained power source) are both directly stated in the quoted passage's definition of a mobile device.",
+      "correct_reason": "The system answer captures the gold's key facts (small form factor, carried by a single individual, operates without a physical connection) and adds a self-contained power source detail, which does not contradict the gold.",
+      "judge_cost_usd": 0.00016739999999999984
     },
     {
       "id": "q016",
@@ -1007,69 +1017,60 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 41.2,
-        "rerank": 1311.2,
-        "llm": 1715.7,
-        "verify": 2.9,
-        "total": 3074.1
+        "retrieve": 49.3,
+        "rerank": 2101.3,
+        "llm": 1697.4,
+        "verify": 12.3,
+        "total": 3874.8
       },
       "status": "answered",
       "gated": false,
-      "answer": "A CSF Community Profile is a baseline of CSF outcomes that is created and published to address shared interests and goals among a number of organizations. [1][2] A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case. [3] An organization can use a Community Profile as the basis for its own Target Profile. [4]",
+      "answer": "A CSF Community Profile is a baseline of CSF outcomes that is created and published to address shared interests and goals for reducing cybersecurity risk among a number of organizations. [1] A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case. [2] An organization can use a Community Profile as the basis for its own Target Profile. [3]",
       "clarifying_question": null,
       "citations": [
         {
+          "chunk_id": "sp800-61r3:18:013",
+          "quote": "A CSF Community Profile is a baseline of CSF outcomes that is created and published to address shared interests and goals for reducing cybersecurity risk among a number of organizations.",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "3. CSF 2.0 Community Profile for Cyber Incident Risk Management",
+          "page": 18,
+          "url": "/docs/sp800-61r3.pdf#page=18"
+        },
+        {
+          "chunk_id": "sp800-61r3:18:013",
+          "quote": "A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case [CSF2.0].",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "3. CSF 2.0 Community Profile for Cyber Incident Risk Management",
+          "page": 18,
+          "url": "/docs/sp800-61r3.pdf#page=18"
+        },
+        {
           "chunk_id": "csf-2.0:31:025",
-          "quote": "A baseline of CSF outcomes that is created and published to address shared interests and goals among a number of organizations.",
+          "quote": "An organization can use a Community Profile as the basis for its own Target Profile.",
           "doc_id": "csf-2.0",
           "doc_title": "NIST CSF 2.0",
           "section_path": "Appendix C. Glossary",
           "page": 31,
           "url": "/docs/csf-2.0.pdf#page=31"
-        },
-        {
-          "chunk_id": "csf-2.0:11:009",
-          "quote": "A Community Profile is a baseline of CSF outcomes that is created and published to address shared interests and goals among a number of organizations.",
-          "doc_id": "csf-2.0",
-          "doc_title": "NIST CSF 2.0",
-          "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
-          "page": 11,
-          "url": "/docs/csf-2.0.pdf#page=11"
-        },
-        {
-          "chunk_id": "csf-2.0:11:009",
-          "quote": "A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case.",
-          "doc_id": "csf-2.0",
-          "doc_title": "NIST CSF 2.0",
-          "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
-          "page": 11,
-          "url": "/docs/csf-2.0.pdf#page=11"
-        },
-        {
-          "chunk_id": "csf-2.0:11:009",
-          "quote": "An organization can use a Community Profile as the basis for its own Target Profile.",
-          "doc_id": "csf-2.0",
-          "doc_title": "NIST CSF 2.0",
-          "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
-          "page": 11,
-          "url": "/docs/csf-2.0.pdf#page=11"
         }
       ],
       "usage": {
         "input_tokens": 3274,
-        "output_tokens": 364,
+        "output_tokens": 349,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0005094,
-      "n_citations": 4,
-      "n_citations_verified": 4,
-      "cited_gold_page": true,
+      "cost_usd": 0.0005019,
+      "n_citations": 3,
+      "n_citations_verified": 3,
+      "cited_gold_page": false,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Each claim in the answer about Community Profiles (shared baseline published for multiple organizations, typically developed for a sector/subsector/technology/threat/use case, and usable as basis for a Target Profile) is directly stated in the quoted NIST CSF 2.0 passages on pages 31 and 11.",
+      "faithful_reason": "All three claims (the Community Profile definition, its typical development scope, and its use as the basis for an organization's Target Profile) are directly stated in the quoted NIST passages.",
       "correct_reason": "The system answer captures the gold's key facts: a baseline of CSF outcomes created and published for shared interests among multiple organizations, typically for a sector, technology, or threat type, and adds accurate extra detail without contradiction.",
-      "judge_cost_usd": 0.00030100000000000005
+      "judge_cost_usd": 0.00029739999999999975
     },
     {
       "id": "q017",
@@ -1090,15 +1091,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 44.6,
-        "rerank": 1390.0,
-        "llm": 1298.7,
-        "verify": 1.8,
-        "total": 2738.4
+        "retrieve": 123.0,
+        "rerank": 4815.0,
+        "llm": 1649.6,
+        "verify": 4.4,
+        "total": 6600.8
       },
       "status": "answered",
       "gated": false,
-      "answer": "According to SP 800-63B-4, a nonce is a value used in security protocols that is never repeated with the same key. [1] The glossary notes that a nonce used as a challenge must not be repeated until authentication keys are changed. [2]",
+      "answer": "According to the glossary, a nonce is a value used in security protocols that is never repeated with the same key. [1] The passages also note that a nonce is not necessarily unpredictable, which distinguishes it from a random challenge. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -1112,7 +1113,7 @@
         },
         {
           "chunk_id": "sp800-63b-4:121:240",
-          "quote": "nonces used as challenges in challenge-response authentication protocols must not be repeated until authentication keys are changed.",
+          "quote": "Using a nonce as a challenge is a different requirement than a random challenge because a nonce is not necessarily unpredictable.",
           "doc_id": "sp800-63b-4",
           "doc_title": "NIST SP 800-63B-4",
           "section_path": "RP ).",
@@ -1122,19 +1123,19 @@
       ],
       "usage": {
         "input_tokens": 2768,
-        "output_tokens": 215,
+        "output_tokens": 217,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0003843,
+      "cost_usd": 0.0003853,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer\u2014that a nonce is a value never repeated with the same key, and that a nonce used as a challenge must not be repeated until authentication keys are changed\u2014are directly stated in the quoted glossary entry for nonce.",
-      "correct_reason": "The system answer states the same definition as the gold answer (a value used in security protocols never repeated with the same key) and the extra detail about challenge nonces does not contradict it.",
-      "judge_cost_usd": 0.00019439999999999995
+      "faithful_reason": "Both claims in the answer (nonce defined as never repeated with the same key, and nonces not necessarily being unpredictable unlike random challenges) are directly stated in the quoted glossary entry for nonce.",
+      "correct_reason": "The system answer states the gold definition (a value used in security protocols never repeated with the same key) and adds a further detail about unpredictability that does not contradict it.",
+      "judge_cost_usd": 0.00018849999999999987
     },
     {
       "id": "q018",
@@ -1155,11 +1156,11 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 44.5,
-        "rerank": 1501.5,
-        "llm": 1416.7,
-        "verify": 1.7,
-        "total": 2967.9
+        "retrieve": 87.3,
+        "rerank": 2851.8,
+        "llm": 1493.1,
+        "verify": 1.3,
+        "total": 4436.7
       },
       "status": "answered",
       "gated": false,
@@ -1187,19 +1188,19 @@
       ],
       "usage": {
         "input_tokens": 3186,
-        "output_tokens": 201,
+        "output_tokens": 207,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004191,
+      "cost_usd": 0.0004221,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both sentences in the answer closely paraphrase the passphrase definition in the quoted NIST glossary, which states it is a sequence of words or text used to authenticate, similar to a password but generally longer.",
-      "correct_reason": "The system answer states the same core definition as the gold answer (a password of a sequence of words or text used by a claimant to authenticate identity) and adds accurate extra detail that passphrases are typically longer.",
-      "judge_cost_usd": 0.00019799999999999983
+      "faithful_reason": "Both sentences of the answer closely paraphrase the passphrase definition in the quoted NIST glossary passage, which states it is a password of words or other text used by a claimant to authenticate and is similar to a password but generally longer.",
+      "correct_reason": "The system answer states the same core definition as the gold answer: a password made of a sequence of words or other text used by a claimant to authenticate identity, with extra correct detail about length.",
+      "judge_cost_usd": 0.00019249999999999996
     },
     {
       "id": "q019",
@@ -1220,24 +1221,51 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 31.3,
-        "rerank": 1477.4,
-        "llm": 0.0,
-        "verify": 0.0,
-        "total": 1508.8
+        "retrieve": 52.9,
+        "rerank": 2920.2,
+        "llm": 1707.6,
+        "verify": 2.6,
+        "total": 4686.6
       },
-      "status": "declined",
-      "gated": true,
-      "answer": "I don't know - the documents don't cover this.",
+      "status": "answered",
+      "gated": false,
+      "answer": "Pharming is an attack in which an attacker causes the subscriber to be redirected to a fraudulent website, typically a fraudulent verifier / RP in the context of authentication. [1] This could cause the subscriber to reveal sensitive information, such as a password, to the attacker. [2]",
       "clarifying_question": null,
-      "citations": [],
-      "usage": {},
-      "cost_usd": null,
-      "n_citations": 0,
-      "n_citations_verified": 0,
-      "cited_gold_page": false,
-      "faithful": null,
-      "correct": 0
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:121:240.1",
+          "quote": "pharming An attack in which an attacker causes the subscriber to be redirected to a fraudulent website, typically a fraudulent verifier / RP in the context of authentication.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "RP ).",
+          "page": 121,
+          "url": "/docs/sp800-63b-4.pdf#page=121"
+        },
+        {
+          "chunk_id": "sp800-63b-4:121:240.1",
+          "quote": "This could cause the subscriber to reveal sensitive information (e.g., a password) to the attacker, download harmful software, or contribute to a fraudulent act.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "RP ).",
+          "page": 121,
+          "url": "/docs/sp800-63b-4.pdf#page=121"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3786,
+        "output_tokens": 278,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0005176,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims about pharming (redirection to a fraudulent verifier/RP and possible disclosure of sensitive information such as a password) are directly stated in the quoted NIST SP 800-63B-4 glossary passage.",
+      "correct_reason": "The system answer states the same key fact as the gold answer, that pharming redirects the subscriber to a fraudulent website, and adds consistent extra detail without contradiction.",
+      "judge_cost_usd": 0.00020760000000000006
     },
     {
       "id": "q020",
@@ -1258,15 +1286,15 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 26.2,
-        "rerank": 1585.7,
-        "llm": 1547.5,
-        "verify": 1.8,
-        "total": 3164.8
+        "retrieve": 36.9,
+        "rerank": 2588.2,
+        "llm": 1470.7,
+        "verify": 4.5,
+        "total": 4110.8
       },
       "status": "answered",
       "gated": false,
-      "answer": "The CSF Tiers characterize the rigor of an organization's cybersecurity risk governance and management practices. [1] The Tiers are Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4). [2]",
+      "answer": "The CSF Tiers characterize the rigor of an organization's cybersecurity risk governance and management practices. [1] The Tiers describe a progression from informal, ad hoc responses to approaches that are agile, risk-informed, and continuously improving. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -1280,7 +1308,7 @@
         },
         {
           "chunk_id": "csf-2.0:12:014",
-          "quote": "as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4).",
+          "quote": "The Tiers describe a progression from informal, ad hoc responses to approaches that are agile, risk-informed, and",
           "doc_id": "csf-2.0",
           "doc_title": "NIST CSF 2.0",
           "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
@@ -1290,19 +1318,19 @@
       ],
       "usage": {
         "input_tokens": 3154,
-        "output_tokens": 260,
+        "output_tokens": 237,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004454,
+      "cost_usd": 0.0004339,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer are directly stated in the quoted passages: the Tiers characterize the rigor of governance and management practices, and the four Tiers are listed with their names and numbers.",
-      "correct_reason": "The system answer states the same key fact as the gold answer, that the CSF Tiers characterize the rigor of cybersecurity risk governance and management practices, and the extra tier names are accurate detail that does not contradict it.",
-      "judge_cost_usd": 0.0002752000000000002
+      "faithful_reason": "Both claims in the answer (Tiers characterize rigor of governance and management practices; progression from informal, ad hoc to agile, risk-informed, continuously improving) are directly stated in the quoted passages from NIST CSF 2.0.",
+      "correct_reason": "The system answer states the same key fact as the gold answer, that the CSF Tiers characterize the rigor of cybersecurity risk governance and management practices, and the extra detail about the progression of Tiers does not contradict it.",
+      "judge_cost_usd": 0.00028299999999999983
     },
     {
       "id": "q021",
@@ -1323,29 +1351,42 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 47.4,
-        "rerank": 1372.5,
-        "llm": 2570.3,
-        "verify": 2.9,
-        "total": 3998.2
+        "retrieve": 87.7,
+        "rerank": 2430.4,
+        "llm": 3783.7,
+        "verify": 1.9,
+        "total": 6308.9
       },
-      "status": "declined",
+      "status": "answered",
       "gated": false,
-      "answer": "I don't know - the documents don't cover this.",
+      "answer": "The CSF Category identifier for Cybersecurity Supply Chain Risk Management is GV.SC. [1]",
       "clarifying_question": null,
-      "citations": [],
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:21:021.1",
+          "quote": "Cybersecurity Supply Chain Risk Management (GV.SC): Cyber supply chain risk management processes are identified, established, managed, monitored, and improved by organizational stakeholders",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "Appendix A. CSF Core",
+          "page": 21,
+          "url": "/docs/csf-2.0.pdf#page=21"
+        }
+      ],
       "usage": {
-        "input_tokens": 11167,
-        "output_tokens": 283,
+        "input_tokens": 5522,
+        "output_tokens": 159,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0012582,
-      "n_citations": 0,
-      "n_citations_verified": 0,
+      "cost_usd": 0.0006317,
+      "n_citations": 1,
+      "n_citations_verified": 1,
       "cited_gold_page": false,
-      "faithful": null,
-      "correct": 0
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The quoted passage explicitly lists \"Cybersecurity Supply Chain Risk Management (GV.SC)\" as a category, directly supporting the answer's claim that its identifier is GV.SC.",
+      "correct_reason": "The system answer states GV.SC, which matches the gold answer exactly; the bracketed citation is extra formatting that does not contradict anything.",
+      "judge_cost_usd": 0.00021110000000000052
     },
     {
       "id": "q022",
@@ -1366,11 +1407,11 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 39.4,
-        "rerank": 1328.0,
-        "llm": 1228.0,
-        "verify": 0.7,
-        "total": 2604.4
+        "retrieve": 91.1,
+        "rerank": 2222.9,
+        "llm": 2876.9,
+        "verify": 0.8,
+        "total": 5200.5
       },
       "status": "answered",
       "gated": false,
@@ -1399,9 +1440,9 @@
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The quoted table lists 'Asset Management' under the Identify function with Category Identifier ID.AM, directly supporting the answer's only claim.",
-      "correct_reason": "The system answer states the identifier ID.AM, which matches the gold answer exactly, with an added citation that does not contradict it.",
-      "judge_cost_usd": 0.00018400000000000014
+      "faithful_reason": "The quoted table lists Asset Management under the Identify function with category identifier ID.AM, directly supporting the answer's only claim.",
+      "correct_reason": "The system answer states ID.AM, which matches the gold answer exactly; the citation marker is extra formatting that does not contradict anything.",
+      "judge_cost_usd": 0.000183
     },
     {
       "id": "q023",
@@ -1422,11 +1463,11 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 41.4,
-        "rerank": 1398.7,
-        "llm": 1075.8,
-        "verify": 1.1,
-        "total": 2521.5
+        "retrieve": 46.1,
+        "rerank": 2305.3,
+        "llm": 1325.3,
+        "verify": 3.0,
+        "total": 3688.5
       },
       "status": "answered",
       "gated": false,
@@ -1435,7 +1476,7 @@
       "citations": [
         {
           "chunk_id": "csf-2.0:12:014",
-          "quote": "as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4)",
+          "quote": "The Tiers, as shown in Fig. 4 and notionally illustrated in Appendix B, reflect an organization\u2019s practices for managing cybersecurity risk as Partial (Tier 1), Risk Informed (Tier 2)",
           "doc_id": "csf-2.0",
           "doc_title": "NIST CSF 2.0",
           "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
@@ -1445,19 +1486,19 @@
       ],
       "usage": {
         "input_tokens": 3439,
-        "output_tokens": 131,
+        "output_tokens": 159,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004094,
+      "cost_usd": 0.0004234,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": false,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The answer's single claim that Tier 1 is called Partial is directly stated in the quoted passage, which lists the Tiers as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4).",
-      "correct_reason": "The system answer states Tier 1 is called Partial, matching the gold answer exactly; the citation marker is extra detail that does not contradict it.",
-      "judge_cost_usd": 0.0001845000000000002
+      "faithful_reason": "The quoted passage explicitly states the Tiers reflect practices as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4), so the claim that Tier 1 is called Partial is directly supported.",
+      "correct_reason": "The system answer states Tier 1 is called Partial, matching the gold answer exactly; the citation marker is extra formatting that does not contradict anything.",
+      "judge_cost_usd": 0.00018650000000000003
     },
     {
       "id": "q024",
@@ -1478,11 +1519,11 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 39.5,
-        "rerank": 1379.5,
-        "llm": 1105.2,
-        "verify": 1.1,
-        "total": 2530.1
+        "retrieve": 64.2,
+        "rerank": 2153.5,
+        "llm": 1318.9,
+        "verify": 2.0,
+        "total": 3548.7
       },
       "status": "answered",
       "gated": false,
@@ -1490,30 +1531,30 @@
       "clarifying_question": null,
       "citations": [
         {
-          "chunk_id": "csf-2.0:12:014",
-          "quote": "Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4).",
+          "chunk_id": "csf-2.0:31:025.1",
+          "quote": "There are four Tiers: Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4).",
           "doc_id": "csf-2.0",
           "doc_title": "NIST CSF 2.0",
-          "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
-          "page": 12,
-          "url": "/docs/csf-2.0.pdf#page=12"
+          "section_path": "Appendix C. Glossary",
+          "page": 31,
+          "url": "/docs/csf-2.0.pdf#page=31"
         }
       ],
       "usage": {
         "input_tokens": 3279,
-        "output_tokens": 132,
+        "output_tokens": 140,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0003939,
+      "cost_usd": 0.0003979,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": false,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The quoted passage explicitly lists the four Tiers, including Adaptive as Tier 4, so the answer's single claim is directly supported.",
-      "correct_reason": "The system answer states Tier 4 is called Adaptive, matching the gold answer exactly; the citation marker is harmless extra detail.",
-      "judge_cost_usd": 0.00016209999999999922
+      "faithful_reason": "The quoted passage explicitly lists the four Tiers, including Adaptive as Tier 4, which directly supports the answer's only claim.",
+      "correct_reason": "The system answer states Tier 4 is called Adaptive, matching the gold answer exactly; the citation marker does not affect correctness.",
+      "judge_cost_usd": 0.00015390000000000022
     },
     {
       "id": "q025",
@@ -1534,11 +1575,11 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 67.6,
-        "rerank": 1380.8,
-        "llm": 1322.7,
-        "verify": 0.5,
-        "total": 2776.9
+        "retrieve": 93.6,
+        "rerank": 2315.3,
+        "llm": 1219.7,
+        "verify": 0.7,
+        "total": 3638.6
       },
       "status": "answered",
       "gated": false,
@@ -1547,7 +1588,7 @@
       "citations": [
         {
           "chunk_id": "sp800-61r3:14:010",
-          "quote": "Detection & Analysis |  |  | Detect |  |  |",
+          "quote": "Detection & Analysis |  |  | Detect |",
           "doc_id": "sp800-61r3",
           "doc_title": "NIST SP 800-61r3",
           "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.2. Incident Response Roles and Responsibilities",
@@ -1557,19 +1598,19 @@
       ],
       "usage": {
         "input_tokens": 4115,
-        "output_tokens": 125,
+        "output_tokens": 118,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.000474,
+      "cost_usd": 0.0004705,
       "n_citations": 1,
       "n_citations_verified": 1,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The quoted table maps the Detection & Analysis phase to the Detect function of CSF 2.0, which directly supports the answer's claim.",
-      "correct_reason": "The system answer correctly identifies the Detect Function, which matches the key fact in the gold answer, though it omits the secondary Improvement Category of Identify, which is supplementary rather than contradicted.",
-      "judge_cost_usd": 0.00017059999999999992
+      "faithful_reason": "The quoted table maps the previous Detection & Analysis phase to the CSF 2.0 Detect function, which directly supports the answer's claim.",
+      "correct_reason": "The system correctly identifies the Detect Function, which is the key fact in the gold answer, and does not contradict it, though it omits the secondary Improvement Category mention which is supplementary detail.",
+      "judge_cost_usd": 0.00017010000000000029
     },
     {
       "id": "q026",
@@ -1590,15 +1631,15 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 56.4,
-        "rerank": 1283.1,
-        "llm": 1429.9,
-        "verify": 0.5,
-        "total": 2774.8
+        "retrieve": 98.6,
+        "rerank": 2121.3,
+        "llm": 1595.4,
+        "verify": 1.9,
+        "total": 3826.0
       },
       "status": "answered",
       "gated": false,
-      "answer": "The Containment, Eradication & Recovery phase of the previous model corresponds to the CSF 2.0 Functions Respond and Recover, with Identify (Improvement Category) also listed in that phase's mapping. [1]",
+      "answer": "The Containment, Eradication & Recovery phase of the previous model maps to the Respond and Recover CSF 2.0 Functions. [1][2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -1609,23 +1650,32 @@
           "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.2. Incident Response Roles and Responsibilities",
           "page": 14,
           "url": "/docs/sp800-61r3.pdf#page=14"
+        },
+        {
+          "chunk_id": "sp800-61r3:14:010",
+          "quote": "|  |  |  |  | Recover |  |",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.2. Incident Response Roles and Responsibilities",
+          "page": 14,
+          "url": "/docs/sp800-61r3.pdf#page=14"
         }
       ],
       "usage": {
         "input_tokens": 4222,
-        "output_tokens": 154,
+        "output_tokens": 165,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004992,
-      "n_citations": 1,
-      "n_citations_verified": 1,
+      "cost_usd": 0.0005047,
+      "n_citations": 2,
+      "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The quoted table maps Containment, Eradication & Recovery to Respond and Recover, and lists Identify (Improvement Category) in the adjacent rows around that phase, so the answer's claims are supported by the passage as read from the table layout.",
-      "correct_reason": "The system answer identifies Respond and Recover as the corresponding Functions, matching the gold answer, and the extra mention of Identify is additional detail that doesn't contradict the gold.",
-      "judge_cost_usd": 0.00018949999999999956
+      "faithful_reason": "The quoted table maps the Containment, Eradication & Recovery phase to the Respond and Recover CSF 2.0 Functions, directly supporting the answer's claim.",
+      "correct_reason": "The system answer names Respond and Recover as the corresponding CSF 2.0 Functions, matching the gold answer exactly without contradiction.",
+      "judge_cost_usd": 0.00016720000000000016
     },
     {
       "id": "q027",
@@ -1646,15 +1696,15 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 47.7,
-        "rerank": 1423.7,
-        "llm": 1419.7,
-        "verify": 3.1,
-        "total": 2903.2
+        "retrieve": 75.2,
+        "rerank": 2475.6,
+        "llm": 3273.1,
+        "verify": 7.1,
+        "total": 5839.5
       },
       "status": "answered",
       "gated": false,
-      "answer": "NIST advises against imposing composition rules such as mixtures of character types on passwords. [1] NIST notes that enforced composition rules provide marginal security benefits while decreasing usability. [2]",
+      "answer": "NIST advises against imposing composition rules such as requiring a mix of character types on passwords. [1] Research has found that composition rules provide only marginal security benefits while decreasing usability. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -1677,20 +1727,20 @@
         }
       ],
       "usage": {
-        "input_tokens": 3670,
-        "output_tokens": 202,
+        "input_tokens": 7388,
+        "output_tokens": 502,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.000468,
+      "cost_usd": 0.0009898,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": false,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims are directly supported: SP 800-63B-4 says not to impose composition rules such as mixtures of character types, and SP 800-171r3 states enforced composition rules provide marginal security benefits while decreasing usability.",
-      "correct_reason": "The system answer conveys that composition rules such as requiring mixtures of character types should not be imposed, matching the gold answer's key fact without contradiction.",
-      "judge_cost_usd": 0.00023479999999999942
+      "faithful_reason": "Both claims are directly supported: SP 800-63B-4 says not to impose composition rules like mixing character types, and SP 800-171r3 states enforced composition rules provide marginal security benefits while decreasing usability (though it attributes this to NIST guidance rather than 'research' specifically, which is a minor wording difference).",
+      "correct_reason": "The system answer states NIST advises against imposing character-type composition rules, which matches the gold answer that other composition requirements shall not be imposed.",
+      "judge_cost_usd": 0.0002490999999999995
     },
     {
       "id": "q028",
@@ -1711,11 +1761,11 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 37.6,
-        "rerank": 1580.4,
-        "llm": 1182.2,
-        "verify": 1.7,
-        "total": 2809.8
+        "retrieve": 99.6,
+        "rerank": 2430.1,
+        "llm": 1343.6,
+        "verify": 0.5,
+        "total": 3876.6
       },
       "status": "answered",
       "gated": false,
@@ -1745,8 +1795,8 @@
       "faithful": 1,
       "correct": 1,
       "faithful_reason": "The answer's single claim is a verbatim restatement of the first sentence of the quoted NIST passage, which directly supports it.",
-      "correct_reason": "The system answer identifies the same key fact as the gold answer: the weak point is the recovery process when a subscriber loses control of authenticators and needs to replace them.",
-      "judge_cost_usd": 0.0001355000000000002
+      "correct_reason": "The system answer identifies the same key fact as the gold answer: the weak point is the process for recovering/replacing authenticators after the subscriber loses control of them.",
+      "judge_cost_usd": 0.00013500000000000057
     },
     {
       "id": "q029",
@@ -1767,15 +1817,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 68.0,
-        "rerank": 1308.7,
-        "llm": 1561.1,
-        "verify": 2.1,
-        "total": 2944.7
+        "retrieve": 91.7,
+        "rerank": 2074.7,
+        "llm": 1580.8,
+        "verify": 15.0,
+        "total": 3770.8
       },
       "status": "answered",
       "gated": false,
-      "answer": "Components should be replaced when the developer, vendor, or manufacturer no longer makes support available for them. [1] The reason given is that when vendors stop providing critical patches or product updates, adversaries may have opportunities to exploit weaknesses or deficiencies in the installed components. [2]",
+      "answer": "Systems should replace components when the developer, vendor, or manufacturer no longer provides support for them. [1] The reason given is that vendors who stop providing critical patches can leave opportunities for adversaries to exploit weaknesses in the installed components. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -1799,19 +1849,19 @@
       ],
       "usage": {
         "input_tokens": 2251,
-        "output_tokens": 255,
+        "output_tokens": 245,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0003526,
+      "cost_usd": 0.0003476,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer\u2014that components should be replaced when vendor support ends, and that unsupported components expose exploitable weaknesses\u2014are directly stated in the quoted NIST passages (page 80 and page 81).",
-      "correct_reason": "The system answer states that vendors stopping critical patches or updates lets adversaries exploit weaknesses, matching the gold answer's key facts without contradiction.",
-      "judge_cost_usd": 0.00018119999999999942
+      "faithful_reason": "Both claims in the answer (replacing components when support is no longer available, and the rationale about adversaries exploiting weaknesses after patches stop) are directly stated in the quoted NIST SP 800-171r3 passages on pages 80 and 81.",
+      "correct_reason": "The system answer states that vendors stop providing critical patches, leaving opportunities for adversaries to exploit weaknesses, which matches the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00018819999999999948
     },
     {
       "id": "q030",
@@ -1832,15 +1882,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 34.7,
-        "rerank": 1269.8,
-        "llm": 1719.1,
-        "verify": 1.5,
-        "total": 3030.1
+        "retrieve": 76.5,
+        "rerank": 2361.8,
+        "llm": 1443.9,
+        "verify": 2.2,
+        "total": 3892.7
       },
       "status": "answered",
       "gated": false,
-      "answer": "Security-related system property that must be retrieved includes hardware authentication tokens, system administration technical manuals, keys, identification cards, and building passes. [1] The requirement to retrieve security-related system property applies when individual employment is terminated. [2][3]",
+      "answer": "Security-related system property that must be retrieved includes hardware authentication tokens, system administration technical manuals, keys, identification cards, and building passes. [1] The requirement for terminated individuals is to retrieve security-related system property. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -1849,15 +1899,6 @@
           "doc_id": "sp800-171r3",
           "doc_title": "NIST SP 800-171r3",
           "section_path": "DISCUSSION",
-          "page": 59,
-          "url": "/docs/sp800-171r3.pdf#page=59"
-        },
-        {
-          "chunk_id": "sp800-171r3:59:222",
-          "quote": "When individual employment is terminated:",
-          "doc_id": "sp800-171r3",
-          "doc_title": "NIST SP 800-171r3",
-          "section_path": "REFERENCES > 03.09.02 Personnel Termination and Transfer",
           "page": 59,
           "url": "/docs/sp800-171r3.pdf#page=59"
         },
@@ -1873,19 +1914,19 @@
       ],
       "usage": {
         "input_tokens": 2027,
-        "output_tokens": 244,
+        "output_tokens": 212,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0003247,
-      "n_citations": 3,
-      "n_citations_verified": 3,
+      "cost_usd": 0.0003087,
+      "n_citations": 2,
+      "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The answer's list of security-related property and its application to terminated employment are directly stated in the quoted NIST passages, which the answer cites accurately.",
-      "correct_reason": "The system answer lists all the gold items (hardware authentication tokens, administration manuals, keys, identification cards, building passes) without contradiction, adding only accurate framing about termination.",
-      "judge_cost_usd": 0.00018270000000000005
+      "faithful_reason": "The answer's claims that hardware authentication tokens, system administration technical manuals, keys, identification cards, and building passes are security-related system property, and that retrieving such property is required upon termination, are directly stated in the quoted passages (page 59).",
+      "correct_reason": "The system answer lists all the gold items (hardware authentication tokens, administration manuals, keys, identification cards, building passes) without contradiction, framing them as security-related system property.",
+      "judge_cost_usd": 0.0001977000000000003
     },
     {
       "id": "q031",
@@ -1906,24 +1947,51 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 25.5,
-        "rerank": 1319.3,
-        "llm": 0.0,
-        "verify": 0.0,
-        "total": 1345.0
+        "retrieve": 78.8,
+        "rerank": 2333.6,
+        "llm": 1613.8,
+        "verify": 5.1,
+        "total": 4039.9
       },
-      "status": "declined",
-      "gated": true,
-      "answer": "I don't know - the documents don't cover this.",
+      "status": "answered",
+      "gated": false,
+      "answer": "No, the CSF Core is not a checklist of actions to perform item by item. [1] The order and size of its Functions, Categories, and Subcategories also do not imply a required sequence or importance. [2]",
       "clarifying_question": null,
-      "citations": [],
-      "usage": {},
-      "cost_usd": null,
-      "n_citations": 0,
-      "n_citations_verified": 0,
-      "cited_gold_page": false,
-      "faithful": null,
-      "correct": 0
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:8:005",
+          "quote": "These outcomes are not a checklist of actions to perform; specific actions taken to achieve an outcome will vary by organization and use case",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "2. Introduction to the CSF Core",
+          "page": 8,
+          "url": "/docs/csf-2.0.pdf#page=8"
+        },
+        {
+          "chunk_id": "csf-2.0:8:005",
+          "quote": "the order and size of Functions, Categories, and Subcategories in the Core does not imply the sequence or importance of achieving them.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "2. Introduction to the CSF Core",
+          "page": 8,
+          "url": "/docs/csf-2.0.pdf#page=8"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3815,
+        "output_tokens": 225,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.000494,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer (the Core is not a checklist, and the order and size of Functions/Categories/Subcategories do not imply sequence or importance) are directly stated in the quoted NIST CSF 2.0 passage on page 8.",
+      "correct_reason": "The system answer clearly says the CSF Core is not an item-by-item checklist, matching the gold's key point, and adds accurate detail about no implied sequence without contradicting it.",
+      "judge_cost_usd": 0.00021050000000000062
     },
     {
       "id": "q032",
@@ -1944,15 +2012,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 31.9,
-        "rerank": 1448.5,
-        "llm": 1472.4,
-        "verify": 4.2,
-        "total": 2964.1
+        "retrieve": 87.6,
+        "rerank": 2341.6,
+        "llm": 1382.3,
+        "verify": 5.4,
+        "total": 3825.5
       },
       "status": "answered",
       "gated": false,
-      "answer": "The two kinds of session timeout are an overall timeout and an inactivity timeout. [1] An inactivity timeout terminates a session without activity from the subscriber for a specific period. [2]",
+      "answer": "The two types of session timeout are an overall timeout and an inactivity timeout. [1] An inactivity timeout terminates a session that has no activity from the subscriber for a specific period. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -1976,19 +2044,19 @@
       ],
       "usage": {
         "input_tokens": 2146,
-        "output_tokens": 224,
+        "output_tokens": 218,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0003266,
+      "cost_usd": 0.0003236,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": false,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "The answer's two claims\u2014that there are overall and inactivity timeouts and that an inactivity timeout terminates a session without subscriber activity for a specific period\u2014are both directly stated in the quoted passage.",
-      "correct_reason": "The system names the overall timeout and the inactivity timeout and correctly describes the inactivity timeout as ending a session without subscriber activity, matching the gold answer's key facts.",
-      "judge_cost_usd": 0.00020039999999999988
+      "faithful_reason": "The passage explicitly states that session management uses two types of timeouts, an overall timeout and an inactivity timeout, and defines the inactivity timeout as terminating a session without subscriber activity for a specific period, so both claims are directly supported.",
+      "correct_reason": "The system answer names the overall timeout and the inactivity timeout and correctly describes the inactivity timeout as ending a session without subscriber activity, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00021040000000000034
     },
     {
       "id": "q033",
@@ -2009,15 +2077,15 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 39.4,
-        "rerank": 1501.7,
-        "llm": 1421.4,
-        "verify": 1.2,
-        "total": 2969.2
+        "retrieve": 87.1,
+        "rerank": 2317.0,
+        "llm": 2509.0,
+        "verify": 2.4,
+        "total": 4923.5
       },
       "status": "answered",
       "gated": false,
-      "answer": "Single-factor passwords must be a minimum of 15 characters in length. [1] Verifiers and CSPs SHALL NOT impose other composition rules, such as requiring mixtures of different character types, for passwords. [2]",
+      "answer": "Single-factor passwords must be a minimum of 15 characters in length. [1] Verifiers and CSPs shall not impose other composition rules, such as requiring mixtures of different character types, for passwords. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -2041,19 +2109,19 @@
       ],
       "usage": {
         "input_tokens": 3409,
-        "output_tokens": 213,
+        "output_tokens": 209,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004474,
+      "cost_usd": 0.0004454,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer (15-character minimum for single-factor passwords and the prohibition on other composition rules like mixing character types) are directly stated in the quoted passage items 1 and 5.",
+      "faithful_reason": "Both claims in the answer (15-character minimum for single-factor passwords, and no other composition rules such as mixing character types) are directly stated in the quoted NIST passage.",
       "correct_reason": "The system answer states the same 15-character minimum and that no other composition rules may be imposed, matching the gold answer's key facts without contradiction.",
-      "judge_cost_usd": 0.00017310000000000068
+      "judge_cost_usd": 0.0001688000000000002
     },
     {
       "id": "q034",
@@ -2074,15 +2142,15 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 50.9,
-        "rerank": 1398.6,
-        "llm": 1424.1,
-        "verify": 1.2,
-        "total": 2882.5
+        "retrieve": 89.2,
+        "rerank": 1993.7,
+        "llm": 1482.8,
+        "verify": 12.7,
+        "total": 3587.7
       },
       "status": "answered",
       "gated": false,
-      "answer": "Each type of wireless access to the system must be authorized prior to establishing such connections. [1] Wireless access must be protected using authentication and encryption. [2] Usage restrictions, configuration requirements, and connection requirements must also be established for each type of wireless access. [3]",
+      "answer": "Each type of wireless access to the system must be authorized before such connections are established. [1] Wireless access must be protected using authentication and encryption. [2] Usage restrictions, configuration requirements, and connection requirements must be established for each type of wireless access. [3]",
       "clarifying_question": null,
       "citations": [
         {
@@ -2115,19 +2183,19 @@
       ],
       "usage": {
         "input_tokens": 1484,
-        "output_tokens": 269,
+        "output_tokens": 265,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002829,
+      "cost_usd": 0.0002809,
       "n_citations": 3,
       "n_citations_verified": 3,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Each of the three claims in the answer (prior authorization of each wireless access type, protection via authentication and encryption, and establishing usage/configuration/connection requirements) is directly stated in the quoted NIST SP 800-171r3 passage.",
-      "correct_reason": "The system answer states the same two key facts as the gold answer: each wireless access type must be authorized before connection, and wireless access must be protected using authentication and encryption, with only extra correct detail added.",
-      "judge_cost_usd": 0.00015800000000000015
+      "faithful_reason": "All three claims in the answer (authorization before connection, protection via authentication and encryption, and establishment of usage/configuration/connection requirements) are directly stated in the quoted NIST SP 800-171r3 passage.",
+      "correct_reason": "The system answer states that each type of wireless access must be authorized before connections are established and must be protected using authentication and encryption, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.0001497
     },
     {
       "id": "q035",
@@ -2148,15 +2216,15 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 46.2,
-        "rerank": 1415.8,
-        "llm": 1615.0,
-        "verify": 4.4,
-        "total": 3089.4
+        "retrieve": 85.2,
+        "rerank": 2085.6,
+        "llm": 2186.4,
+        "verify": 6.3,
+        "total": 4368.5
       },
       "status": "answered",
       "gated": false,
-      "answer": "CSF Organizational Profiles are used to understand, tailor, assess, prioritize, and communicate the Core's outcomes. [1] Tiers characterize the rigor of an organization's cybersecurity risk governance and management practices and provide context for how it views cybersecurity risks. [2]",
+      "answer": "CSF Organizational Profiles are used to understand, tailor, assess, prioritize, and communicate the Core's outcomes. [1] Tiers characterize the rigor of an organization's cybersecurity risk governance and management practices and provide context for how it views cybersecurity risks. [2] Tiers can be used to inform an organization's Current and Target Profiles, and they should complement rather than replace its cybersecurity risk management methodology. [3][4]",
       "clarifying_question": null,
       "citations": [
         {
@@ -2176,23 +2244,41 @@
           "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
           "page": 12,
           "url": "/docs/csf-2.0.pdf#page=12"
+        },
+        {
+          "chunk_id": "csf-2.0:12:014",
+          "quote": "An organization can choose to use the Tiers to inform its Current and Target Profiles.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
+          "page": 12,
+          "url": "/docs/csf-2.0.pdf#page=12"
+        },
+        {
+          "chunk_id": "csf-2.0:12:014",
+          "quote": "Tiers should complement an organization\u2019s cybersecurity risk management methodology rather than replace it.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
+          "page": 13,
+          "url": "/docs/csf-2.0.pdf#page=13"
         }
       ],
       "usage": {
         "input_tokens": 3490,
-        "output_tokens": 266,
+        "output_tokens": 427,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.000482,
-      "n_citations": 2,
-      "n_citations_verified": 2,
+      "cost_usd": 0.0005625,
+      "n_citations": 4,
+      "n_citations_verified": 4,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims in the answer are directly stated in the quoted passages: Organizational Profiles are used to understand, tailor, assess, prioritize, and communicate the Core's outcomes (page 11), and Tiers characterize the rigor of cybersecurity risk governance and management and provide context for how an organization views risks (page 12).",
-      "correct_reason": "The system answer states that Profiles are used to understand, tailor, assess, prioritize, and communicate the Core outcomes, and that Tiers characterize the rigor of risk governance and management practices, matching the gold answer's key facts without contradiction.",
-      "judge_cost_usd": 0.0002859999999999998
+      "faithful_reason": "Each claim in the answer (Organizational Profiles' purposes, Tiers characterizing rigor and context, Tiers informing Current/Target Profiles, and Tiers complementing rather than replacing methodology) is directly stated in the quoted NIST CSF 2.0 passages.",
+      "correct_reason": "The system answer correctly states that Profiles are used to understand, tailor, assess, prioritize, and communicate Core outcomes, and that Tiers characterize the rigor of risk governance and management practices, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00029109999999999987
     },
     {
       "id": "q036",
@@ -2213,15 +2299,15 @@
       "hit@1": true,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 29.5,
-        "rerank": 1406.1,
-        "llm": 1494.0,
-        "verify": 1.0,
-        "total": 2934.8
+        "retrieve": 92.8,
+        "rerank": 2212.7,
+        "llm": 1779.9,
+        "verify": 0.7,
+        "total": 4089.4
       },
       "status": "answered",
       "gated": false,
-      "answer": "SP 800-61r3 seeks to help organizations incorporate cybersecurity incident response recommendations and considerations throughout their cybersecurity risk management activities. [1] It also provides a common language that all organizations can use to communicate internally and externally regarding their incident response plans and activities. [2]",
+      "answer": "SP 800-61r3 seeks to help organizations incorporate incident response recommendations and considerations throughout their cybersecurity risk management activities. [1] It also provides a common language that all organizations can use to communicate internally and externally about their incident response plans and activities. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -2245,19 +2331,19 @@
       ],
       "usage": {
         "input_tokens": 2834,
-        "output_tokens": 259,
+        "output_tokens": 251,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004129,
+      "cost_usd": 0.0004089,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both sentences of the answer closely paraphrase the first paragraph of the quoted passage, which states the publication's aim of incorporating incident response into risk management and providing a common language for communication, so every claim is directly supported.",
-      "correct_reason": "The system answer conveys both key facts from the gold answer: incorporating incident response into cybersecurity risk management and providing a common language for internal and external communication about incident response.",
-      "judge_cost_usd": 0.0001941
+      "faithful_reason": "Both claims in the answer (helping organizations incorporate incident response considerations into risk management, and providing a common language for communicating about incident response plans and activities) are directly stated in the quoted passage from NIST SP 800-61r3.",
+      "correct_reason": "The system answer captures both key facts: helping organizations incorporate incident response into cybersecurity risk management and providing a common language for internal and external communication about incident response plans and activities.",
+      "judge_cost_usd": 0.00019149999999999983
     },
     {
       "id": "q037",
@@ -2278,15 +2364,15 @@
       "hit@1": false,
       "hit@5": true,
       "timings_ms": {
-        "retrieve": 55.2,
-        "rerank": 1359.7,
-        "llm": 1608.3,
-        "verify": 1.0,
-        "total": 3031.9
+        "retrieve": 73.0,
+        "rerank": 2040.8,
+        "llm": 1592.3,
+        "verify": 2.8,
+        "total": 3717.1
       },
       "status": "answered",
       "gated": false,
-      "answer": "SP 800-171r3 defines multi-factor authentication as requiring the use of two or more different factors to achieve authentication. [1] SP 800-63B-4 states that passwords used only as part of multi-factor authentication processes may be shorter but must be a minimum of eight characters in length. [2]",
+      "answer": "SP 800-171r3 states that multi-factor authentication requires the use of two or more different factors to achieve authentication. [1] SP 800-63B-4 allows passwords used only as part of multi-factor authentication to be shorter, but requires them to be a minimum of eight characters in length. [2]",
       "clarifying_question": null,
       "citations": [
         {
@@ -2300,7 +2386,7 @@
         },
         {
           "chunk_id": "sp800-63b-4:25:044",
-          "quote": "Verifiers and CSPs MAY allow passwords that are only used as part of multi-factor authentication processes to be shorter but SHALL require them to be a minimum of eight characters in length.",
+          "quote": "MAY allow passwords that are only used as part of multi-factor authentication processes to be shorter but SHALL require them to be a minimum of eight characters in length.",
           "doc_id": "sp800-63b-4",
           "doc_title": "NIST SP 800-63B-4",
           "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
@@ -2310,19 +2396,19 @@
       ],
       "usage": {
         "input_tokens": 2893,
-        "output_tokens": 270,
+        "output_tokens": 260,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0004243,
+      "cost_usd": 0.0004193,
       "n_citations": 2,
       "n_citations_verified": 2,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Both claims match the quoted passages: SP 800-171r3 defines MFA as two or more different factors, and SP 800-63B-4 permits shorter passwords for multi-factor use with a minimum of eight characters.",
-      "correct_reason": "The system answer states two or more different factors for MFA and an eight-character minimum for passwords used only in MFA, matching the gold answer's key facts without contradiction.",
-      "judge_cost_usd": 0.00021230000000000034
+      "faithful_reason": "Both claims are directly stated in the quoted passages: SP 800-171r3 defines MFA as requiring two or more different factors, and SP 800-63B-4 permits shorter MFA-only passwords with a minimum of eight characters.",
+      "correct_reason": "The system answer correctly states the two-or-more-different-factors definition and the eight-character minimum for MFA-only passwords, matching the gold answer without contradiction.",
+      "judge_cost_usd": 0.00021580000000000037
     },
     {
       "id": "q038",
@@ -2343,15 +2429,15 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 52.8,
-        "rerank": 1387.0,
-        "llm": 1904.3,
-        "verify": 2.9,
-        "total": 3350.5
+        "retrieve": 105.9,
+        "rerank": 2010.3,
+        "llm": 2282.9,
+        "verify": 3.1,
+        "total": 4404.9
       },
       "status": "answered",
       "gated": false,
-      "answer": "Govern, Identify, and Protect help organizations prevent some incidents and prepare to handle incidents that do occur. [1] The incident response life cycle model in SP 800-61r3 is based on the six CSF 2.0 Functions, which organize cybersecurity outcomes at their highest level. [2] The model is based on CSF 2.0 to take advantage of the wealth of resources available for CSF 2.0 and aid organizations that are already using the CSF. [3]",
+      "answer": "Govern, Identify, and Protect help organizations prevent some incidents and prepare to handle incidents that do occur. [1] SP 800-61r3 bases its incident response life cycle model on the six CSF 2.0 Functions to take advantage of the wealth of resources available for CSF 2.0. [2] Detect, Respond, and Recover are shown as the incident response activities, while Govern, Identify, and Protect are preparation activities that are not part of the incident response itself. [3]",
       "clarifying_question": null,
       "citations": [
         {
@@ -2364,8 +2450,8 @@
           "url": "/docs/sp800-61r3.pdf#page=12"
         },
         {
-          "chunk_id": "sp800-61r3:12:008",
-          "quote": "Fig. 2 shows a high-level incident response life cycle model based on the six CSF 2.0 Functions, which organize cybersecurity outcomes at their highest level",
+          "chunk_id": "sp800-61r3:12:008.2",
+          "quote": "The model in this document is based on CSF 2.0 to take advantage of the wealth of resources available for CSF 2.0",
           "doc_id": "sp800-61r3",
           "doc_title": "NIST SP 800-61r3",
           "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.1. Incident Response Life Cycle Model",
@@ -2373,8 +2459,8 @@
           "url": "/docs/sp800-61r3.pdf#page=12"
         },
         {
-          "chunk_id": "sp800-61r3:12:008.2",
-          "quote": "The model in this document is based on CSF 2.0 to take advantage of the wealth of resources available for CSF 2.0 and aid organizations that are already using the CSF.",
+          "chunk_id": "sp800-61r3:12:008.1",
+          "quote": "The bottom level reflects that the preparation activities of Govern, Identify, and Protect are not part of the incident response itself.",
           "doc_id": "sp800-61r3",
           "doc_title": "NIST SP 800-61r3",
           "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.1. Incident Response Life Cycle Model",
@@ -2384,19 +2470,19 @@
       ],
       "usage": {
         "input_tokens": 3208,
-        "output_tokens": 417,
+        "output_tokens": 401,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0005293,
+      "cost_usd": 0.0005213,
       "n_citations": 3,
       "n_citations_verified": 3,
       "cited_gold_page": true,
       "faithful": 1,
       "correct": 1,
-      "faithful_reason": "Each claim in the answer\u2014Govern, Identify, and Protect helping prevent incidents and prepare for them, the model being based on the six CSF 2.0 Functions, and the rationale of leveraging CSF 2.0 resources\u2014is directly stated in the quoted passages.",
-      "correct_reason": "The system names Govern, Identify, and Protect as the prevention/preparation Functions and states SP 800-61r3's life cycle is based on CSF 2.0 Functions, matching the gold answer's key facts without contradiction.",
-      "judge_cost_usd": 0.00034599999999999995
+      "faithful_reason": "Each of the three claims is directly stated in the quoted NIST SP 800-61r3 passages: Govern/Identify/Protect help prevent and prepare for incidents, the model is based on CSF 2.0 for available resources, and Detect/Respond/Recover are the incident response levels while Govern/Identify/Protect are preparation activities outside the response itself.",
+      "correct_reason": "The system answer correctly identifies Govern, Identify, and Protect as the prevention/preparation Functions and states that SP 800-61r3's life cycle is based on the CSF 2.0 Functions, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.0002964999999999999
     },
     {
       "id": "q039",
@@ -2417,24 +2503,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 22.8,
-        "rerank": 1662.9,
-        "llm": 1120.5,
+        "retrieve": 124.8,
+        "rerank": 1979.7,
+        "llm": 1637.8,
         "verify": 0.0,
-        "total": 2808.8
+        "total": 3750.5
       },
       "status": "clarify",
       "gated": false,
       "answer": null,
-      "clarifying_question": "The passages cover only NIST SP 800-63B-4; do you want me to answer only how SP 800-63B-4 treats session termination and timeouts, since SP 800-171r3 is not included in the provided passages?",
+      "clarifying_question": "The passages cover only NIST SP 800-63B-4; do you want me to answer only about SP 800-63B-4, since no SP 800-171r3 passages were provided?",
       "citations": [],
       "usage": {
         "input_tokens": 2433,
-        "output_tokens": 101,
+        "output_tokens": 87,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0002938,
+      "cost_usd": 0.0002868,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2460,24 +2546,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 23.2,
-        "rerank": 1637.7,
-        "llm": 1075.2,
+        "retrieve": 65.1,
+        "rerank": 2093.1,
+        "llm": 803.3,
         "verify": 0.0,
-        "total": 2738.4
+        "total": 2970.4
       },
-      "status": "clarify",
+      "status": "declined",
       "gated": false,
-      "answer": null,
-      "clarifying_question": "Do you want to know how the NIST CSF addresses supply chain risk, or only how SP 800-171r3 addresses it, since the passages provided cover only SP 800-171r3?",
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
       "citations": [],
       "usage": {
         "input_tokens": 1454,
-        "output_tokens": 90,
+        "output_tokens": 29,
         "cache_write_tokens": 0,
         "cache_read_tokens": 0
       },
-      "cost_usd": 0.0001904,
+      "cost_usd": 0.0001599,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2503,19 +2589,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 26.0,
-        "rerank": 1847.6,
-        "llm": 0.0,
+        "retrieve": 72.1,
+        "rerank": 2207.6,
+        "llm": 906.8,
         "verify": 0.0,
-        "total": 1873.8
+        "total": 3199.7
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 3229,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003379,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2541,19 +2632,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 44.3,
-        "rerank": 1949.1,
-        "llm": 0.0,
+        "retrieve": 77.8,
+        "rerank": 2584.0,
+        "llm": 1122.2,
         "verify": 0.0,
-        "total": 1993.6
+        "total": 3792.7
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 2613,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002763,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2579,19 +2675,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 50.1,
-        "rerank": 2029.0,
-        "llm": 0.0,
+        "retrieve": 58.6,
+        "rerank": 2329.8,
+        "llm": 983.2,
         "verify": 0.0,
-        "total": 2079.4
+        "total": 3377.9
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 2497,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002647,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2617,19 +2718,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 38.0,
-        "rerank": 2070.9,
-        "llm": 0.0,
+        "retrieve": 54.8,
+        "rerank": 2367.4,
+        "llm": 955.5,
         "verify": 0.0,
-        "total": 2109.1
+        "total": 3384.6
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 2693,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002843,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2655,19 +2761,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 37.8,
-        "rerank": 1932.6,
-        "llm": 0.0,
+        "retrieve": 76.8,
+        "rerank": 3245.2,
+        "llm": 1153.5,
         "verify": 0.0,
-        "total": 1970.6
+        "total": 4484.3
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 5086,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0005236,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2693,19 +2804,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 35.6,
-        "rerank": 1795.0,
-        "llm": 0.0,
+        "retrieve": 87.0,
+        "rerank": 2830.9,
+        "llm": 897.6,
         "verify": 0.0,
-        "total": 1830.7
+        "total": 3821.1
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 5446,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0005596,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2731,11 +2847,11 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 35.8,
-        "rerank": 1636.2,
-        "llm": 1027.0,
+        "retrieve": 65.2,
+        "rerank": 2494.0,
+        "llm": 1203.2,
         "verify": 0.0,
-        "total": 2713.1
+        "total": 3774.0
       },
       "status": "declined",
       "gated": false,
@@ -2774,19 +2890,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 27.4,
-        "rerank": 1859.2,
-        "llm": 0.0,
+        "retrieve": 137.1,
+        "rerank": 3284.3,
+        "llm": 1031.7,
         "verify": 0.0,
-        "total": 1886.7
+        "total": 4456.6
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 2883,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003033,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2812,19 +2933,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 42.6,
-        "rerank": 1759.0,
-        "llm": 0.0,
+        "retrieve": 54.7,
+        "rerank": 2981.6,
+        "llm": 1028.6,
         "verify": 0.0,
-        "total": 1802.0
+        "total": 4068.3
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 2425,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002575,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2850,19 +2976,24 @@
       "hit@1": false,
       "hit@5": false,
       "timings_ms": {
-        "retrieve": 32.1,
-        "rerank": 1920.2,
-        "llm": 0.0,
+        "retrieve": 61.0,
+        "rerank": 3737.5,
+        "llm": 977.4,
         "verify": 0.0,
-        "total": 1952.6
+        "total": 4783.2
       },
       "status": "declined",
-      "gated": true,
+      "gated": false,
       "answer": "I don't know - the documents don't cover this.",
       "clarifying_question": null,
       "citations": [],
-      "usage": {},
-      "cost_usd": null,
+      "usage": {
+        "input_tokens": 4223,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004373,
       "n_citations": 0,
       "n_citations_verified": 0,
       "cited_gold_page": false,
@@ -2880,25 +3011,25 @@
       "retrieval_hit@5": 0.8148148148148148,
       "retrieval_mrr@5": 0.6135802469135803,
       "quote_verification_rate": 1.0,
-      "citation_page_accuracy": 0.8636363636363636,
+      "citation_page_accuracy": 0.8,
       "faithfulness": 1.0,
-      "n_faithfulness_judged": 22,
-      "answer_correctness": 0.8148148148148148,
+      "n_faithfulness_judged": 25,
+      "answer_correctness": 0.9259259259259259,
       "correct_declines": 7,
       "unanswerable_total": 7,
-      "false_decline_rate": 0.18518518518518517,
-      "latency_ms_p50": 2792.8500000000004,
-      "latency_ms_p95": 3998.2,
+      "false_decline_rate": 0.07407407407407407,
+      "latency_ms_p50": 3912.0,
+      "latency_ms_p95": 6651.8,
       "latency_ms_mean_by_stage": {
-        "retrieve": 499.8,
-        "rerank": 1649.4,
-        "llm": 1147.4,
-        "verify": 1.1
+        "retrieve": 2653.7,
+        "rerank": 2774.3,
+        "llm": 1571.9,
+        "verify": 2.8
       },
-      "cost_per_question_usd": 0.00030636764705882367,
-      "cost_total_usd": 0.010416500000000004,
-      "judge_cost_total_usd": 0.0040601000000000005,
-      "llm_calls_skipped_by_gate": 8
+      "cost_per_question_usd": 0.00039254117647058825,
+      "cost_total_usd": 0.0133464,
+      "judge_cost_total_usd": 0.004685700000000003,
+      "llm_calls_skipped_by_gate": 0
     },
     "dev": {
       "n_questions": 16,
@@ -2910,24 +3041,24 @@
       "retrieval_mrr@5": 0.641025641025641,
       "quote_verification_rate": 1.0,
       "citation_page_accuracy": 0.8461538461538461,
-      "faithfulness": 1.0,
+      "faithfulness": 0.9230769230769231,
       "n_faithfulness_judged": 13,
       "answer_correctness": 1.0,
       "correct_declines": 3,
       "unanswerable_total": 3,
       "false_decline_rate": 0.0,
-      "latency_ms_p50": 2851.75,
-      "latency_ms_p95": 3164.8,
+      "latency_ms_p50": 4014.7,
+      "latency_ms_p95": 6600.8,
       "latency_ms_mean_by_stage": {
-        "retrieve": 41.4,
-        "rerank": 1504.2,
-        "llm": 1133.7,
-        "verify": 1.8
+        "retrieve": 84.0,
+        "rerank": 2737.0,
+        "llm": 1475.8,
+        "verify": 3.8
       },
-      "cost_per_question_usd": 0.00031483749999999995,
-      "cost_total_usd": 0.005037399999999999,
-      "judge_cost_total_usd": 0.0026859999999999987,
-      "llm_calls_skipped_by_gate": 3
+      "cost_per_question_usd": 0.00039380625,
+      "cost_total_usd": 0.0063009,
+      "judge_cost_total_usd": 0.0027196999999999994,
+      "llm_calls_skipped_by_gate": 0
     },
     "all": {
       "n_questions": 50,
@@ -2938,25 +3069,25 @@
       "retrieval_hit@5": 0.85,
       "retrieval_mrr@5": 0.6224999999999998,
       "quote_verification_rate": 1.0,
-      "citation_page_accuracy": 0.8571428571428571,
-      "faithfulness": 1.0,
-      "n_faithfulness_judged": 35,
-      "answer_correctness": 0.875,
+      "citation_page_accuracy": 0.8157894736842105,
+      "faithfulness": 0.9736842105263158,
+      "n_faithfulness_judged": 38,
+      "answer_correctness": 0.95,
       "correct_declines": 10,
       "unanswerable_total": 10,
-      "false_decline_rate": 0.125,
-      "latency_ms_p50": 2792.8500000000004,
-      "latency_ms_p95": 3998.2,
+      "false_decline_rate": 0.05,
+      "latency_ms_p50": 3946.2,
+      "latency_ms_p95": 7266.2,
       "latency_ms_mean_by_stage": {
-        "retrieve": 353.1,
-        "rerank": 1603.0,
-        "llm": 1143.0,
-        "verify": 1.3
+        "retrieve": 1831.4,
+        "rerank": 2762.4,
+        "llm": 1541.1,
+        "verify": 3.1
       },
-      "cost_per_question_usd": 0.0003090780000000001,
-      "cost_total_usd": 0.015453900000000005,
-      "judge_cost_total_usd": 0.006746099999999999,
-      "llm_calls_skipped_by_gate": 11
+      "cost_per_question_usd": 0.00039294600000000014,
+      "cost_total_usd": 0.019647300000000006,
+      "judge_cost_total_usd": 0.007405400000000002,
+      "llm_calls_skipped_by_gate": 0
     }
   }
 }

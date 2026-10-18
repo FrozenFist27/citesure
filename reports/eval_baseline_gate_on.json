@@ -1,0 +1,2962 @@
+{
+  "header": {
+    "timestamp": "2026-10-17T18:42:11Z",
+    "git_commit": "badad54",
+    "mode": "hybrid_rerank",
+    "split": "all",
+    "answer_model": "claude-haiku-5-5",
+    "judge_model": "claude-haiku-5-5",
+    "provider": "anthropic",
+    "settings": {
+      "retrieval": {
+        "mode": "hybrid_rerank",
+        "bm25_k": 20,
+        "vector_k": 20,
+        "rrf_k": 60,
+        "rerank_top_n": 20,
+        "final_k": 5,
+        "decline_threshold": 0.1
+      },
+      "chunking": {
+        "mode": "section",
+        "max_words": 350,
+        "overlap_words": 50
+      },
+      "embeddings": {
+        "model_name": "BAAI/bge-small-en-v1.5",
+        "query_prefix": "Represent this sentence for searching relevant passages: "
+      },
+      "reranker": {
+        "model_name": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+      },
+      "answer": {
+        "max_tokens": 600,
+        "temperature": 0.0,
+        "max_passages": 5,
+        "retry_on_verify_fail": 1
+      }
+    },
+    "corpus_sha256": {
+      "csf-2.0": "3c31f46fee98cac0c4323453e5109291a213b4de7fef8c058af9bf67f717433c",
+      "sp800-61r3": "e5593d6bb85daecec7e8d9549400c7b3473bcc3f06e469c82218073afa7fba2d",
+      "sp800-171r3": "3e4631df8b5d61f40a6e542b52779ef30ddbbfff31e09214fa94ad6e6f5e6d08",
+      "sp800-63b-4": "d9ab89576b5ae2cfb3ba37781110788dea27a85a5079496dbfc1a79834670afd"
+    },
+    "eval_file_sha256": "dd27db5165baf787a4ae3de7cac5ad765e7de0e6f69671def4ff5fb91e228b4f",
+    "questions_not_verified_by_human": 50,
+    "retrieval_only": false
+  },
+  "summary": {
+    "n_questions": 50,
+    "n_answerable": 40,
+    "n_unanswerable": 10,
+    "retrieval_n": 40,
+    "retrieval_hit@1": 0.5,
+    "retrieval_hit@5": 0.85,
+    "retrieval_mrr@5": 0.6224999999999998,
+    "quote_verification_rate": 1.0,
+    "citation_page_accuracy": 0.8571428571428571,
+    "faithfulness": 1.0,
+    "n_faithfulness_judged": 35,
+    "answer_correctness": 0.875,
+    "correct_declines": 10,
+    "unanswerable_total": 10,
+    "false_decline_rate": 0.125,
+    "latency_ms_p50": 2792.8500000000004,
+    "latency_ms_p95": 3998.2,
+    "latency_ms_mean_by_stage": {
+      "retrieve": 353.1,
+      "rerank": 1603.0,
+      "llm": 1143.0,
+      "verify": 1.3
+    },
+    "cost_per_question_usd": 0.0003090780000000001,
+    "cost_total_usd": 0.015453900000000005,
+    "judge_cost_total_usd": 0.006746099999999999,
+    "llm_calls_skipped_by_gate": 11
+  },
+  "results": [
+    {
+      "id": "q001",
+      "question": "What minimum password length must verifiers require when a password is the only authentication factor, and what is the minimum when it is used in multi-factor authentication?",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:25:044",
+        "sp800-63b-4:27:049",
+        "sp800-63b-4:98:195.3",
+        "sp800-63b-4:128:243",
+        "sp800-63b-4:49:106"
+      ],
+      "top_rerank_score": 6.345623016357422,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 15692.4,
+        "rerank": 6372.5,
+        "llm": 3083.2,
+        "verify": 1.4,
+        "total": 25154.8
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "When a password is used as a single-factor authentication mechanism, verifiers and CSPs must require a minimum length of 15 characters. [1] When a password is used only as part of a multi-factor authentication process, verifiers and CSPs may allow it to be shorter but must require a minimum of eight characters. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:25:044",
+          "quote": "Verifiers and CSPs SHALL require passwords that are used as a single-factor",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
+          "page": 25,
+          "url": "/docs/sp800-63b-4.pdf#page=25"
+        },
+        {
+          "chunk_id": "sp800-63b-4:25:044",
+          "quote": "Verifiers and CSPs MAY allow passwords that are only used as part of multi-factor authentication processes to be shorter but SHALL require them to be a minimum of eight characters in length.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
+          "page": 25,
+          "url": "/docs/sp800-63b-4.pdf#page=25"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3267,
+        "output_tokens": 267,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004602,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims about the 15-character minimum for single-factor passwords and the eight-character minimum for multi-factor passwords are directly stated in the quoted passage.",
+      "correct_reason": "The system answer states 15 characters for single-factor passwords and 8 characters for multi-factor use, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.0001786
+    },
+    {
+      "id": "q002",
+      "question": "What kind of cryptographic authenticator does AAL3 require?",
+      "category": "fact",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:19:025",
+        "sp800-63b-4:12:004.2",
+        "sp800-63b-4:19:024",
+        "sp800-63b-4:37:075",
+        "sp800-63b-4:19:026"
+      ],
+      "top_rerank_score": 8.404516220092773,
+      "gold_rank": 3,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 47.9,
+        "rerank": 1707.6,
+        "llm": 1338.0,
+        "verify": 1.2,
+        "total": 3099.4
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "AAL3 requires a cryptographic authenticator with a non-exportable private key that provides phishing resistance. [1] Authenticators used at AAL3 must also use approved cryptography. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:19:024",
+          "quote": "AAL3 authentication requires the use of a cryptographic authenticator with a non-exportable private key that provides phishing resistance.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "[FIPS140]. > 2.3. Authentication Assurance Level 3",
+          "page": 19,
+          "url": "/docs/sp800-63b-4.pdf#page=19"
+        },
+        {
+          "chunk_id": "sp800-63b-4:19:026",
+          "quote": "Authenticators used at AAL3 SHALL use approved cryptography.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "[FIPS140]. > 2.3. Authentication Assurance Level 3 > 2.3.2. Authenticator and Verifier Requirements",
+          "page": 19,
+          "url": "/docs/sp800-63b-4.pdf#page=19"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1826,
+        "output_tokens": 215,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002901,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer (AAL3 requires a cryptographic authenticator with a non-exportable private key providing phishing resistance, and authenticators must use approved cryptography) are directly stated in the quoted NIST SP 800-63B-4 passages.",
+      "correct_reason": "The system answer states the same key facts as the gold answer: a cryptographic authenticator with a non-exportable private key providing phishing resistance, with only additional correct detail about approved cryptography added.",
+      "judge_cost_usd": 0.00019700000000000002
+    },
+    {
+      "id": "q003",
+      "question": "Is an inactivity timeout required at AAL1?",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:16:015",
+        "sp800-63b-4:18:020",
+        "sp800-63b-4:20:029",
+        "sp800-63b-4:67:155",
+        "sp800-63b-4:22:036"
+      ],
+      "top_rerank_score": 8.577969551086426,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 27.0,
+        "rerank": 1829.0,
+        "llm": 1062.3,
+        "verify": 0.7,
+        "total": 2924.8
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "An inactivity timeout is not required at AAL1, although it may be applied. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:16:015",
+          "quote": "An inactivity timeout MAY be applied but is not required at AAL1.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "[FIPS140]. > 2.1.3. Reauthentication",
+          "page": 17,
+          "url": "/docs/sp800-63b-4.pdf#page=17"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2254,
+        "output_tokens": 105,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002779,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The quoted passage states that an inactivity timeout MAY be applied but is not required at AAL1, directly supporting the answer's claim.",
+      "correct_reason": "The system answer states the same key facts as the gold: an inactivity timeout is not required at AAL1 but may be applied.",
+      "judge_cost_usd": 0.0001183
+    },
+    {
+      "id": "q004",
+      "question": "How many digits must an issued account recovery code include at minimum?",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:59:133",
+        "sp800-63b-4:58:129",
+        "sp800-63b-4:60:140",
+        "sp800-63b-4:60:139",
+        "sp800-63b-4:59:134"
+      ],
+      "top_rerank_score": 4.849976539611816,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 30.9,
+        "rerank": 1029.1,
+        "llm": 1024.4,
+        "verify": 1.3,
+        "total": 2091.9
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "An issued recovery code must include at least six decimal digits or equivalent. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:59:133",
+          "quote": "The issued recovery code SHALL include at least six decimal digits (or equivalent) from an approved random bit generator",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "CSP. > 4.2. Account Recovery > 4.2.1. Account Recovery Methods > 4.2.1.2. Issued Recovery Codes",
+          "page": 59,
+          "url": "/docs/sp800-63b-4.pdf#page=59"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1806,
+        "output_tokens": 117,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002391,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's single claim that an issued recovery code must include at least six decimal digits or equivalent is directly stated in the quoted passage.",
+      "correct_reason": "The system answer states at least six decimal digits or equivalent, matching the gold answer's key fact; the citation is extra detail that does not contradict it.",
+      "judge_cost_usd": 0.00015710000000000008
+    },
+    {
+      "id": "q005",
+      "question": "May an authenticated session fall back to an insecure transport such as http after authentication?",
+      "category": "fact",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:65:152.1",
+        "sp800-63b-4:65:152",
+        "sp800-63b-4:67:155",
+        "sp800-63b-4:32:060",
+        "sp800-63b-4:64:149"
+      ],
+      "top_rerank_score": 6.872632026672363,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 46.7,
+        "rerank": 1603.6,
+        "llm": 1269.2,
+        "verify": 1.4,
+        "total": 2928.7
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "No, an authenticated session shall not fall back to an insecure transport after authentication. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:65:152.1",
+          "quote": "Following authentication, authenticated sessions SHALL NOT fall back to an insecure transport (e.g., from https to http).",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "5. Session Management > 5.1. Session Bindings",
+          "page": 65,
+          "url": "/docs/sp800-63b-4.pdf#page=65"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3386,
+        "output_tokens": 124,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004006,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The passage states that authenticated sessions SHALL NOT fall back to an insecure transport (e.g., from https to http), which directly supports the answer.",
+      "correct_reason": "The system answer says no, the session shall not fall back to an insecure transport after authentication, matching the gold answer's key fact; the citation is extra detail that does not contradict it.",
+      "judge_cost_usd": 0.00015400000000000006
+    },
+    {
+      "id": "q006",
+      "question": "Must a verifier check the entire submitted password or may it truncate it?",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:26:046",
+        "sp800-63b-4:27:049",
+        "sp800-63b-4:25:044",
+        "sp800-63b-4:98:195.4",
+        "sp800-63b-4:24:040"
+      ],
+      "top_rerank_score": 5.279855251312256,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 57.2,
+        "rerank": 1480.1,
+        "llm": 1068.1,
+        "verify": 1.8,
+        "total": 2612.5
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "A verifier must verify the entire submitted password and may not truncate it. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:26:046",
+          "quote": "SHALL request the password to be provided in full (not a subset of it) and SHALL verify the entire submitted password (e.g., not truncate it).",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
+          "page": 26,
+          "url": "/docs/sp800-63b-4.pdf#page=26"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3476,
+        "output_tokens": 126,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004106,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The quoted passage states verifiers SHALL request the password in full and SHALL verify the entire submitted password (e.g., not truncate it), directly supporting the answer's claim.",
+      "correct_reason": "The system answer states the verifier must verify the entire submitted password and may not truncate it, matching the gold answer's key fact; the bracketed citation is extra but harmless.",
+      "judge_cost_usd": 0.00018880000000000004
+    },
+    {
+      "id": "q007",
+      "question": "What must organizations do for each type of wireless access to a system before connections are established?",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:25:056",
+        "sp800-171r3:26:057",
+        "sp800-171r3:24:050",
+        "sp800-171r3:44:142",
+        "sp800-171r3:27:065"
+      ],
+      "top_rerank_score": 5.37086296081543,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 44.0,
+        "rerank": 1475.2,
+        "llm": 1425.1,
+        "verify": 0.5,
+        "total": 2947.0
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Organizations must establish usage restrictions, configuration requirements, and connection requirements for each type of wireless access to the system. [1] Organizations must authorize each type of wireless access to the system prior to establishing such connections. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:25:056",
+          "quote": "Establish usage restrictions, configuration requirements, and connection requirements for each type of wireless access to the system.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "[20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access",
+          "page": 25,
+          "url": "/docs/sp800-171r3.pdf#page=25"
+        },
+        {
+          "chunk_id": "sp800-171r3:25:056",
+          "quote": "Authorize each type of wireless access to the system prior to establishing such connections.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "[20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access",
+          "page": 25,
+          "url": "/docs/sp800-171r3.pdf#page=25"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1467,
+        "output_tokens": 217,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002552,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer (establishing usage/configuration/connection requirements for each wireless access type, and authorizing each type prior to connection) are directly stated in the quoted passage at items a and b.",
+      "correct_reason": "The system answer explicitly states that organizations must authorize each type of wireless access to the system prior to establishing such connections, matching the gold answer, with extra correct detail about usage restrictions and configuration requirements.",
+      "judge_cost_usd": 0.0001489
+    },
+    {
+      "id": "q008",
+      "question": "What are examples of audit logging process failures?",
+      "category": "fact",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:33:090",
+        "sp800-171r3:33:089",
+        "sp800-171r3:31:081",
+        "sp800-171r3:61:229",
+        "sp800-171r3:36:102"
+      ],
+      "top_rerank_score": 7.6460676193237305,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 17.8,
+        "rerank": 1280.8,
+        "llm": 1082.5,
+        "verify": 1.8,
+        "total": 2390.7
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Audit logging process failures include software and hardware errors, failures in audit log capturing mechanisms, and reaching or exceeding audit log storage capacity. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:33:090",
+          "quote": "Audit logging process failures include software and hardware errors, failures in audit log capturing mechanisms, and reaching or exceeding audit log storage capacity.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 33,
+          "url": "/docs/sp800-171r3.pdf#page=33"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1835,
+        "output_tokens": 157,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.000262,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's single claim about the types of audit logging process failures is directly stated in the quoted NIST passage, which lists software and hardware errors, capture mechanism failures, and reaching or exceeding storage capacity.",
+      "correct_reason": "The system answer lists all three gold examples (software and hardware errors, capture mechanism failures, storage capacity reached or exceeded) without contradiction.",
+      "judge_cost_usd": 0.0001544999999999999
+    },
+    {
+      "id": "q009",
+      "question": "What kinds of media use does the system media use restriction requirement limit or prohibit?",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:57:212",
+        "sp800-171r3:57:213",
+        "sp800-171r3:55:200",
+        "sp800-171r3:56:209",
+        "sp800-171r3:55:199"
+      ],
+      "top_rerank_score": 7.013406753540039,
+      "gold_rank": 2,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 38.3,
+        "rerank": 801.8,
+        "llm": 1360.2,
+        "verify": 3.0,
+        "total": 2211.4
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "The requirement restricts or prohibits the use of certain types of media, such as external hard drives, flash drives, or smart displays. [1] It also requires that removable system media without an identifiable owner be prohibited from use. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:57:213",
+          "quote": "this requirement restricts or prohibits the use of certain types of media, such as external hard drives, flash drives, or smart displays",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 57,
+          "url": "/docs/sp800-171r3.pdf#page=57"
+        },
+        {
+          "chunk_id": "sp800-171r3:57:212",
+          "quote": "Prohibit the use of removable system media without an identifiable owner.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "REFERENCES > 03.08.07 Media Use",
+          "page": 57,
+          "url": "/docs/sp800-171r3.pdf#page=57"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1553,
+        "output_tokens": 211,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002608,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer match the quoted passages: the first restates the requirement's restriction on media types including external hard drives, flash drives, and smart displays, and the second restates the prohibition on removable system media without an identifiable owner.",
+      "correct_reason": "The system answer states the same key facts as the gold answer (external hard drives, flash drives, smart displays are restricted) and the added detail about unowned removable media does not contradict it.",
+      "judge_cost_usd": 0.00018610000000000002
+    },
+    {
+      "id": "q010",
+      "question": "Give an example of a third party that may take a primary role in incident response.",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:15:011.2",
+        "sp800-61r3:15:011",
+        "sp800-61r3:15:011.1",
+        "sp800-171r3:51:177",
+        "sp800-61r3:39:065"
+      ],
+      "top_rerank_score": 7.162704944610596,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 41.3,
+        "rerank": 1591.9,
+        "llm": 2546.8,
+        "verify": 1.4,
+        "total": 4189.6
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "A managed security services provider (MSSP) is an example of a third party that may fill a primary role in incident response. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-61r3:15:011.2",
+          "quote": "Some third parties may fill a primary role (e.g., an MSSP performing incident detection, response, and recovery activities)",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.2. Incident Response Roles and Responsibilities",
+          "page": 15,
+          "url": "/docs/sp800-61r3.pdf#page=15"
+        }
+      ],
+      "usage": {
+        "input_tokens": 4374,
+        "output_tokens": 132,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0005034,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's single claim that an MSSP is an example of a third party that may fill a primary incident response role is directly stated in the quoted passage.",
+      "correct_reason": "The system answer names a managed security service provider (MSSP) as a third party that may take a primary role in incident response, matching the gold answer's key fact without contradiction.",
+      "judge_cost_usd": 0.0001575000000000001
+    },
+    {
+      "id": "q011",
+      "question": "What is the purpose of SP 800-61 Revision 3?",
+      "category": "fact",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:48:092",
+        "sp800-61r3:11:005",
+        "sp800-61r3:11:006",
+        "sp800-61r3:36:059",
+        "sp800-63b-4:46:097"
+      ],
+      "top_rerank_score": 5.566064834594727,
+      "gold_rank": 2,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 32.9,
+        "rerank": 1476.0,
+        "llm": 1436.4,
+        "verify": 4.6,
+        "total": 2957.6
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "SP 800-61r3 seeks to help organizations incorporate cybersecurity incident response recommendations and considerations throughout their cybersecurity risk management activities. [1] It also provides a common language that all organizations can use to communicate internally and externally regarding their incident response plans and activities. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-61r3:11:005",
+          "quote": "This publication seeks to help organizations incorporate cybersecurity incident response recommendations and considerations throughout their cybersecurity risk management activities.",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "1. Introduction > 1.1. Purpose and Scope",
+          "page": 11,
+          "url": "/docs/sp800-61r3.pdf#page=11"
+        },
+        {
+          "chunk_id": "sp800-61r3:11:005",
+          "quote": "It also provides a common language that all organizations can use to communicate internally and externally regarding their incident response plans and activities.",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "1. Introduction > 1.1. Purpose and Scope",
+          "page": 11,
+          "url": "/docs/sp800-61r3.pdf#page=11"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2319,
+        "output_tokens": 265,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003644,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer (helping organizations incorporate incident response into risk management, and providing a common language for communicating about incident response plans) are directly stated in the quoted passage.",
+      "correct_reason": "The system answer states the same core purpose as the gold answer, incorporating incident response recommendations into cybersecurity risk management, and adds accurate extra detail about a common language.",
+      "judge_cost_usd": 0.00018249999999999994
+    },
+    {
+      "id": "q012",
+      "question": "What do CSF Quick-Start Guides provide?",
+      "category": "fact",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:6:004.1",
+        "csf-2.0:2:003",
+        "csf-2.0:14:015",
+        "csf-2.0:2:003.2",
+        "csf-2.0:31:025"
+      ],
+      "top_rerank_score": 5.598523139953613,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 38.4,
+        "rerank": 1351.0,
+        "llm": 1579.7,
+        "verify": 1.9,
+        "total": 2974.2
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "CSF Quick-Start Guides provide brief, actionable guidance on specific CSF-related topics. [1] They distill specific portions of the CSF into actionable first steps that an organization can consider on the path to improving its cybersecurity posture. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:31:025",
+          "quote": "A supplementary resource that gives brief, actionable guidance on specific CSF-related topics.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "Appendix C. Glossary",
+          "page": 31,
+          "url": "/docs/csf-2.0.pdf#page=31"
+        },
+        {
+          "chunk_id": "csf-2.0:14:015",
+          "quote": "distill specific portions of the CSF into actionable \u201cfirst steps\u201d that an organization can consider on the path to improving their cybersecurity posture",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "4. Introduction to Online Resources That Supplement the CSF",
+          "page": 14,
+          "url": "/docs/csf-2.0.pdf#page=14"
+        }
+      ],
+      "usage": {
+        "input_tokens": 4209,
+        "output_tokens": 234,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0005379,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": false,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims about Quick-Start Guides (brief actionable guidance on specific topics, and distilling CSF portions into actionable first steps to improve cybersecurity posture) are directly stated in the quoted passages from page 14 and the glossary on page 31.",
+      "correct_reason": "The system answer says the guides provide brief, actionable guidance, which matches the gold's key fact of actionable guidance, though it frames the topic as specific CSF topics rather than explicitly on using the CSF and its online resources, a compatible detail rather than a contradiction.",
+      "judge_cost_usd": 0.00030520000000000005
+    },
+    {
+      "id": "q013",
+      "question": "How does SP 800-171r3 define multi-factor authentication?",
+      "category": "definition",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:44:146",
+        "sp800-171r3:44:145",
+        "sp800-63b-4:38:079",
+        "sp800-63b-4:36:072",
+        "sp800-63b-4:39:081"
+      ],
+      "top_rerank_score": 8.483606338500977,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 42.5,
+        "rerank": 1280.9,
+        "llm": 1442.5,
+        "verify": 2.7,
+        "total": 2776.5
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "SP 800-171r3 describes multi-factor authentication as requiring the use of two or more different factors to achieve authentication. [1] The publication defines the authentication factors as something you know, something you have, or something you are. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:44:146",
+          "quote": "Multi-factor authentication requires the use of two or more different factors to achieve authentication.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 44,
+          "url": "/docs/sp800-171r3.pdf#page=44"
+        },
+        {
+          "chunk_id": "sp800-171r3:44:146",
+          "quote": "The authentication factors are defined as follows: something you know (e.g., a personal identification number [PIN]), something you have",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 44,
+          "url": "/docs/sp800-171r3.pdf#page=44"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1706,
+        "output_tokens": 221,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002811,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer (MFA requires two or more different factors, and the three factor categories of know, have, and are) are directly stated in the quoted passage from SP 800-171r3.",
+      "correct_reason": "The system answer states MFA requires two or more different factors and lists the same three factor categories (know, have, are) as the gold answer, with no contradiction.",
+      "judge_cost_usd": 0.0001448999999999999
+    },
+    {
+      "id": "q014",
+      "question": "What does separation of duties address?",
+      "category": "definition",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:20:027",
+        "sp800-171r3:19:026",
+        "sp800-171r3:103:382",
+        "sp800-171r3:11:003.1",
+        "sp800-171r3:30:077"
+      ],
+      "top_rerank_score": 8.626396179199219,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 43.0,
+        "rerank": 1242.0,
+        "llm": 1107.7,
+        "verify": 0.6,
+        "total": 2397.7
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Separation of duties addresses the potential for abuse of authorized privileges. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:20:027",
+          "quote": "Separation of duties addresses the potential for abuse of authorized privileges and reduces the risk of malevolent activity without collusion.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 20,
+          "url": "/docs/sp800-171r3.pdf#page=20"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2300,
+        "output_tokens": 123,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002915,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's single claim that separation of duties addresses the potential for abuse of authorized privileges is directly stated in the quoted NIST SP 800-171r3 passage.",
+      "correct_reason": "The system answer captures the gold's key fact that separation of duties addresses the potential for abuse of authorized privileges, though it omits the 'without collusion' detail, which is not a contradiction.",
+      "judge_cost_usd": 0.00014079999999999995
+    },
+    {
+      "id": "q015",
+      "question": "How is a mobile device defined in SP 800-171r3?",
+      "category": "definition",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:26:061",
+        "sp800-171r3:44:143",
+        "sp800-171r3:72:294",
+        "sp800-171r3:72:295",
+        "sp800-171r3:26:060"
+      ],
+      "top_rerank_score": 7.169557571411133,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 39.5,
+        "rerank": 1299.0,
+        "llm": 1567.9,
+        "verify": 3.2,
+        "total": 2917.8
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "SP 800-171r3 defines a mobile device as a computing device with a small form factor that can be carried by a single individual. [1] The definition also specifies that such a device is designed to operate without a physical connection and includes a self-contained power source. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:26:061",
+          "quote": "A mobile device is a computing device with a small form factor such that it can be carried by a single individual",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 26,
+          "url": "/docs/sp800-171r3.pdf#page=26"
+        },
+        {
+          "chunk_id": "sp800-171r3:26:061",
+          "quote": "is designed to operate without a physical connection; possesses local, non-removable, or removable data storage; and includes a self- contained power source",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 26,
+          "url": "/docs/sp800-171r3.pdf#page=26"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1616,
+        "output_tokens": 227,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002751,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer (small form factor carried by a single individual; operates without a physical connection and includes a self-contained power source) are directly stated in the quoted NIST SP 800-171r3 passage.",
+      "correct_reason": "The system answer includes the gold's key facts (small form factor, carried by a single individual, operates without a physical connection) and only adds a self-contained power source detail, which does not contradict the gold.",
+      "judge_cost_usd": 0.0001684999999999998
+    },
+    {
+      "id": "q016",
+      "question": "What is a CSF Community Profile?",
+      "category": "definition",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:31:025",
+        "sp800-61r3:18:013",
+        "sp800-61r3:18:013.1",
+        "csf-2.0:11:009",
+        "sp800-61r3:19:014"
+      ],
+      "top_rerank_score": 8.04710865020752,
+      "gold_rank": 4,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 41.2,
+        "rerank": 1311.2,
+        "llm": 1715.7,
+        "verify": 2.9,
+        "total": 3074.1
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "A CSF Community Profile is a baseline of CSF outcomes that is created and published to address shared interests and goals among a number of organizations. [1][2] A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case. [3] An organization can use a Community Profile as the basis for its own Target Profile. [4]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:31:025",
+          "quote": "A baseline of CSF outcomes that is created and published to address shared interests and goals among a number of organizations.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "Appendix C. Glossary",
+          "page": 31,
+          "url": "/docs/csf-2.0.pdf#page=31"
+        },
+        {
+          "chunk_id": "csf-2.0:11:009",
+          "quote": "A Community Profile is a baseline of CSF outcomes that is created and published to address shared interests and goals among a number of organizations.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
+          "page": 11,
+          "url": "/docs/csf-2.0.pdf#page=11"
+        },
+        {
+          "chunk_id": "csf-2.0:11:009",
+          "quote": "A Community Profile is typically developed for a particular sector, subsector, technology, threat type, or other use case.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
+          "page": 11,
+          "url": "/docs/csf-2.0.pdf#page=11"
+        },
+        {
+          "chunk_id": "csf-2.0:11:009",
+          "quote": "An organization can use a Community Profile as the basis for its own Target Profile.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
+          "page": 11,
+          "url": "/docs/csf-2.0.pdf#page=11"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3274,
+        "output_tokens": 364,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0005094,
+      "n_citations": 4,
+      "n_citations_verified": 4,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Each claim in the answer about Community Profiles (shared baseline published for multiple organizations, typically developed for a sector/subsector/technology/threat/use case, and usable as basis for a Target Profile) is directly stated in the quoted NIST CSF 2.0 passages on pages 31 and 11.",
+      "correct_reason": "The system answer captures the gold's key facts: a baseline of CSF outcomes created and published for shared interests among multiple organizations, typically for a sector, technology, or threat type, and adds accurate extra detail without contradiction.",
+      "judge_cost_usd": 0.00030100000000000005
+    },
+    {
+      "id": "q017",
+      "question": "What is a nonce according to SP 800-63B-4?",
+      "category": "definition",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:121:240",
+        "sp800-63b-4:35:069",
+        "sp800-63b-4:34:067",
+        "sp800-63b-4:36:073.1",
+        "sp800-63b-4:36:073"
+      ],
+      "top_rerank_score": 7.103874206542969,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 44.6,
+        "rerank": 1390.0,
+        "llm": 1298.7,
+        "verify": 1.8,
+        "total": 2738.4
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "According to SP 800-63B-4, a nonce is a value used in security protocols that is never repeated with the same key. [1] The glossary notes that a nonce used as a challenge must not be repeated until authentication keys are changed. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:121:240",
+          "quote": "A value used in security protocols that is never repeated with the same key.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "RP ).",
+          "page": 121,
+          "url": "/docs/sp800-63b-4.pdf#page=121"
+        },
+        {
+          "chunk_id": "sp800-63b-4:121:240",
+          "quote": "nonces used as challenges in challenge-response authentication protocols must not be repeated until authentication keys are changed.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "RP ).",
+          "page": 121,
+          "url": "/docs/sp800-63b-4.pdf#page=121"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2768,
+        "output_tokens": 215,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003843,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer\u2014that a nonce is a value never repeated with the same key, and that a nonce used as a challenge must not be repeated until authentication keys are changed\u2014are directly stated in the quoted glossary entry for nonce.",
+      "correct_reason": "The system answer states the same definition as the gold answer (a value used in security protocols never repeated with the same key) and the extra detail about challenge nonces does not contradict it.",
+      "judge_cost_usd": 0.00019439999999999995
+    },
+    {
+      "id": "q018",
+      "question": "What is a passphrase?",
+      "category": "definition",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:24:040",
+        "sp800-63b-4:83:181",
+        "sp800-171r3:46:156",
+        "sp800-63b-4:98:195",
+        "sp800-63b-4:121:240"
+      ],
+      "top_rerank_score": 2.716684341430664,
+      "gold_rank": 5,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 44.5,
+        "rerank": 1501.5,
+        "llm": 1416.7,
+        "verify": 1.7,
+        "total": 2967.9
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "A passphrase is a password that consists of a sequence of words or other text that a claimant uses to authenticate their identity. [1] A passphrase is similar to a password in usage but is generally longer for added security. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:121:240",
+          "quote": "A password that consists of a sequence of words or other text that a claimant uses to authenticate their identity.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "RP ).",
+          "page": 121,
+          "url": "/docs/sp800-63b-4.pdf#page=121"
+        },
+        {
+          "chunk_id": "sp800-63b-4:121:240",
+          "quote": "A passphrase is similar to a password in usage but is generally longer for added security.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "RP ).",
+          "page": 121,
+          "url": "/docs/sp800-63b-4.pdf#page=121"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3186,
+        "output_tokens": 201,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004191,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both sentences in the answer closely paraphrase the passphrase definition in the quoted NIST glossary, which states it is a sequence of words or text used to authenticate, similar to a password but generally longer.",
+      "correct_reason": "The system answer states the same core definition as the gold answer (a password of a sequence of words or text used by a claimant to authenticate identity) and adds accurate extra detail that passphrases are typically longer.",
+      "judge_cost_usd": 0.00019799999999999983
+    },
+    {
+      "id": "q019",
+      "question": "What is pharming?",
+      "category": "definition",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:121:240.1",
+        "sp800-63b-4:121:240",
+        "sp800-63b-4:74:166",
+        "sp800-63b-4:71:161",
+        "sp800-171r3:95:379.5"
+      ],
+      "top_rerank_score": -0.3821980357170105,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 31.3,
+        "rerank": 1477.4,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1508.8
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": 0
+    },
+    {
+      "id": "q020",
+      "question": "What do the CSF Tiers characterize?",
+      "category": "definition",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:29:022",
+        "csf-2.0:12:014",
+        "csf-2.0:31:025",
+        "csf-2.0:11:009",
+        "csf-2.0:31:025.1"
+      ],
+      "top_rerank_score": 8.561944007873535,
+      "gold_rank": 2,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 26.2,
+        "rerank": 1585.7,
+        "llm": 1547.5,
+        "verify": 1.8,
+        "total": 3164.8
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "The CSF Tiers characterize the rigor of an organization's cybersecurity risk governance and management practices. [1] The Tiers are Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4). [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:31:025",
+          "quote": "A characterization of the rigor of an organization\u2019s cybersecurity risk governance and management practices.",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "Appendix C. Glossary",
+          "page": 31,
+          "url": "/docs/csf-2.0.pdf#page=31"
+        },
+        {
+          "chunk_id": "csf-2.0:12:014",
+          "quote": "as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4).",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
+          "page": 12,
+          "url": "/docs/csf-2.0.pdf#page=12"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3154,
+        "output_tokens": 260,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004454,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer are directly stated in the quoted passages: the Tiers characterize the rigor of governance and management practices, and the four Tiers are listed with their names and numbers.",
+      "correct_reason": "The system answer states the same key fact as the gold answer, that the CSF Tiers characterize the rigor of cybersecurity risk governance and management practices, and the extra tier names are accurate detail that does not contradict it.",
+      "judge_cost_usd": 0.0002752000000000002
+    },
+    {
+      "id": "q021",
+      "question": "What is the CSF Category Identifier for Cybersecurity Supply Chain Risk Management?",
+      "category": "table",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:16:018.2",
+        "csf-2.0:8:005",
+        "csf-2.0:21:021.1",
+        "csf-2.0:21:021.2",
+        "sp800-61r3:23:023"
+      ],
+      "top_rerank_score": 5.437323570251465,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 47.4,
+        "rerank": 1372.5,
+        "llm": 2570.3,
+        "verify": 2.9,
+        "total": 3998.2
+      },
+      "status": "declined",
+      "gated": false,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {
+        "input_tokens": 11167,
+        "output_tokens": 283,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0012582,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": 0
+    },
+    {
+      "id": "q022",
+      "question": "What is the CSF Category Identifier for Asset Management?",
+      "category": "table",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:18:013.1",
+        "csf-2.0:20:019",
+        "csf-2.0:20:020",
+        "sp800-61r3:18:013",
+        "csf-2.0:31:025"
+      ],
+      "top_rerank_score": 3.2510485649108887,
+      "gold_rank": 3,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 39.4,
+        "rerank": 1328.0,
+        "llm": 1228.0,
+        "verify": 0.7,
+        "total": 2604.4
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "The CSF Category Identifier for Asset Management is ID.AM. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:20:020",
+          "quote": "Asset Management |  |  | ID.AM",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "Appendix A. CSF Core",
+          "page": 20,
+          "url": "/docs/csf-2.0.pdf#page=20"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3726,
+        "output_tokens": 96,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004206,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The quoted table lists 'Asset Management' under the Identify function with Category Identifier ID.AM, directly supporting the answer's only claim.",
+      "correct_reason": "The system answer states the identifier ID.AM, which matches the gold answer exactly, with an added citation that does not contradict it.",
+      "judge_cost_usd": 0.00018400000000000014
+    },
+    {
+      "id": "q023",
+      "question": "What is Tier 1 of the CSF Tiers called?",
+      "category": "table",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:31:025.1",
+        "csf-2.0:12:014",
+        "csf-2.0:29:022",
+        "csf-2.0:29:023",
+        "csf-2.0:31:025"
+      ],
+      "top_rerank_score": 4.941547870635986,
+      "gold_rank": 4,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 41.4,
+        "rerank": 1398.7,
+        "llm": 1075.8,
+        "verify": 1.1,
+        "total": 2521.5
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Tier 1 of the CSF Tiers is called Partial. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:12:014",
+          "quote": "as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4)",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
+          "page": 12,
+          "url": "/docs/csf-2.0.pdf#page=12"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3439,
+        "output_tokens": 131,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004094,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": false,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's single claim that Tier 1 is called Partial is directly stated in the quoted passage, which lists the Tiers as Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4).",
+      "correct_reason": "The system answer states Tier 1 is called Partial, matching the gold answer exactly; the citation marker is extra detail that does not contradict it.",
+      "judge_cost_usd": 0.0001845000000000002
+    },
+    {
+      "id": "q024",
+      "question": "What is Tier 4 of the CSF Tiers called?",
+      "category": "table",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:31:025.1",
+        "csf-2.0:12:014",
+        "csf-2.0:29:022",
+        "csf-2.0:31:025",
+        "csf-2.0:30:024"
+      ],
+      "top_rerank_score": 5.4893083572387695,
+      "gold_rank": 5,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 39.5,
+        "rerank": 1379.5,
+        "llm": 1105.2,
+        "verify": 1.1,
+        "total": 2530.1
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Tier 4 of the CSF Tiers is called Adaptive. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:12:014",
+          "quote": "Partial (Tier 1), Risk Informed (Tier 2), Repeatable (Tier 3), and Adaptive (Tier 4).",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
+          "page": 12,
+          "url": "/docs/csf-2.0.pdf#page=12"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3279,
+        "output_tokens": 132,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003939,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": false,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The quoted passage explicitly lists the four Tiers, including Adaptive as Tier 4, so the answer's single claim is directly supported.",
+      "correct_reason": "The system answer states Tier 4 is called Adaptive, matching the gold answer exactly; the citation marker is harmless extra detail.",
+      "judge_cost_usd": 0.00016209999999999922
+    },
+    {
+      "id": "q025",
+      "question": "Which CSF 2.0 Function corresponds to the Detection and Analysis phase of the previous incident response life cycle model?",
+      "category": "table",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:12:008.2",
+        "sp800-61r3:12:008.1",
+        "sp800-61r3:14:010",
+        "sp800-61r3:12:008",
+        "sp800-61r3:33:050"
+      ],
+      "top_rerank_score": 6.680835247039795,
+      "gold_rank": 3,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 67.6,
+        "rerank": 1380.8,
+        "llm": 1322.7,
+        "verify": 0.5,
+        "total": 2776.9
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "The Detection and Analysis phase of the previous incident response life cycle model corresponds to the Detect Function of CSF 2.0. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-61r3:14:010",
+          "quote": "Detection & Analysis |  |  | Detect |  |  |",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.2. Incident Response Roles and Responsibilities",
+          "page": 14,
+          "url": "/docs/sp800-61r3.pdf#page=14"
+        }
+      ],
+      "usage": {
+        "input_tokens": 4115,
+        "output_tokens": 125,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.000474,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The quoted table maps the Detection & Analysis phase to the Detect function of CSF 2.0, which directly supports the answer's claim.",
+      "correct_reason": "The system answer correctly identifies the Detect Function, which matches the key fact in the gold answer, though it omits the secondary Improvement Category of Identify, which is supplementary rather than contradicted.",
+      "judge_cost_usd": 0.00017059999999999992
+    },
+    {
+      "id": "q026",
+      "question": "Which CSF 2.0 Functions correspond to the Containment, Eradication and Recovery phase of the previous incident response life cycle model?",
+      "category": "table",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:12:008.2",
+        "sp800-61r3:12:008.1",
+        "sp800-61r3:12:008",
+        "sp800-61r3:14:010",
+        "sp800-61r3:40:067"
+      ],
+      "top_rerank_score": 5.628127098083496,
+      "gold_rank": 4,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 56.4,
+        "rerank": 1283.1,
+        "llm": 1429.9,
+        "verify": 0.5,
+        "total": 2774.8
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "The Containment, Eradication & Recovery phase of the previous model corresponds to the CSF 2.0 Functions Respond and Recover, with Identify (Improvement Category) also listed in that phase's mapping. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-61r3:14:010",
+          "quote": "Containment, Eradication & Recovery |  |  |  | Respond |  |",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.2. Incident Response Roles and Responsibilities",
+          "page": 14,
+          "url": "/docs/sp800-61r3.pdf#page=14"
+        }
+      ],
+      "usage": {
+        "input_tokens": 4222,
+        "output_tokens": 154,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004992,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The quoted table maps Containment, Eradication & Recovery to Respond and Recover, and lists Identify (Improvement Category) in the adjacent rows around that phase, so the answer's claims are supported by the passage as read from the table layout.",
+      "correct_reason": "The system answer identifies Respond and Recover as the corresponding Functions, matching the gold answer, and the extra mention of Identify is additional detail that doesn't contradict the gold.",
+      "judge_cost_usd": 0.00018949999999999956
+    },
+    {
+      "id": "q027",
+      "question": "Can a service force users to include special characters and numbers in their passwords?",
+      "category": "paraphrase",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:98:195.2",
+        "sp800-63b-4:26:046",
+        "sp800-63b-4:83:181",
+        "sp800-63b-4:98:195",
+        "sp800-171r3:46:156"
+      ],
+      "top_rerank_score": 1.63152015209198,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 47.7,
+        "rerank": 1423.7,
+        "llm": 1419.7,
+        "verify": 3.1,
+        "total": 2903.2
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "NIST advises against imposing composition rules such as mixtures of character types on passwords. [1] NIST notes that enforced composition rules provide marginal security benefits while decreasing usability. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:83:181",
+          "quote": "Do not impose other composition rules (e.g., mixtures of different character types) on passwords.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "8. Customer Experience Considerations > 8.1. Usability > 8.1.2. Usability Considerations by Authenticator Type > 8.1.2.1. Passwords",
+          "page": 83,
+          "url": "/docs/sp800-63b-4.pdf#page=83"
+        },
+        {
+          "chunk_id": "sp800-171r3:46:156",
+          "quote": "Enforced composition rules provide marginal security benefits while decreasing usability.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 46,
+          "url": "/docs/sp800-171r3.pdf#page=46"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3670,
+        "output_tokens": 202,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.000468,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": false,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims are directly supported: SP 800-63B-4 says not to impose composition rules such as mixtures of character types, and SP 800-171r3 states enforced composition rules provide marginal security benefits while decreasing usability.",
+      "correct_reason": "The system answer conveys that composition rules such as requiring mixtures of character types should not be imposed, matching the gold answer's key fact without contradiction.",
+      "judge_cost_usd": 0.00023479999999999942
+    },
+    {
+      "id": "q028",
+      "question": "What is the weakest point in many authentication systems when a user has lost their authenticators?",
+      "category": "paraphrase",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:76:170",
+        "sp800-63b-4:80:179",
+        "sp800-63b-4:61:145",
+        "sp800-63b-4:104:198.2",
+        "sp800-63b-4:98:195.4"
+      ],
+      "top_rerank_score": 6.428688049316406,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 37.6,
+        "rerank": 1580.4,
+        "llm": 1182.2,
+        "verify": 1.7,
+        "total": 2809.8
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "The weak point in many authentication mechanisms is the process followed when a subscriber loses control of one or more authenticators and needs to replace them. [1]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:76:170",
+          "quote": "The weak point in many authentication mechanisms is the process followed when a subscriber loses control of one or more authenticators and needs to replace them.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "6. Threats and Security Considerations > 6.3. Authenticator Recovery",
+          "page": 76,
+          "url": "/docs/sp800-63b-4.pdf#page=76"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3416,
+        "output_tokens": 148,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004156,
+      "n_citations": 1,
+      "n_citations_verified": 1,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's single claim is a verbatim restatement of the first sentence of the quoted NIST passage, which directly supports it.",
+      "correct_reason": "The system answer identifies the same key fact as the gold answer: the weak point is the recovery process when a subscriber loses control of authenticators and needs to replace them.",
+      "judge_cost_usd": 0.0001355000000000002
+    },
+    {
+      "id": "q029",
+      "question": "Why should out-of-support software be replaced?",
+      "category": "paraphrase",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:81:334",
+        "sp800-171r3:80:333",
+        "sp800-63b-4:84:183",
+        "sp800-63b-4:31:057",
+        "sp800-63b-4:31:058"
+      ],
+      "top_rerank_score": 0.36539652943611145,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 68.0,
+        "rerank": 1308.7,
+        "llm": 1561.1,
+        "verify": 2.1,
+        "total": 2944.7
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Components should be replaced when the developer, vendor, or manufacturer no longer makes support available for them. [1] The reason given is that when vendors stop providing critical patches or product updates, adversaries may have opportunities to exploit weaknesses or deficiencies in the installed components. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:80:333",
+          "quote": "Replace system components when support for the components is no longer available from the developer, vendor, or manufacturer.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "REFERENCES > 03.16.02 Unsupported System Components",
+          "page": 80,
+          "url": "/docs/sp800-171r3.pdf#page=80"
+        },
+        {
+          "chunk_id": "sp800-171r3:81:334",
+          "quote": "when vendors no longer provide critical software patches or product updates, which can result in opportunities for adversaries to exploit weaknesses or deficiencies in the installed components",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 81,
+          "url": "/docs/sp800-171r3.pdf#page=81"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2251,
+        "output_tokens": 255,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003526,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer\u2014that components should be replaced when vendor support ends, and that unsupported components expose exploitable weaknesses\u2014are directly stated in the quoted NIST passages (page 80 and page 81).",
+      "correct_reason": "The system answer states that vendors stopping critical patches or updates lets adversaries exploit weaknesses, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00018119999999999942
+    },
+    {
+      "id": "q030",
+      "question": "What counts as organizational property that leavers must return, according to the personnel security requirement?",
+      "category": "paraphrase",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:59:223",
+        "sp800-171r3:59:222",
+        "sp800-171r3:78:320",
+        "sp800-171r3:14:008",
+        "sp800-171r3:30:077"
+      ],
+      "top_rerank_score": 0.3967851996421814,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 34.7,
+        "rerank": 1269.8,
+        "llm": 1719.1,
+        "verify": 1.5,
+        "total": 3030.1
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Security-related system property that must be retrieved includes hardware authentication tokens, system administration technical manuals, keys, identification cards, and building passes. [1] The requirement to retrieve security-related system property applies when individual employment is terminated. [2][3]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:59:223",
+          "quote": "Security-related system property includes hardware authentication tokens, system administration technical manuals, keys, identification cards, and building passes.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 59,
+          "url": "/docs/sp800-171r3.pdf#page=59"
+        },
+        {
+          "chunk_id": "sp800-171r3:59:222",
+          "quote": "When individual employment is terminated:",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "REFERENCES > 03.09.02 Personnel Termination and Transfer",
+          "page": 59,
+          "url": "/docs/sp800-171r3.pdf#page=59"
+        },
+        {
+          "chunk_id": "sp800-171r3:59:222",
+          "quote": "Retrieve security-related system property.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "REFERENCES > 03.09.02 Personnel Termination and Transfer",
+          "page": 59,
+          "url": "/docs/sp800-171r3.pdf#page=59"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2027,
+        "output_tokens": 244,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003247,
+      "n_citations": 3,
+      "n_citations_verified": 3,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's list of security-related property and its application to terminated employment are directly stated in the quoted NIST passages, which the answer cites accurately.",
+      "correct_reason": "The system answer lists all the gold items (hardware authentication tokens, administration manuals, keys, identification cards, building passes) without contradiction, adding only accurate framing about termination.",
+      "judge_cost_usd": 0.00018270000000000005
+    },
+    {
+      "id": "q031",
+      "question": "Is the CSF Core a to-do list I should work through item by item?",
+      "category": "paraphrase",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:8:005",
+        "sp800-61r3:18:013",
+        "csf-2.0:6:004.1",
+        "csf-2.0:20:019",
+        "csf-2.0:14:015"
+      ],
+      "top_rerank_score": -0.6622320413589478,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 25.5,
+        "rerank": 1319.3,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1345.0
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": 0
+    },
+    {
+      "id": "q032",
+      "question": "What are the two kinds of session timeout described for reauthentication?",
+      "category": "paraphrase",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:16:015",
+        "sp800-63b-4:67:155",
+        "sp800-63b-4:20:029",
+        "sp800-63b-4:18:020",
+        "sp800-63b-4:67:155.1"
+      ],
+      "top_rerank_score": 7.8681840896606445,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 31.9,
+        "rerank": 1448.5,
+        "llm": 1472.4,
+        "verify": 4.2,
+        "total": 2964.1
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "The two kinds of session timeout are an overall timeout and an inactivity timeout. [1] An inactivity timeout terminates a session without activity from the subscriber for a specific period. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:67:155",
+          "quote": "Session management uses two types of timeouts. An overall timeout limits the duration of an authenticated session to a specific period following authentication or a previous reauthentication.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "5. Session Management > 5.2. Reauthentication",
+          "page": 67,
+          "url": "/docs/sp800-63b-4.pdf#page=67"
+        },
+        {
+          "chunk_id": "sp800-63b-4:67:155",
+          "quote": "An inactivity timeout terminates a session without activity from the subscriber for a specific period.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "5. Session Management > 5.2. Reauthentication",
+          "page": 67,
+          "url": "/docs/sp800-63b-4.pdf#page=67"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2146,
+        "output_tokens": 224,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0003266,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": false,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "The answer's two claims\u2014that there are overall and inactivity timeouts and that an inactivity timeout terminates a session without subscriber activity for a specific period\u2014are both directly stated in the quoted passage.",
+      "correct_reason": "The system names the overall timeout and the inactivity timeout and correctly describes the inactivity timeout as ending a session without subscriber activity, matching the gold answer's key facts.",
+      "judge_cost_usd": 0.00020039999999999988
+    },
+    {
+      "id": "q033",
+      "question": "What length must single-factor passwords have, and may a service impose other composition rules?",
+      "category": "multi-hop",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:46:156",
+        "sp800-63b-4:25:044",
+        "sp800-63b-4:98:195.2",
+        "sp800-63b-4:98:195.1",
+        "sp800-63b-4:83:181"
+      ],
+      "top_rerank_score": 2.3807177543640137,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 39.4,
+        "rerank": 1501.7,
+        "llm": 1421.4,
+        "verify": 1.2,
+        "total": 2969.2
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Single-factor passwords must be a minimum of 15 characters in length. [1] Verifiers and CSPs SHALL NOT impose other composition rules, such as requiring mixtures of different character types, for passwords. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-63b-4:25:044",
+          "quote": "Verifiers and CSPs SHALL require passwords that are used as a single-factor",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
+          "page": 25,
+          "url": "/docs/sp800-63b-4.pdf#page=25"
+        },
+        {
+          "chunk_id": "sp800-63b-4:25:044",
+          "quote": "Verifiers and CSPs SHALL NOT impose other composition rules (e.g., requiring",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
+          "page": 25,
+          "url": "/docs/sp800-63b-4.pdf#page=25"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3409,
+        "output_tokens": 213,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004474,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer (15-character minimum for single-factor passwords and the prohibition on other composition rules like mixing character types) are directly stated in the quoted passage items 1 and 5.",
+      "correct_reason": "The system answer states the same 15-character minimum and that no other composition rules may be imposed, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00017310000000000068
+    },
+    {
+      "id": "q034",
+      "question": "What does SP 800-171r3 require to authorize wireless access, and how must wireless access be protected?",
+      "category": "multi-hop",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:26:057",
+        "sp800-171r3:25:056",
+        "sp800-171r3:26:060",
+        "sp800-171r3:24:050",
+        "sp800-171r3:20:029"
+      ],
+      "top_rerank_score": 7.825761795043945,
+      "gold_rank": 2,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 50.9,
+        "rerank": 1398.6,
+        "llm": 1424.1,
+        "verify": 1.2,
+        "total": 2882.5
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Each type of wireless access to the system must be authorized prior to establishing such connections. [1] Wireless access must be protected using authentication and encryption. [2] Usage restrictions, configuration requirements, and connection requirements must also be established for each type of wireless access. [3]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:25:056",
+          "quote": "Authorize each type of wireless access to the system prior to establishing such connections.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "[20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access",
+          "page": 25,
+          "url": "/docs/sp800-171r3.pdf#page=25"
+        },
+        {
+          "chunk_id": "sp800-171r3:25:056",
+          "quote": "Protect wireless access to the system using authentication and encryption.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "[20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access",
+          "page": 26,
+          "url": "/docs/sp800-171r3.pdf#page=26"
+        },
+        {
+          "chunk_id": "sp800-171r3:25:056",
+          "quote": "Establish usage restrictions, configuration requirements, and connection requirements for each type of wireless access to the system.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "[20], SP 800-121 [21], IR 7966 [26] > 03.01.16 Wireless Access",
+          "page": 25,
+          "url": "/docs/sp800-171r3.pdf#page=25"
+        }
+      ],
+      "usage": {
+        "input_tokens": 1484,
+        "output_tokens": 269,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002829,
+      "n_citations": 3,
+      "n_citations_verified": 3,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Each of the three claims in the answer (prior authorization of each wireless access type, protection via authentication and encryption, and establishing usage/configuration/connection requirements) is directly stated in the quoted NIST SP 800-171r3 passage.",
+      "correct_reason": "The system answer states the same two key facts as the gold answer: each wireless access type must be authorized before connection, and wireless access must be protected using authentication and encryption, with only extra correct detail added.",
+      "judge_cost_usd": 0.00015800000000000015
+    },
+    {
+      "id": "q035",
+      "question": "What are CSF Organizational Profiles used for and what do Tiers do?",
+      "category": "multi-hop",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:11:009",
+        "csf-2.0:12:014",
+        "csf-2.0:31:025",
+        "csf-2.0:6:004.1",
+        "csf-2.0:12:013"
+      ],
+      "top_rerank_score": 8.328340530395508,
+      "gold_rank": 2,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 46.2,
+        "rerank": 1415.8,
+        "llm": 1615.0,
+        "verify": 4.4,
+        "total": 3089.4
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "CSF Organizational Profiles are used to understand, tailor, assess, prioritize, and communicate the Core's outcomes. [1] Tiers characterize the rigor of an organization's cybersecurity risk governance and management practices and provide context for how it views cybersecurity risks. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "csf-2.0:11:009",
+          "quote": "Organizational Profiles are used to understand, tailor, assess, prioritize, and communicate the Core\u2019s outcomes",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "3. Introduction to CSF Profiles and Tiers > 3.1. CSF Profiles",
+          "page": 11,
+          "url": "/docs/csf-2.0.pdf#page=11"
+        },
+        {
+          "chunk_id": "csf-2.0:12:014",
+          "quote": "Tiers characterize the rigor of an organization\u2019s cybersecurity risk governance and management practices, and they provide context for how an organization views cybersecurity risks",
+          "doc_id": "csf-2.0",
+          "doc_title": "NIST CSF 2.0",
+          "section_path": "5. Implement the action plan, and update the Organizational Profile. Follow the action > 3.2. CSF Tiers",
+          "page": 12,
+          "url": "/docs/csf-2.0.pdf#page=12"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3490,
+        "output_tokens": 266,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.000482,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims in the answer are directly stated in the quoted passages: Organizational Profiles are used to understand, tailor, assess, prioritize, and communicate the Core's outcomes (page 11), and Tiers characterize the rigor of cybersecurity risk governance and management and provide context for how an organization views risks (page 12).",
+      "correct_reason": "The system answer states that Profiles are used to understand, tailor, assess, prioritize, and communicate the Core outcomes, and that Tiers characterize the rigor of risk governance and management practices, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.0002859999999999998
+    },
+    {
+      "id": "q036",
+      "question": "What does SP 800-61r3 say about its purpose and the common language it provides?",
+      "category": "multi-hop",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:11:005",
+        "sp800-61r3:1:001.5",
+        "sp800-61r3:1:001",
+        "sp800-61r3:46:084",
+        "sp800-61r3:16:012"
+      ],
+      "top_rerank_score": 6.4193525314331055,
+      "gold_rank": 1,
+      "hit@1": true,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 29.5,
+        "rerank": 1406.1,
+        "llm": 1494.0,
+        "verify": 1.0,
+        "total": 2934.8
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "SP 800-61r3 seeks to help organizations incorporate cybersecurity incident response recommendations and considerations throughout their cybersecurity risk management activities. [1] It also provides a common language that all organizations can use to communicate internally and externally regarding their incident response plans and activities. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-61r3:11:005",
+          "quote": "This publication seeks to help organizations incorporate cybersecurity incident response recommendations and considerations throughout their cybersecurity risk management activities.",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "1. Introduction > 1.1. Purpose and Scope",
+          "page": 11,
+          "url": "/docs/sp800-61r3.pdf#page=11"
+        },
+        {
+          "chunk_id": "sp800-61r3:11:005",
+          "quote": "It also provides a common language that all organizations can use to communicate internally and externally regarding their incident response plans and activities.",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "1. Introduction > 1.1. Purpose and Scope",
+          "page": 11,
+          "url": "/docs/sp800-61r3.pdf#page=11"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2834,
+        "output_tokens": 259,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004129,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both sentences of the answer closely paraphrase the first paragraph of the quoted passage, which states the publication's aim of incorporating incident response into risk management and providing a common language for communication, so every claim is directly supported.",
+      "correct_reason": "The system answer conveys both key facts from the gold answer: incorporating incident response into cybersecurity risk management and providing a common language for internal and external communication about incident response.",
+      "judge_cost_usd": 0.0001941
+    },
+    {
+      "id": "q037",
+      "question": "How does SP 800-171r3 define multi-factor authentication, and what minimum length does SP 800-63B-4 set for passwords used only as part of multi-factor authentication?",
+      "category": "cross-document",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:128:243",
+        "sp800-63b-4:25:044",
+        "sp800-63b-4:98:195.3",
+        "sp800-171r3:44:146",
+        "sp800-63b-4:113:239"
+      ],
+      "top_rerank_score": 4.992942810058594,
+      "gold_rank": 4,
+      "hit@1": false,
+      "hit@5": true,
+      "timings_ms": {
+        "retrieve": 55.2,
+        "rerank": 1359.7,
+        "llm": 1608.3,
+        "verify": 1.0,
+        "total": 3031.9
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "SP 800-171r3 defines multi-factor authentication as requiring the use of two or more different factors to achieve authentication. [1] SP 800-63B-4 states that passwords used only as part of multi-factor authentication processes may be shorter but must be a minimum of eight characters in length. [2]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-171r3:44:146",
+          "quote": "Multi-factor authentication requires the use of two or more different factors to achieve authentication.",
+          "doc_id": "sp800-171r3",
+          "doc_title": "NIST SP 800-171r3",
+          "section_path": "DISCUSSION",
+          "page": 44,
+          "url": "/docs/sp800-171r3.pdf#page=44"
+        },
+        {
+          "chunk_id": "sp800-63b-4:25:044",
+          "quote": "Verifiers and CSPs MAY allow passwords that are only used as part of multi-factor authentication processes to be shorter but SHALL require them to be a minimum of eight characters in length.",
+          "doc_id": "sp800-63b-4",
+          "doc_title": "NIST SP 800-63B-4",
+          "section_path": "3. Authenticator and Verifier Requirements > 3.1. Requirements by Authenticator Type > 3.1.1. Passwords > 3.1.1.2. Password Verifiers",
+          "page": 25,
+          "url": "/docs/sp800-63b-4.pdf#page=25"
+        }
+      ],
+      "usage": {
+        "input_tokens": 2893,
+        "output_tokens": 270,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0004243,
+      "n_citations": 2,
+      "n_citations_verified": 2,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Both claims match the quoted passages: SP 800-171r3 defines MFA as two or more different factors, and SP 800-63B-4 permits shorter passwords for multi-factor use with a minimum of eight characters.",
+      "correct_reason": "The system answer states two or more different factors for MFA and an eight-character minimum for passwords used only in MFA, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00021230000000000034
+    },
+    {
+      "id": "q038",
+      "question": "Which CSF Functions help prevent and prepare for incidents, and how does SP 800-61r3 base its incident response life cycle on the CSF?",
+      "category": "cross-document",
+      "split": "dev",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:12:008.1",
+        "sp800-61r3:12:008.2",
+        "sp800-61r3:1:001.5",
+        "sp800-61r3:12:008",
+        "sp800-61r3:14:010"
+      ],
+      "top_rerank_score": 6.6746320724487305,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 52.8,
+        "rerank": 1387.0,
+        "llm": 1904.3,
+        "verify": 2.9,
+        "total": 3350.5
+      },
+      "status": "answered",
+      "gated": false,
+      "answer": "Govern, Identify, and Protect help organizations prevent some incidents and prepare to handle incidents that do occur. [1] The incident response life cycle model in SP 800-61r3 is based on the six CSF 2.0 Functions, which organize cybersecurity outcomes at their highest level. [2] The model is based on CSF 2.0 to take advantage of the wealth of resources available for CSF 2.0 and aid organizations that are already using the CSF. [3]",
+      "clarifying_question": null,
+      "citations": [
+        {
+          "chunk_id": "sp800-61r3:12:008.1",
+          "quote": "Govern, Identify, and Protect help organizations prevent some incidents, prepare to handle incidents that do occur, reduce the impact of those incidents",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.1. Incident Response Life Cycle Model",
+          "page": 12,
+          "url": "/docs/sp800-61r3.pdf#page=12"
+        },
+        {
+          "chunk_id": "sp800-61r3:12:008",
+          "quote": "Fig. 2 shows a high-level incident response life cycle model based on the six CSF 2.0 Functions, which organize cybersecurity outcomes at their highest level",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.1. Incident Response Life Cycle Model",
+          "page": 12,
+          "url": "/docs/sp800-61r3.pdf#page=12"
+        },
+        {
+          "chunk_id": "sp800-61r3:12:008.2",
+          "quote": "The model in this document is based on CSF 2.0 to take advantage of the wealth of resources available for CSF 2.0 and aid organizations that are already using the CSF.",
+          "doc_id": "sp800-61r3",
+          "doc_title": "NIST SP 800-61r3",
+          "section_path": "2. Incident Response as Part of Cybersecurity Risk Management > 2.1. Incident Response Life Cycle Model",
+          "page": 12,
+          "url": "/docs/sp800-61r3.pdf#page=12"
+        }
+      ],
+      "usage": {
+        "input_tokens": 3208,
+        "output_tokens": 417,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0005293,
+      "n_citations": 3,
+      "n_citations_verified": 3,
+      "cited_gold_page": true,
+      "faithful": 1,
+      "correct": 1,
+      "faithful_reason": "Each claim in the answer\u2014Govern, Identify, and Protect helping prevent incidents and prepare for them, the model being based on the six CSF 2.0 Functions, and the rationale of leveraging CSF 2.0 resources\u2014is directly stated in the quoted passages.",
+      "correct_reason": "The system names Govern, Identify, and Protect as the prevention/preparation Functions and states SP 800-61r3's life cycle is based on CSF 2.0 Functions, matching the gold answer's key facts without contradiction.",
+      "judge_cost_usd": 0.00034599999999999995
+    },
+    {
+      "id": "q039",
+      "question": "How do SP 800-171r3 and SP 800-63B-4 each treat ending sessions or timeouts?",
+      "category": "cross-document",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:67:155",
+        "sp800-63b-4:64:151",
+        "sp800-63b-4:67:155.1",
+        "sp800-63b-4:66:153",
+        "sp800-63b-4:64:149"
+      ],
+      "top_rerank_score": 3.768812894821167,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 22.8,
+        "rerank": 1662.9,
+        "llm": 1120.5,
+        "verify": 0.0,
+        "total": 2808.8
+      },
+      "status": "clarify",
+      "gated": false,
+      "answer": null,
+      "clarifying_question": "The passages cover only NIST SP 800-63B-4; do you want me to answer only how SP 800-63B-4 treats session termination and timeouts, since SP 800-171r3 is not included in the provided passages?",
+      "citations": [],
+      "usage": {
+        "input_tokens": 2433,
+        "output_tokens": 101,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0002938,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": 0
+    },
+    {
+      "id": "q040",
+      "question": "How do the CSF and SP 800-171r3 each address supply chain risk?",
+      "category": "cross-document",
+      "split": "test",
+      "answerable": true,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:82:340",
+        "sp800-171r3:82:339",
+        "sp800-171r3:63:243",
+        "sp800-171r3:115:421",
+        "sp800-171r3:84:345"
+      ],
+      "top_rerank_score": 4.360235214233398,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 23.2,
+        "rerank": 1637.7,
+        "llm": 1075.2,
+        "verify": 0.0,
+        "total": 2738.4
+      },
+      "status": "clarify",
+      "gated": false,
+      "answer": null,
+      "clarifying_question": "Do you want to know how the NIST CSF addresses supply chain risk, or only how SP 800-171r3 addresses it, since the passages provided cover only SP 800-171r3?",
+      "citations": [],
+      "usage": {
+        "input_tokens": 1454,
+        "output_tokens": 90,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.0001904,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": 0
+    },
+    {
+      "id": "q041",
+      "question": "How much does a SOC 2 audit cost for a CUI contractor?",
+      "category": "unanswerable",
+      "split": "dev",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:11:003",
+        "sp800-171r3:95:379.2",
+        "sp800-171r3:63:244",
+        "sp800-171r3:105:388",
+        "sp800-171r3:13:006"
+      ],
+      "top_rerank_score": -8.079277038574219,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 26.0,
+        "rerank": 1847.6,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1873.8
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q042",
+      "question": "What financial penalty applies to a contractor that fails to implement SP 800-171 requirements?",
+      "category": "unanswerable",
+      "split": "test",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:13:007",
+        "sp800-171r3:15:014",
+        "sp800-171r3:45:152",
+        "sp800-171r3:1:001.1",
+        "sp800-171r3:69:276"
+      ],
+      "top_rerank_score": -1.4333101511001587,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 44.3,
+        "rerank": 1949.1,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1993.6
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q043",
+      "question": "How much does a YubiKey 5 hardware authenticator cost?",
+      "category": "unanswerable",
+      "split": "test",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-63b-4:53:117",
+        "sp800-63b-4:36:072",
+        "sp800-63b-4:128:243",
+        "sp800-63b-4:80:179",
+        "sp800-63b-4:52:116"
+      ],
+      "top_rerank_score": -6.193374156951904,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 50.1,
+        "rerank": 2029.0,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 2079.4
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q044",
+      "question": "What hourly rate do MSSPs charge for incident response retainers?",
+      "category": "unanswerable",
+      "split": "test",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:15:011.2",
+        "sp800-61r3:15:011.1",
+        "sp800-61r3:46:085",
+        "sp800-61r3:15:011",
+        "sp800-171r3:51:177"
+      ],
+      "top_rerank_score": -3.8192591667175293,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 38.0,
+        "rerank": 2070.9,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 2109.1
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q045",
+      "question": "How many US organizations reported a ransomware incident in 2023?",
+      "category": "unanswerable",
+      "split": "dev",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:10:002",
+        "sp800-61r3:40:067",
+        "csf-2.0:12:010",
+        "sp800-61r3:47:091",
+        "sp800-61r3:39:065"
+      ],
+      "top_rerank_score": -5.637907028198242,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 37.8,
+        "rerank": 1932.6,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1970.6
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q046",
+      "question": "What GDPR fines apply when a data breach is reported late?",
+      "category": "unanswerable",
+      "split": "test",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:20:017",
+        "sp800-61r3:38:062",
+        "sp800-61r3:43:074",
+        "sp800-171r3:95:379.8",
+        "sp800-171r3:95:379.4"
+      ],
+      "top_rerank_score": -8.550987243652344,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 35.6,
+        "rerank": 1795.0,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1830.7
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q047",
+      "question": "Which Linux distribution does NIST recommend for hosting a CUI system?",
+      "category": "unanswerable",
+      "split": "test",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-171r3:56:205",
+        "sp800-171r3:11:003",
+        "sp800-171r3:27:065",
+        "sp800-171r3:42:134",
+        "sp800-171r3:55:199"
+      ],
+      "top_rerank_score": 0.975404679775238,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 35.8,
+        "rerank": 1636.2,
+        "llm": 1027.0,
+        "verify": 0.0,
+        "total": 2713.1
+      },
+      "status": "declined",
+      "gated": false,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {
+        "input_tokens": 1650,
+        "output_tokens": 30,
+        "cache_write_tokens": 0,
+        "cache_read_tokens": 0
+      },
+      "cost_usd": 0.00018,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q048",
+      "question": "Which CSF tier has the Department of Defense been assigned?",
+      "category": "unanswerable",
+      "split": "test",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:29:022",
+        "csf-2.0:31:025.1",
+        "csf-2.0:29:023",
+        "csf-2.0:11:008",
+        "csf-2.0:31:025"
+      ],
+      "top_rerank_score": -1.3327407836914062,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 27.4,
+        "rerank": 1859.2,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1886.7
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q049",
+      "question": "How many analysts must a security operations center employ according to SP 800-61r3?",
+      "category": "unanswerable",
+      "split": "dev",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "sp800-61r3:46:089",
+        "sp800-61r3:46:088",
+        "sp800-61r3:1:001",
+        "sp800-61r3:46:087",
+        "sp800-61r3:1:001.1"
+      ],
+      "top_rerank_score": -0.1567019522190094,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 42.6,
+        "rerank": 1759.0,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1802.0
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    },
+    {
+      "id": "q050",
+      "question": "What is the CMMC Level 2 assessment cost for a small business?",
+      "category": "unanswerable",
+      "split": "test",
+      "answerable": false,
+      "mode": "hybrid_rerank",
+      "retrieved_chunk_ids": [
+        "csf-2.0:16:018",
+        "sp800-61r3:18:013.1",
+        "sp800-63b-4:121:240.4",
+        "sp800-171r3:63:244",
+        "sp800-61r3:27:033"
+      ],
+      "top_rerank_score": -7.755671501159668,
+      "gold_rank": null,
+      "hit@1": false,
+      "hit@5": false,
+      "timings_ms": {
+        "retrieve": 32.1,
+        "rerank": 1920.2,
+        "llm": 0.0,
+        "verify": 0.0,
+        "total": 1952.6
+      },
+      "status": "declined",
+      "gated": true,
+      "answer": "I don't know - the documents don't cover this.",
+      "clarifying_question": null,
+      "citations": [],
+      "usage": {},
+      "cost_usd": null,
+      "n_citations": 0,
+      "n_citations_verified": 0,
+      "cited_gold_page": false,
+      "faithful": null,
+      "correct": null
+    }
+  ],
+  "summaries": {
+    "test": {
+      "n_questions": 34,
+      "n_answerable": 27,
+      "n_unanswerable": 7,
+      "retrieval_n": 27,
+      "retrieval_hit@1": 0.5185185185185185,
+      "retrieval_hit@5": 0.8148148148148148,
+      "retrieval_mrr@5": 0.6135802469135803,
+      "quote_verification_rate": 1.0,
+      "citation_page_accuracy": 0.8636363636363636,
+      "faithfulness": 1.0,
+      "n_faithfulness_judged": 22,
+      "answer_correctness": 0.8148148148148148,
+      "correct_declines": 7,
+      "unanswerable_total": 7,
+      "false_decline_rate": 0.18518518518518517,
+      "latency_ms_p50": 2792.8500000000004,
+      "latency_ms_p95": 3998.2,
+      "latency_ms_mean_by_stage": {
+        "retrieve": 499.8,
+        "rerank": 1649.4,
+        "llm": 1147.4,
+        "verify": 1.1
+      },
+      "cost_per_question_usd": 0.00030636764705882367,
+      "cost_total_usd": 0.010416500000000004,
+      "judge_cost_total_usd": 0.0040601000000000005,
+      "llm_calls_skipped_by_gate": 8
+    },
+    "dev": {
+      "n_questions": 16,
+      "n_answerable": 13,
+      "n_unanswerable": 3,
+      "retrieval_n": 13,
+      "retrieval_hit@1": 0.46153846153846156,
+      "retrieval_hit@5": 0.9230769230769231,
+      "retrieval_mrr@5": 0.641025641025641,
+      "quote_verification_rate": 1.0,
+      "citation_page_accuracy": 0.8461538461538461,
+      "faithfulness": 1.0,
+      "n_faithfulness_judged": 13,
+      "answer_correctness": 1.0,
+      "correct_declines": 3,
+      "unanswerable_total": 3,
+      "false_decline_rate": 0.0,
+      "latency_ms_p50": 2851.75,
+      "latency_ms_p95": 3164.8,
+      "latency_ms_mean_by_stage": {
+        "retrieve": 41.4,
+        "rerank": 1504.2,
+        "llm": 1133.7,
+        "verify": 1.8
+      },
+      "cost_per_question_usd": 0.00031483749999999995,
+      "cost_total_usd": 0.005037399999999999,
+      "judge_cost_total_usd": 0.0026859999999999987,
+      "llm_calls_skipped_by_gate": 3
+    },
+    "all": {
+      "n_questions": 50,
+      "n_answerable": 40,
+      "n_unanswerable": 10,
+      "retrieval_n": 40,
+      "retrieval_hit@1": 0.5,
+      "retrieval_hit@5": 0.85,
+      "retrieval_mrr@5": 0.6224999999999998,
+      "quote_verification_rate": 1.0,
+      "citation_page_accuracy": 0.8571428571428571,
+      "faithfulness": 1.0,
+      "n_faithfulness_judged": 35,
+      "answer_correctness": 0.875,
+      "correct_declines": 10,
+      "unanswerable_total": 10,
+      "false_decline_rate": 0.125,
+      "latency_ms_p50": 2792.8500000000004,
+      "latency_ms_p95": 3998.2,
+      "latency_ms_mean_by_stage": {
+        "retrieve": 353.1,
+        "rerank": 1603.0,
+        "llm": 1143.0,
+        "verify": 1.3
+      },
+      "cost_per_question_usd": 0.0003090780000000001,
+      "cost_total_usd": 0.015453900000000005,
+      "judge_cost_total_usd": 0.006746099999999999,
+      "llm_calls_skipped_by_gate": 11
+    }
+  }
+}

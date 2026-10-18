@@ -55,6 +55,17 @@ class _Boom:
 def test_gate_declines_without_calling_llm():
     qa = QA(retriever=_Retriever(-5.0), provider=_Boom())
     qa.settings.raw["retrieval"]["decline_threshold"] = 0.1
+    qa.settings.raw["retrieval"]["gate_enabled"] = True
     resp = qa.ask("unrelated question", "hybrid_rerank")
     assert resp.status == "declined" and not _Boom.called and resp.checked_sections
     assert qa.last["gated"] is True
+
+
+def test_gate_disabled_flag_lets_llm_decide():
+    _Boom.called = False
+    qa = QA(retriever=_Retriever(-5.0), provider=_Boom())
+    qa.settings.raw["retrieval"]["decline_threshold"] = 0.1
+    qa.settings.raw["retrieval"]["gate_enabled"] = False
+    resp = qa.ask("unrelated question", "hybrid_rerank")
+    assert _Boom.called and qa.last["gated"] is False
+    assert resp.status == "declined"  # the answer model's own decline is still honoured

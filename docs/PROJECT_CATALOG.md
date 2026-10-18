@@ -15,6 +15,6 @@ Show the demo as "Demo project built on public NIST documents", with its measure
 **What I need from the buyer:** documents you have the rights to use; 20-50 sample questions with expected answers if
 available; LLM provider preference and API key; hosting preference.
 
-**Running cost to quote honestly:** measured about $0.0003 per question with claude-haiku-5-5 on this demo corpus;
+**Running cost to quote honestly:** measured about $0.0004 per question (gate off; $0.0003 with the optional gate) with claude-haiku-5-5 on this demo corpus;
 ingest uses local models (free). Your documents and question lengths will change this, and the eval report will
 show the real figure for your data.

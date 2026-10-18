@@ -53,8 +53,10 @@ class QA:
             resp.timings_ms = {k: round(v, 1) for k, v in timings.items()}
             return resp
 
-        threshold = float(s.retrieval.get("decline_threshold", 0.0))
-        if mode == "hybrid_rerank" and should_decline(retrieved, threshold):
+        s_ret = s.retrieval
+        threshold = float(s_ret.get("decline_threshold", 0.0))
+        gate_enabled = bool(s_ret.get("gate_enabled", True))
+        if gate_enabled and mode == "hybrid_rerank" and should_decline(retrieved, threshold):
             self.last["gated"] = True
             return finish(AnswerResponse(status="declined", checked_sections=checked,
                                          answer="I don't know - the documents don't cover this."))

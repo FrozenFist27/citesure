@@ -12,7 +12,7 @@ import sys
 from citesure.config import load_settings
 from citesure.eval import metrics as M
 from citesure.eval.report import write_compare
-from citesure.eval.run import header, load_questions, run_eval
+from citesure.eval.run import load_questions, run_eval
 from citesure.qa import QA
 
 
@@ -30,13 +30,15 @@ def main(argv: list[str] | None = None) -> int:
     for mode in a.modes:
         print(f"=== mode {mode}", flush=True)
         real_mode = mode.split(":")[0]
-        saved = settings.raw["retrieval"]["decline_threshold"]
-        if mode.endswith(":nogate"):  # ablation: relevance gate disabled, LLM decides alone
-            settings.raw["retrieval"]["decline_threshold"] = -99.0
+        saved = settings.raw["retrieval"].get("gate_enabled", True)
+        if mode.endswith(":nogate"):  # relevance gate disabled, LLM decides alone (the default)
+            settings.raw["retrieval"]["gate_enabled"] = False
+        elif mode.endswith(":gate"):  # ablation: dev-calibrated relevance gate enabled
+            settings.raw["retrieval"]["gate_enabled"] = True
         try:
             full = run_eval(real_mode, "all", judge=not a.no_judge, qa=qa, questions=questions, verbose=False)
         finally:
-            settings.raw["retrieval"]["decline_threshold"] = saved
+            settings.raw["retrieval"]["gate_enabled"] = saved
         full["header"]["mode"] = mode
         by_split = {sp: M.summarize([r for r in full["results"] if sp == "all" or r["split"] == sp])
                     for sp in ("test", "dev", "all")}

@@ -12,8 +12,8 @@ from tests.fixtures.make_fixture import build
 @pytest.fixture(scope="module")
 def chunks():
     path = build.__wrapped__ if False else None  # noqa: F841 - keep linter calm
-    from pathlib import Path
     import tempfile
+    from pathlib import Path
 
     p = Path(tempfile.mkdtemp()) / "mini.pdf"
     build(p)
@@ -60,8 +60,8 @@ def test_page_offsets_cover_text(chunks):
 
 
 def test_section_and_fixed_modes_differ():
-    from pathlib import Path
     import tempfile
+    from pathlib import Path
 
     from citesure.ingest.parse import parse_pdf
 

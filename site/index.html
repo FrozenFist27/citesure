@@ -133,7 +133,7 @@
                 then an index build producing BM25, embeddings and a SQLite chunk store.
                 Online lane: a typed question goes through retrieve.py combining BM25 and vector search with
                 reciprocal rank fusion, then rerank.py with a cross-encoder to the top five passages,
-                then gate.py which declines without calling the language model when the relevance score is below
+                then an optional gate.py (off by default) which can decline without calling the language model when the relevance score is below
                 threshold, then answer.py where the language model writes a strict-JSON answer,
                 then verify.py which requires every quote to be an exact substring of its cited chunk,
                 finally producing a response JSON rendered as quote cards with PDF page links.
@@ -198,7 +198,7 @@
 
               <rect class="d-box d-box-online" x="628" y="176" width="156" height="64" rx="10"/>
               <text class="d-title" x="706" y="198" text-anchor="middle">gate.py</text>
-              <text class="d-sub" x="706" y="218" text-anchor="middle">relevance gate</text>
+              <text class="d-sub" x="706" y="218" text-anchor="middle">relevance gate (optional, off)</text>
               <text class="d-sub" x="706" y="232" text-anchor="middle">score &lt; threshold?</text>
 
               <path class="d-arrow" d="M158 208 H194" marker-end="url(#arr)"/>
@@ -315,11 +315,11 @@
             </thead>
             <tbody>
               <tr><td class="metric-name">Retrieval hit rate @5</td><td>81.5%</td></tr>
-              <tr><td class="metric-name">Faithfulness (LLM judge, answered questions)</td><td>100% (22 of 22)</td></tr>
+              <tr><td class="metric-name">Faithfulness (LLM judge, answered questions)</td><td>100% (25 of 25)</td></tr>
               <tr><td class="metric-name">Correct declines</td><td>7 / 7 (10 / 10 over all 50)</td></tr>
-              <tr><td class="metric-name">Answer correctness</td><td>81.5%</td></tr>
-              <tr><td class="metric-name">Cost per question</td><td>$0.00031</td></tr>
-              <tr><td class="metric-name">Latency p50 / p95</td><td>2.8 s / 4.0 s</td></tr>
+              <tr><td class="metric-name">Answer correctness</td><td>92.6%</td></tr>
+              <tr><td class="metric-name">Cost per question</td><td>$0.00039</td></tr>
+              <tr><td class="metric-name">Latency p50 / p95</td><td>3.9 s / 6.7 s</td></tr>
             </tbody>
           </table>
         </div>
@@ -338,13 +338,18 @@
             <tbody>
               <tr><td class="metric-name">vector (baseline)</td><td>37.0%</td><td>66.7%</td><td>0.472</td></tr>
               <tr><td class="metric-name">hybrid (BM25 + vector)</td><td>48.1%</td><td>77.8%</td><td>0.602</td></tr>
-              <tr><td class="metric-name">hybrid + rerank (final)</td><td>51.9%</td><td>81.5%</td><td>0.614</td></tr>
+              <tr><td class="metric-name">hybrid + rerank, gate off (final)</td><td>51.9%</td><td>81.5%</td><td>0.614</td></tr>
             </tbody>
           </table>
         </div>
 
         <p class="footnote">
-          Measured on 50 LLM-drafted, programmatically verified questions on 2026-10-17,
+          Ablation, gate on: the optional relevance gate cut cost to $0.00030 per question but lowered answer correctness
+          from 92.6% to 81.5% (2 false declines), so it is off by default. Retrieval rows are identical either way.
+        </p>
+
+        <p class="footnote">
+          Final numbers: gate-off run on 2026-10-18; retrieval rows from the 2026-10-17 comparison run. Measured on 50 LLM-drafted, programmatically verified questions,
           model claude-haiku-5-5. Reproduce with <code>make eval</code>
           (Windows: <code>python -m citesure.eval.run</code>).
         </p>

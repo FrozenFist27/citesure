@@ -110,9 +110,8 @@ def _make_chunk(
     if not text.strip():
         return []
     pages = tracker.pages or [1]
-    page_start, page_end = min(pages), max(pages)
+    page_start = min(pages)
     chunk_id = f"{doc_id}:{page_start}:{seq:03d}"
-    context = f"{doc_title} > {section_path}\n{text}" if section_path else f"{doc_title}\n{text}"
 
     pieces = (
         [(text, tracker.offsets)]

@@ -8,7 +8,8 @@ retrieval:
   rrf_k: 60
   rerank_top_n: 20
   final_k: 5
-  decline_threshold: 0.1        # calibrated on the dev split (python -m citesure.eval.run --calibrate); frozen before test numbers
+  gate_enabled: false           # relevance gate OFF by default: unanswerable questions are declined by the answer model itself
+  decline_threshold: 0.1        # only used when gate_enabled: true; calibrated on the dev split (--calibrate), frozen before test numbers
 
 chunking:
   mode: section                # section | fixed

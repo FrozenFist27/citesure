@@ -18,7 +18,7 @@ from citesure.eval import metrics as M  # noqa: E402
 from citesure.eval.report import metrics_table, write_compare, write_report  # noqa: E402
 
 
-def main(eval_p: str, cmp_p: str, abl_p: str) -> None:
+def main(eval_p: str, cmp_p: str | None = None, abl_p: str | None = None) -> None:
     rep = ROOT / "reports"
     run = json.loads(Path(eval_p).read_text(encoding="utf-8"))
     results = run["results"]
@@ -46,12 +46,15 @@ def main(eval_p: str, cmp_p: str, abl_p: str) -> None:
     (rep / "eval_baseline.md").write_text("\n".join(out), encoding="utf-8")
     (rep / "eval_baseline.json").write_text(json.dumps({**run, "summaries": parts}, indent=2), encoding="utf-8")
 
+    if not cmp_p or not abl_p:
+        print("wrote reports/eval_baseline.* (compare reports left unchanged)")
+        return
     cmp_ = json.loads(Path(cmp_p).read_text(encoding="utf-8"))
     cmp_.update(json.loads(Path(abl_p).read_text(encoding="utf-8")))
     note = (
         "Same 50 questions, same answer and judge model (`claude-haiku-5-5`); only retrieval mode (or the "
         "relevance gate) changes. Headline = test split. `hybrid_rerank` runs with the dev-calibrated gate "
-        "(threshold 0.1); `hybrid_rerank:nogate` is the same pipeline with the gate disabled. LLM output is "
+        "(threshold 0.1); the default config has the gate off; `hybrid_rerank:nogate` is the same pipeline with the gate disabled. LLM output is "
         "not perfectly deterministic, so small differences between this table and `eval_baseline.md` "
         "(a separate run of the same final configuration) are run-to-run noise."
     )

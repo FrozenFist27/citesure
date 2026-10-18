@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
@@ -19,7 +20,6 @@ from reportlab.platypus import (
     Table,
     TableStyle,
 )
-from reportlab.lib import colors
 
 FIXTURE = Path(__file__).parent / "mini.pdf"
 
