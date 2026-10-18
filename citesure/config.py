@@ -142,8 +142,10 @@ def load_settings() -> Settings:
 
     # env overrides for limits
     limits = dict(raw.get("limits", {}))
-    if os.environ.get("DAILY_QUESTION_CAP"):
-        limits["daily_question_cap"] = int(os.environ["DAILY_QUESTION_CAP"])
+    # DEMO_DAILY_QUESTION_CAP mirrors InvoiceLens' DEMO_* caps; DAILY_QUESTION_CAP is the legacy alias.
+    cap_env = os.environ.get("DEMO_DAILY_QUESTION_CAP") or os.environ.get("DAILY_QUESTION_CAP")
+    if cap_env:
+        limits["daily_question_cap"] = int(cap_env)
     if os.environ.get("RATE_LIMIT_PER_IP_PER_HOUR"):
         limits["rate_limit_per_ip_per_hour"] = int(os.environ["RATE_LIMIT_PER_IP_PER_HOUR"])
     raw["limits"] = limits

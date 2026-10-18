@@ -30,7 +30,7 @@ answer:
   retry_on_verify_fail: 1
 
 limits:
-  daily_question_cap: 200      # overridden by env DAILY_QUESTION_CAP
+  daily_question_cap: 100      # overridden by env DEMO_DAILY_QUESTION_CAP (global, per UTC day)
   rate_limit_per_ip_per_hour: 10
   max_question_chars: 500
 

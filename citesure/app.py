@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import os
+import threading
 from pathlib import Path
 
 import yaml
@@ -30,7 +32,7 @@ def create_app(qa: QA | None = None, limiter: RateLimiter | None = None) -> Fast
     state = {"qa": qa}
     lim = limiter or RateLimiter(
         int(settings.limits.get("rate_limit_per_ip_per_hour", 10)),
-        int(settings.limits.get("daily_question_cap", 200)),
+        int(settings.limits.get("daily_question_cap", 100)),
     )
     manifest = yaml.safe_load(settings.manifest_path.read_text(encoding="utf-8"))
     pdfs = {d["doc_id"]: d["filename"] for d in manifest["documents"]}
@@ -39,6 +41,17 @@ def create_app(qa: QA | None = None, limiter: RateLimiter | None = None) -> Fast
         if state["qa"] is None:
             state["qa"] = QA()
         return state["qa"]
+
+    def _warmup() -> None:
+        """Load index + embedding/re-rank models in the background so the first question is fast."""
+        try:
+            q = get_qa()
+            q.retriever.retrieve("warmup", settings.retrieval.get("mode", "hybrid_rerank"))
+        except Exception:  # noqa: BLE001 - warmup is best-effort
+            pass
+
+    if qa is None and os.environ.get("CITESURE_WARMUP") == "1":
+        threading.Thread(target=_warmup, daemon=True).start()
 
     cache: dict[str, AnswerResponse] = {}
     if EXAMPLES_PATH.exists():
@@ -68,10 +81,22 @@ def create_app(qa: QA | None = None, limiter: RateLimiter | None = None) -> Fast
         if reason == "daily":
             return JSONResponse(
                 status_code=429,
-                content={"detail": "Daily demo limit reached - watch the video or run locally."},
+                content={
+                    "detail": (
+                        f"The demo has reached its daily limit of {lim.daily_cap} questions to keep "
+                        "costs down. The example questions above still work (cached), and the "
+                        "limit resets at 00:00 UTC. You can also run CiteSure locally."
+                    )
+                },
             )
         if reason == "ip":
-            return JSONResponse(status_code=429, content={"detail": "Too many questions from your address this hour."})
+            return JSONResponse(status_code=429, content={
+                    "detail": (
+                        f"You have used your {lim.per_ip} live questions for this hour. Try the "
+                        "cached example questions or come back a bit later."
+                    )
+                },
+            )
         return get_qa().ask(q)
 
     @app.get("/docs/{doc_id}.pdf")

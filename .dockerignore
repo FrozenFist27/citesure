@@ -1,8 +1,14 @@
 .env
 .venv
 .git
+.git-old
 index
 reports
 __pycache__
 *.egg-info
 site
+*.log
+IDEATION.md
+tests
+.pytest_cache
+.ruff_cache

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import threading
 import time
 from collections import defaultdict, deque
 
@@ -14,9 +15,14 @@ class RateLimiter:
         self._hits: dict[str, deque[float]] = defaultdict(deque)
         self._day: int = -1
         self._day_count = 0
+        self._lock = threading.Lock()
 
     def check(self, ip: str) -> str | None:
         """Record a request. Returns None if allowed, else 'ip' or 'daily' (the reason)."""
+        with self._lock:
+            return self._check(ip)
+
+    def _check(self, ip: str) -> str | None:
         now = self.clock()
         day = int(now // 86400)
         if day != self._day:

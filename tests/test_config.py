@@ -61,3 +61,21 @@ def test_usage_add():
         100,
         50,
     )
+
+
+def test_daily_cap_default_and_env_override(monkeypatch):
+    from citesure.config import reset_caches
+
+    monkeypatch.setattr("citesure.config.load_dotenv", lambda *a, **k: None)  # ignore a local .env
+    for var in ("DEMO_DAILY_QUESTION_CAP", "DAILY_QUESTION_CAP"):
+        monkeypatch.delenv(var, raising=False)
+    reset_caches()
+    assert load_settings().limits["daily_question_cap"] == 100
+    monkeypatch.setenv("DEMO_DAILY_QUESTION_CAP", "2")
+    reset_caches()
+    assert load_settings().limits["daily_question_cap"] == 2
+    monkeypatch.delenv("DEMO_DAILY_QUESTION_CAP")
+    monkeypatch.setenv("DAILY_QUESTION_CAP", "7")
+    reset_caches()
+    assert load_settings().limits["daily_question_cap"] == 7
+    reset_caches()

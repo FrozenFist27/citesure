@@ -112,8 +112,8 @@ python -m pytest                                      # make test
 The first question after start-up takes about 25 s because the embedding and re-rank models load; later ones take about 3 s.
 
 Configuration: `config/settings.yaml` (retrieval mode, k values, `gate_enabled`, decline threshold, limits) and `.env`
-(`LLM_PROVIDER`, `LLM_MODEL`, `JUDGE_MODEL`, `ANTHROPIC_API_KEY`, rate limits). The demo limits 10 questions/hour/IP and
-200/day, and serves six pre-computed example answers at zero cost (`static/examples.json`).
+(`LLM_PROVIDER`, `LLM_MODEL`, `JUDGE_MODEL`, `ANTHROPIC_API_KEY`, rate limits). The demo limits 10 live questions/hour/IP and
+100/day globally (`DEMO_DAILY_QUESTION_CAP`, `RATE_LIMIT_PER_IP_PER_HOUR`), and serves six pre-computed example answers at zero cost (`static/examples.json`).
 
 ## Evaluation method
 

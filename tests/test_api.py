@@ -52,7 +52,36 @@ def test_daily_cap_honoured():
     c, _ = _client(RateLimiter(per_ip_per_hour=100, daily_cap=1))
     assert c.post("/api/ask", json={"question": "valid question"}).status_code == 200
     r = c.post("/api/ask", json={"question": "another question"})
-    assert r.status_code == 429 and "Daily" in r.json()["detail"]
+    assert r.status_code == 429 and "daily limit of 1 question" in r.json()["detail"]
+    assert "cached" in r.json()["detail"]
+
+
+def test_ip_limit_message_is_friendly_and_per_ip():
+    c, _ = _client(RateLimiter(per_ip_per_hour=1, daily_cap=100))
+    assert c.post("/api/ask", json={"question": "valid question"}).status_code == 200
+    r = c.post("/api/ask", json={"question": "valid question"})
+    assert r.status_code == 429 and "this hour" in r.json()["detail"]
+
+
+def test_daily_cap_counts_only_live_questions():
+    c, qa = _client(RateLimiter(per_ip_per_hour=100, daily_cap=100))
+    for _ in range(3):
+        c.post("/api/ask", json={"question": "valid question"})
+    assert qa.calls == 3
+
+
+def test_daily_cap_from_env_applies(monkeypatch):
+    from citesure.config import reset_caches
+
+    monkeypatch.setenv("DEMO_DAILY_QUESTION_CAP", "2")
+    reset_caches()
+    try:
+        c, qa = _client()
+        codes = [c.post("/api/ask", json={"question": "valid question"}).status_code for _ in range(3)]
+        assert codes == [200, 200, 429] and qa.calls == 2
+    finally:
+        monkeypatch.delenv("DEMO_DAILY_QUESTION_CAP")
+        reset_caches()
 
 
 def test_rate_limiter_window_expires():
